@@ -1,24 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
 
-/**
- *
- * @author Cosquin
- */
 public class Huesped {
-        private int idHuesped;
+    private int idHuesped;
     private String nombre;
     private String apellido;
     private int DNI;
     private String domicilio;
     private String correo;
     private int celular;
+    private boolean estado;
 
     /**CONTRUCTOR CON TODOS LOS ATRIBUTOS DE HUESPED*/
-    public Huesped(int idHuesped, String nombre, String apellido, int DNI, String domicilio, String correo, int celular) {
+    public Huesped(int idHuesped, String nombre, String apellido, int DNI, String domicilio, String correo, int celular, boolean estado) {
         this.idHuesped = idHuesped;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -26,16 +20,18 @@ public class Huesped {
         this.domicilio = domicilio;
         this.correo = correo;
         this.celular = celular;
+        this.estado = estado;
     }
 
     /**CONSTRUCTOR SIN ID DE HUESPED*/
-    public Huesped(String nombre, String apellido, int DNI, String domicilio, String correo, int celular) {
+    public Huesped(String nombre, String apellido, int DNI, String domicilio, String correo, int celular, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
         this.domicilio = domicilio;
         this.correo = correo;
         this.celular = celular;
+        this.estado = estado;
     }
     
     /**CONSTRUCTOR VACIO*/
@@ -100,6 +96,15 @@ public class Huesped {
         this.celular = celular;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
     /**TOSTRING() DE HUESPEDES*/
     @Override
     public String toString(){
