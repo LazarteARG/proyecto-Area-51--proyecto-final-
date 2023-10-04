@@ -66,7 +66,7 @@ public class HuespedData {
              }
          } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null, "No se pudieron actualizar los datos del huesped");
-             System.out.println("Error en la Clase copia_HuespedData, metodo actualizarHuesped "+ ex.getMessage());
+             System.out.println("Error en la Clase HuespedData, metodo actualizarHuesped "+ ex.getMessage());
          }
 
      }
@@ -89,6 +89,34 @@ public class HuespedData {
      }
      
  }
+ /**hecho por tam*/
+     public static Huesped obtenerHuespedXDni(int dni){
+     Huesped h=new Huesped();
+     sql="SELECT * FROM huesped WHERE dni=?";
+     try {
+         ps=con.prepareStatement(sql);
+         ps.setInt(1, dni);
+         
+         rs=ps.executeQuery();
+         
+         while(rs.next()){
+	
+             h.setIdHuesped(rs.getInt(1));
+             h.setNombre(rs.getString(2));
+             h.setApellido(rs.getString(3));
+             h.setDNI(rs.getInt(4));
+             h.setCorreo(rs.getString(5));
+             h.setCelular(rs.getInt(6));
+             h.setDomicilio(rs.getString(7));
+             h.setEstado(rs.getBoolean(8));
+             System.out.println("huesped btenido exitosamente");
+         }
+     } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos del huesped");
+         System.out.println("Error en la Clase HuespedData, metodo obtenerHuespedXDni "+ ex.getMessage());
+    }
+     return h;
+ }
     
     
     
@@ -96,8 +124,10 @@ public class HuespedData {
 
 
 //**PROYECTO AREA 51*/
+//MODELO DE LA TABLA HUESPED EN SQL://idHuesped,nombre,apellido,dni,correo,celular,domicilio,estado
 //**PRIMERA REGLA DEL AREA 51: NUNCA HABLAR DEL AREA 51 (solo esta permitido si vas hablar bien de nosotros, nos vas a dar plata o nos vas a dar una empanada de carne)*/
 //**Quisiera una milanesa¨*/
+//y yo albondigas
     
       
 
