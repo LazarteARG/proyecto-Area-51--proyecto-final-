@@ -70,7 +70,34 @@ public class HuespedData {
          }
 
      }
+    
+  //**Hecho por Ariel Lazarte*/
  
+ public static void bajarHuesped(int idHuesped) {
+     
+     try {
+         String sql = "UPDATE huesped SET estado = 0 WHERE idHuesped = ? ";
+         PreparedStatement ps = con.prepareStatement(sql);
+         ps.setInt(1, idHuesped);
+         int fila = ps.executeUpdate();
+         
+         if (fila == 1) {
+             JOptionPane.showMessageDialog(null, "Se ha dado de baja al huesped de la nave nudri");
+         }
+     } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "*Error*: no se ha podido dar de baja al huesped al ser humano");
+     }
+     
+ }
+    
+    
+    
+}
+
+
+//**PROYECTO AREA 51*/
+//**PRIMERA REGLA DEL AREA 51: NUNCA HABLAR DEL AREA 51 (solo esta permitido si vas hablar bien de nosotros, nos vas a dar plata o nos vas a dar una empanada de carne)*/
+//**Quisiera una milanesa¨*/
     
       
-}
+
