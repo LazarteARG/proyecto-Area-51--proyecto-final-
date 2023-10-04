@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Huesped;
 
@@ -76,8 +77,8 @@ public class HuespedData {
  public static void bajarHuesped(int idHuesped) {
      
      try {
-         String sql = "UPDATE huesped SET estado = 0 WHERE idHuesped = ? ";
-         PreparedStatement ps = con.prepareStatement(sql);
+         sql = "UPDATE huesped SET estado = 0 WHERE idHuesped = ? ";
+         ps  = con.prepareStatement(sql);
          ps.setInt(1, idHuesped);
          int fila = ps.executeUpdate();
          
@@ -117,6 +118,40 @@ public class HuespedData {
     }
      return h;
  }
+     
+  
+ //hecho por juan
+ public static ArrayList<Huesped> listaCompletaHuespedes(){
+   ArrayList<Huesped> lista = new ArrayList<>();
+   sql= "SELECT * FROM huesped";
+     try {
+         ps=con.prepareStatement(sql);   
+         rs= ps.executeQuery();
+         //idHuesped	nombre	apellido	dni	correo	celular	domicilio	estado
+         while(rs.next()){
+           Huesped huesped = new Huesped();
+           
+           huesped.setIdHuesped(rs.getInt(1));
+           huesped.setNombre(rs.getString(2));
+           huesped.setApellido(rs.getString(3));         
+           huesped.setDNI(rs.getInt(4));
+           huesped.setCorreo(rs.getString(5));
+           huesped.setCelular(rs.getInt(6));
+           huesped.setDomicilio(rs.getString(7));
+           huesped.setEstado(rs.getBoolean(8));
+           
+           lista.add(huesped);
+         }
+ 
+     } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "Error, no se pudo devolver la lista");
+         System.out.println("Error en la Clase HuespedData, metodo listaCompletaHuespedes "+ex.getMessage());
+     }
+
+ 
+ 
+   return lista;
+ }   
     
     
     
@@ -127,7 +162,9 @@ public class HuespedData {
 //MODELO DE LA TABLA HUESPED EN SQL://idHuesped,nombre,apellido,dni,correo,celular,domicilio,estado
 //**PRIMERA REGLA DEL AREA 51: NUNCA HABLAR DEL AREA 51 (solo esta permitido si vas hablar bien de nosotros, nos vas a dar plata o nos vas a dar una empanada de carne)*/
 //**Quisiera una milanesa¨*/
-//y yo albondigas
+//y yo 
+
+//jaja el area 51 es area confidencial
     
       
 
