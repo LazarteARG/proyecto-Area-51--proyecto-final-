@@ -13,7 +13,7 @@ public class HuespedData {
  private static PreparedStatement ps;
  private static ResultSet rs;
  
- 
+ /**hecho por juan*/
  //metodos
  public static void subirHuesped(Huesped huesped){
     sql="INSERT INTO huesped (nombre, apellido, dni, correo, celular, domicilio) VALUES (?,?,?,?,?,?)";
@@ -40,10 +40,34 @@ public class HuespedData {
          System.out.println("Error en la Clase HuespedData, metodo subirHuesped "+ ex.getMessage());
      }
  
- }
+}
+    /**hecho por tam*/
+    public static void actualizarHuesped(Huesped huesped){
+         sql="UPDATE alumno SET nombre=?,apellido=?,dni=?,correo=?,celular=?,domicilio=? WHERE idHuesped=?";
+         try {
+             ps=con.prepareStatement(sql);
+             ps.setString(1, huesped.getNombre());
+             ps.setString(2, huesped.getApellido());
+             ps.setInt(3, huesped.getDNI());
+             ps.setString(4, huesped.getCorreo());
+             ps.setInt(5, huesped.getIdHuesped());
+             ps.setString(6, huesped.getDomicilio());
+             ps.setInt(7, huesped.getIdHuesped());
+
+
+             int f=ps.executeUpdate();
+
+             if(f>0){
+                 JOptionPane.showMessageDialog(null, "huesped actulizado correctamente");
+                 System.out.println("filas afectadas: "+f);
+             }
+         } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "No se pudieron actualizar los datos del huesped");
+             System.out.println("Error en la Clase copia_HuespedData, metodo actualizarHuesped "+ ex.getMessage());
+         }
+
+     }
  
- 
     
-    
-    
+      
 }
