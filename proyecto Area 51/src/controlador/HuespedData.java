@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Huesped;
 
@@ -151,8 +152,78 @@ public class HuespedData {
  
  
    return lista;
- }   
-    
+ } 
+ 
+ //**Hecho por Ariel Lazarte*/
+ 
+     public static ArrayList listadeHuespedActivos() {
+     ArrayList<Huesped> huespedes = new ArrayList<>();
+     sql="SELECT * FORM huesped WHERE estado = 1 ";
+     
+     try {
+         ps=con.prepareStatement(sql);
+         rs=ps.executeQuery();
+         
+         while (rs.next()) {
+             Huesped huesped = new Huesped();
+             
+             huesped.setIdHuesped(rs.getInt(1));
+             huesped.setNombre(rs.getString(2));
+             huesped.setApellido(rs.getString(3));
+             huesped.setDNI(rs.getInt(4));
+             huesped.setCorreo(rs.getString(5));
+             huesped.setCelular(rs.getInt(6));
+             huesped.setDomicilio(rs.getString(7));
+             huesped.setEstado(rs.getBoolean(8));
+             
+             huespedes.add(huesped);
+             
+         }
+         
+     } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "*ERROR*: No se pudo obtener los datos de los huespedes activos");
+         System.out.println("Error en la clase HuespedData, en el metodo ListadeHuespedActivos()");
+         
+     }
+     return huespedes;
+     
+ }
+
+    //**Hecho por Ariel Lazarte*/ 
+     
+    public static ArrayList listadeHuespedNoActivos() {
+        ArrayList<Huesped> huespedes = new ArrayList<>();
+        sql="SELECT * FROM huesped WHERE estado = 0 ";
+        
+        try {
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            
+            while (rs.next()) {
+                Huesped huesped = new Huesped();
+                
+                huesped.setIdHuesped(rs.getInt(1));
+                huesped.setNombre(rs.getString(2));
+                huesped.setApellido(rs.getString(3));
+                huesped.setDNI(rs.getInt(4));
+                huesped.setCorreo(rs.getString(5));
+                huesped.setCelular(rs.getInt(6));
+                huesped.setDomicilio(rs.getString(7));
+                huesped.setEstado(rs.getBoolean(8));
+                
+                huespedes.add(huesped);
+                
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se pudo obtener los datos de los huespedes no activos");
+            System.out.println("Error en la clase HuespedData, en el metodo ListadeHuespedNoActivos()");
+            
+        }
+        return huespedes;
+    }
+     
+
     
     
 }
@@ -166,5 +237,5 @@ public class HuespedData {
 
 //jaja el area 51 es area confidencial
     
-      
+//EL SEÑOR DE LA NOCHEEEEEEEEEEEEEEEEEEEEE     
 
