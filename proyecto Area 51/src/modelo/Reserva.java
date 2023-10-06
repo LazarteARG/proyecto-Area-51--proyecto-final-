@@ -111,7 +111,7 @@ public class Reserva {
     
     @Override
     public String toString(){
-        return "Reserva N°: "+idReserva+",de Huesped N°: "+huesped.getIdHuesped()+",en Habitacion n°: "+habitacion.getIdHabitacion()+", n° total de personas: "+cantPersonas+", estado: "+estado;
+        return "Reserva N°: "+idReserva+", de Huesped N°: "+huesped.getIdHuesped()+",en Habitacion n°: "+habitacion.getIdHabitacion()+", n° total de personas: "+cantPersonas+", estado: "+estado;
     }
 
 }

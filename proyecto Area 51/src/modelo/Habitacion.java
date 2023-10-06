@@ -61,7 +61,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", idCategoria=" + idCategoria + ", piso=" + piso + ", estado=" + estado + '}';
+        return "Habitacion nro:" + idHabitacion + ", Categoria nro:" + idCategoria + ", piso nro:" + piso + ", ¿esta libre?:" + estado;
     }
     
     
