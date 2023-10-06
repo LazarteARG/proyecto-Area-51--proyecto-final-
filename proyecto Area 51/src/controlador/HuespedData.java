@@ -34,7 +34,7 @@ public class HuespedData {
          rs = ps.getGeneratedKeys();
          if(rs.next()){
            huesped.setIdHuesped(rs.getInt(1));  
-           JOptionPane.showConfirmDialog(null, "Huesped agregado con exito.");
+           JOptionPane.showMessageDialog(null, "Huesped agregado con exito.");
          }
          
          
@@ -46,7 +46,7 @@ public class HuespedData {
 }
     /**hecho por tam*/
     public static void actualizarHuesped(Huesped huesped){
-         sql="UPDATE alumno SET nombre=?,apellido=?,dni=?,correo=?,celular=?,domicilio=?, estado=? WHERE idHuesped=?";
+         sql="UPDATE huesped SET nombre=?,apellido=?,dni=?,correo=?,celular=?,domicilio=?, estado=? WHERE idHuesped=?";
          try {
              ps=con.prepareStatement(sql);
              ps.setString(1, huesped.getNombre());
@@ -111,7 +111,6 @@ public class HuespedData {
              h.setCelular(rs.getInt(6));
              h.setDomicilio(rs.getString(7));
              h.setEstado(rs.getBoolean(8));
-             System.out.println("huesped btenido exitosamente");
          }
      } catch (SQLException ex) {
          JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos del huesped");
@@ -156,9 +155,9 @@ public class HuespedData {
  
  //**Hecho por Ariel Lazarte*/
  
-     public static ArrayList listadeHuespedActivos() {
+     public static ArrayList<Huesped> listadeHuespedActivos() {
      ArrayList<Huesped> huespedes = new ArrayList<>();
-     sql="SELECT * FORM huesped WHERE estado = 1 ";
+     sql="SELECT * FROM huesped WHERE estado = 1 ";
      
      try {
          ps=con.prepareStatement(sql);
@@ -191,7 +190,7 @@ public class HuespedData {
 
     //**Hecho por Ariel Lazarte*/ 
      
-    public static ArrayList listadeHuespedNoActivos() {
+    public static ArrayList<Huesped> listadeHuespedNoActivos() {
         ArrayList<Huesped> huespedes = new ArrayList<>();
         sql="SELECT * FROM huesped WHERE estado = 0 ";
         
