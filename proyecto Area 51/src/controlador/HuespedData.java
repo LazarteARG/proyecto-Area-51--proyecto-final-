@@ -84,7 +84,7 @@ public class HuespedData {
          int fila = ps.executeUpdate();
          
          if (fila == 1) {
-             JOptionPane.showMessageDialog(null, "Se ha dado de baja al huesped de la nave nudri");
+             JOptionPane.showMessageDialog(null, "Se ha dado de baja al huesped de la nave nodri");
          }
      } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "*Error*: no se ha podido dar de baja al huesped al ser humano");
@@ -232,9 +232,10 @@ public class HuespedData {
 //MODELO DE LA TABLA HUESPED EN SQL://idHuesped,nombre,apellido,dni,correo,celular,domicilio,estado
 //**PRIMERA REGLA DEL AREA 51: NUNCA HABLAR DEL AREA 51 (solo esta permitido si vas hablar bien de nosotros, nos vas a dar plata o nos vas a dar una empanada de carne)*/
 //**Quisiera una milanesa¨*/
-//y yo 
+//y yo albondigas
 
 //jaja el area 51 es area confidencial
     
 //EL SEÑOR DE LA NOCHEEEEEEEEEEEEEEEEEEEEE     
 
+//venimos en son de paz XD
