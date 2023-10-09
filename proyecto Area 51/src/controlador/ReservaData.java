@@ -162,7 +162,7 @@ public class ReservaData {
      * hecho por tam
      */
 
-    public static ArrayList<Reserva> listarMateriasActivas(){
+    public static ArrayList<Reserva> listarReservasActivas(){
         ArrayList<Reserva> reservas=new ArrayList<>();
         sql="SELECT * FROM reserva WHERE estado=1";
         try {
@@ -179,4 +179,47 @@ public class ReservaData {
         }
         return reservas;
     }
+    
+    
+        public static ArrayList<Reserva> listarReservasBajas(){
+        ArrayList<Reserva> lista =new ArrayList<>();
+        sql="SELECT * FROM reserva WHERE estado=0";
+        try {
+            ps=con.prepareStatement(sql);
+            
+            rs=ps.executeQuery();
+
+            while(rs.next()){
+                lista.add(new Reserva(rs.getInt(1),HabitacionesData.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se ah podido cargar la lista de Reservas bajas: "+ex.getMessage());
+            System.out.println("error en metodo listarMateriasBajas de la clase Reserva: "+ex.getMessage());
+        }
+        return lista;
+    }
+    
+    
+    
+     public static ArrayList<Reserva> listarTodasLasReservas(){
+        ArrayList<Reserva> lista=new ArrayList<>();
+        sql="SELECT * FROM reserva";
+        try {
+            ps=con.prepareStatement(sql);
+            
+            rs=ps.executeQuery();
+
+            while(rs.next()){
+                lista.add(new Reserva(rs.getInt(1),HabitacionesData.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se ha podido cargar la lista completa de Reservas: "+ex.getMessage());
+            System.out.println("error en metodo listarTodasLasReservas en reservaData error: "+ex.getMessage());
+        }
+        return lista;
+    }
+    
+    
+    
+    
 }
