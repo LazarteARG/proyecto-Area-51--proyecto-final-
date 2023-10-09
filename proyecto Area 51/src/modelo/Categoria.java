@@ -8,21 +8,32 @@ public class Categoria {
     private String tipoDeCamas;
     private int cantidadPersonas;
     private int cantidadCamas;
+    private double precioNoche;
 
     public Categoria() {
     }
 
-    public Categoria(int idCategoria, String tipoDeCamas, int cantidadPersonas, int cantidadCamas) {
+    public Categoria(int idCategoria, String tipoDeCamas, int cantidadPersonas, int cantidadCamas,double precioNoche) {
         this.idCategoria = idCategoria;
         this.tipoDeCamas = tipoDeCamas;
         this.cantidadPersonas = cantidadPersonas;
         this.cantidadCamas = cantidadCamas;
+        this.precioNoche=precioNoche;
     }
 
-    public Categoria(String tipoDeCamas, int cantidadPersonas, int cantidadCamas) {
+    public Categoria(String tipoDeCamas, int cantidadPersonas, int cantidadCamas,double precioNoche) {
         this.tipoDeCamas = tipoDeCamas;
         this.cantidadPersonas = cantidadPersonas;
         this.cantidadCamas = cantidadCamas;
+        this.precioNoche=precioNoche;
+    }
+
+    public double getPrecioNoche() {
+        return precioNoche;
+    }
+
+    public void setPrecioNoche(double precioNoche) {
+        this.precioNoche = precioNoche;
     }
 
         public int getIdCategoria() {
