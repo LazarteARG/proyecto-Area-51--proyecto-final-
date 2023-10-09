@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 
-public class CategoiaData {
+public class CategoriaData {
     //Atributos
 
     private static Connection con = Conexion.getConexion();
