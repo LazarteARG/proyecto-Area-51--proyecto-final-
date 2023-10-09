@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Habitacion;
 
@@ -158,5 +160,24 @@ public static ArrayList<Habitacion> listaHabitacionesBajas(){
  return lista;   
 }
 
+public static boolean isLibre(Habitacion habitacion){
+    sql="SELECT * FROM reserva WHERE idHabitacion=? AND estado=1";
+    
+     try {
+         ps=con.prepareStatement(sql);
+         ps.setInt(1, habitacion.getIdHabitacion());
+         
+         rs=ps.executeQuery();
+         
+         if(rs.next()){
+           return false;
+         }
+         
+     } catch (SQLException ex) {
+      JOptionPane.showMessageDialog(null, "Error al verificar si la habitacion esta libre");
+      System.out.println("Error en las clase HabitacionData metodo isLibre() "+ex.getMessage());
+  }
+    return true;
+}
 
 }
