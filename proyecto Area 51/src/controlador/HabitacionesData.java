@@ -29,7 +29,7 @@ public class HabitacionesData {
                     int idC=CategoriaData.obtenerCategoriaXId(rs.getInt(2)).getIdCategoria();
                     h.setIdCategoria(idC);
                     h.setPiso(rs.getInt(3));
-                    h.setLibre(rs.getBoolean(4));
+                    h.setEstado(rs.getInt(4));
                     System.out.println("habitacion obtenida exitosamente");
                 }
             } catch (SQLException ex) {
