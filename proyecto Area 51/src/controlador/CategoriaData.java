@@ -104,7 +104,31 @@ public class CategoriaData {
  return lista;   
 } 
     
-    
+    /**hecho por tam*/
+       public static Categoria obtenerCategoriaXId(int id) {
+        Categoria c = new Categoria();
+        sql = "SELECT * FROM categoria WHERE idCategoria=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                c.setIdCategoria(rs.getInt(1));
+                c.setTipoDeCamas(rs.getString(2));
+                c.setCantidadCamas(rs.getInt(3));
+                c.setCantidadPersonas(rs.getInt(4));
+                c.setPrecioNoche(rs.getDouble(5));
+                System.out.println("categoria obtenida exitosamente");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la categoria");
+            System.out.println("Error en la Clase CategoriaData, metodo obtenerCategoriaXId " + ex.getMessage());
+        }
+        return c;
+    }
     
 
 }

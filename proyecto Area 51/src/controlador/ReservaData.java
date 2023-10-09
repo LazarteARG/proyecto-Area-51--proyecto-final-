@@ -5,12 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Reserva;
 
@@ -55,5 +51,26 @@ public class ReservaData {
             System.out.println("error en metodo actualizarReserva en reservaData error: "+ex.getMessage());
         }
 
+    }
+    /**
+     * hecho por tam
+     */
+
+    public static ArrayList<Reserva> listarMateriasActivas(){
+        ArrayList<Reserva> reservas=new ArrayList<>();
+        sql="SELECT * FROM reserva WHERE estado=1";
+        try {
+            ps=con.prepareStatement(sql);
+            
+            rs=ps.executeQuery();
+
+            while(rs.next()){
+                reservas.add(new Reserva(rs.getInt(1),HabitacionesData.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se ha podido actualizar la reserva, error: "+ex.getMessage());
+            System.out.println("error en metodo actualizarReserva en reservaData error: "+ex.getMessage());
+        }
+        return reservas;
     }
 }

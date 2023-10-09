@@ -222,7 +222,34 @@ public class HuespedData {
         return huespedes;
     }
      
+/**hecho por tam*/
+    public static Huesped obtenerHuespedXid(int id) {
+        Huesped h = new Huesped();
+        sql = "SELECT * FROM huesped WHERE idHuesped=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
 
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                h.setIdHuesped(rs.getInt(1));
+                h.setNombre(rs.getString(2));
+                h.setApellido(rs.getString(3));
+                h.setDNI(rs.getInt(4));
+                h.setCorreo(rs.getString(5));
+                h.setCelular(rs.getInt(6));
+                h.setDomicilio(rs.getString(7));
+                h.setEstado(rs.getBoolean(8));
+                System.out.println("huesped obtenido exitosamente");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos del huesped");
+            System.out.println("Error en la Clase HuespedData, metodo obtenerHuespedXDni " + ex.getMessage());
+        }
+        return h;
+    }
     
     
 }
