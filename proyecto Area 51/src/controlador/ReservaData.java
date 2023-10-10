@@ -219,7 +219,34 @@ public class ReservaData {
         return lista;
     }
     
-    
+    /**hecho por tam*/
+     public static Reserva buscarReservaPorHabitacion(int idHabitacion){
+        sql="SELECT * FROM reserva WHERE idHabitacion=?";
+        Reserva reserva= new Reserva();
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, idHabitacion);
+            
+            rs=ps.executeQuery();
+            
+            if(rs.next()){
+                reserva.setIdReserva(rs.getInt(1));
+                reserva.setHuesped(rs.getInt(HuespedData.obtenerHuespedPorId(rs.getInt(2))));
+                reserva.setIdHabitacion(rs.getInt(3));
+                reserva.setFechaIngreso(rs.getDate(4).toLocalDate());
+                reserva.setFechaEgreso(rs.getDate(5).toLocalDate());
+                reserva.setCantPersonas(rs.getInt(6));
+                reserva.setPrecioTotal(rs.getDouble(7));
+                reserva.setEstado(rs.getBoolean(8));
+                
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la reserva, error: "+ex.getMessage());
+            System.out.println("error en metodo actualizarReserva en reservaData error: "+ex.getMessage());
+        }
+        return reserva;
+    }
     
     
 }
