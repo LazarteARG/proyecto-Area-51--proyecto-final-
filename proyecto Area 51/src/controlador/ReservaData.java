@@ -114,7 +114,14 @@ public class ReservaData {
             rs = ps.executeQuery();
             
             if (rs.next()) {
-                
+                r.setIdReserva(rs.getInt(1));
+                r.setHuesped(HuespedData.obtenerHuespedXid(rs.getInt(2)));
+                r.setHabitacion(HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)));
+                r.setFechaIngreso(rs.getDate(4).toLocalDate());
+                r.setFechaEgreso(rs.getDate(5).toLocalDate());
+                r.setCantPersonas(rs.getInt(6));
+                r.setPrecioTotal(rs.getDouble(7));
+                r.setEstado(rs.getBoolean(8));
                 
             }
             
@@ -122,7 +129,7 @@ public class ReservaData {
             Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return r;
         
     }
 
@@ -249,3 +256,9 @@ public class ReservaData {
     
     
 }
+
+
+
+
+//VAMOS BOCAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+//¿Existira vida en otros planetas? no se, pero si tendras un buen rato en tu vida si te hospedas en el Hotel Area 51 ;)//
