@@ -180,4 +180,31 @@ public static boolean isLibre(Habitacion habitacion){
     return true;
 }
 
+        public static Habitacion obtenerHabitacionXId(int id) {
+            Habitacion h = new Habitacion();
+            sql = "SELECT * FROM habitacion WHERE idHabitacion=?";
+            try {
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, id);
+
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+
+                    h.setIdHabitacion(rs.getInt(1));
+                    int idC=CategoriaData.obtenerCategoriaXId(rs.getInt(2)).getIdCategoria();
+                    h.setIdCategoria(idC);
+                    h.setPiso(rs.getInt(3));
+                    h.setEstado(rs.getInt(4));
+                    System.out.println("habitacion obtenida exitosamente");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la habitacion");
+                System.out.println("Error en la Clase HabitacionesData, metodo obtenerHabitacionXId " + ex.getMessage());
+            }
+            return h;
+
+        }
+
+
 }

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +54,7 @@ public class ReservaData {
        
         try {
             sql = "UPDATE reserva SET estado = 0 WHERE idReserva = ? ";
-            PreparedStatement ps= con.prepareStatement(sql);
+            ps= con.prepareStatement(sql);
             ps.setInt(1, idReserva);
             
             int fila = ps.executeUpdate();
@@ -171,7 +170,7 @@ public class ReservaData {
             rs=ps.executeQuery();
 
             while(rs.next()){
-                reservas.add(new Reserva(rs.getInt(1),HabitacionesData.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
+                reservas.add(new Reserva(rs.getInt(1),HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se ha podido actualizar la reserva, error: "+ex.getMessage());
@@ -190,7 +189,7 @@ public class ReservaData {
             rs=ps.executeQuery();
 
             while(rs.next()){
-                lista.add(new Reserva(rs.getInt(1),HabitacionesData.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
+                lista.add(new Reserva(rs.getInt(1),HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se ah podido cargar la lista de Reservas bajas: "+ex.getMessage());
@@ -210,7 +209,7 @@ public class ReservaData {
             rs=ps.executeQuery();
 
             while(rs.next()){
-                lista.add(new Reserva(rs.getInt(1),HabitacionesData.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
+                lista.add(new Reserva(rs.getInt(1),HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)),HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se ha podido cargar la lista completa de Reservas: "+ex.getMessage());
@@ -231,8 +230,8 @@ public class ReservaData {
             
             if(rs.next()){
                 reserva.setIdReserva(rs.getInt(1));
-                reserva.setHuesped(rs.getInt(HuespedData.obtenerHuespedPorId(rs.getInt(2))));
-                reserva.setIdHabitacion(rs.getInt(3));
+                reserva.setHuesped(HuespedData.obtenerHuespedXid(rs.getInt(2)));
+                reserva.setHabitacion(HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)));
                 reserva.setFechaIngreso(rs.getDate(4).toLocalDate());
                 reserva.setFechaEgreso(rs.getDate(5).toLocalDate());
                 reserva.setCantPersonas(rs.getInt(6));
