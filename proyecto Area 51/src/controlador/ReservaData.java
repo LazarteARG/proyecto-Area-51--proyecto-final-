@@ -253,7 +253,38 @@ public class ReservaData {
         }
         return reserva;
     }
-    
+     //idReserva,idHuesped,idHabitacion,fechaEntrada,fechaSalida,
+     //cantidadPersonas,montoAPagar,estado	
+     public static Reserva buscarReservaXId(int idReserva){
+         Reserva reserva = new Reserva();
+         try {
+            sql="SELECT * FROM reserva WHERE idReserva=?";
+            ps= con.prepareStatement(sql);
+            ps.setInt(1,idReserva);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){        
+            reserva.setIdReserva(rs.getInt(1));
+            reserva.setHuesped(HuespedData.obtenerHuespedXid(rs.getInt(2)));
+            reserva.setHabitacion(HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)));
+            reserva.setFechaIngreso(rs.getDate(4).toLocalDate());
+            reserva.setFechaEgreso(rs.getDate(5).toLocalDate());
+            reserva.setCantPersonas(rs.getInt(6));
+            reserva.setPrecioTotal(rs.getDouble(7));
+            reserva.setEstado(rs.getBoolean(8));
+            
+            return reserva;
+            }
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al buscar Reserva por Id");
+            System.out.println("Error CLASE ReservaData METODO buscarReservaXid");
+        }
+     
+      return reserva;
+     
+     }
     
 }
 
