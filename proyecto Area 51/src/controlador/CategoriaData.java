@@ -21,7 +21,7 @@ public class CategoriaData {
     //metodos
     //int idCategoria,nombre, String tipoDeCamas, int cantidadPersonas, int cantidadCamas, precioNoche) {
     public static void subirCategoria(Categoria categoria) {
-        sql = "INSERT INTO categoria (tipoDeCamas,nombre, cantidadPersonas, cantidadCamas, precioNoche) VALUES (?,?,?,?,?)";
+        sql = "INSERT INTO categoria (tipoDeCamas,nombre, cantidadPersonas, cantidadCamas, precioNoche,estado) VALUES (?,?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -30,7 +30,6 @@ public class CategoriaData {
             ps.setInt(3, categoria.getCantidadPersonas());
             ps.setInt(4, categoria.getCantidadCamas());
             ps.setInt(5, categoria.getCantidadCamas());
-
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
 
@@ -44,7 +43,7 @@ public class CategoriaData {
     }
 
     public static void actualizarCategoria(Categoria categoria) {
-        sql = "UPDATE categoria SET tipoDeCamas = ?,nombre=?, cantidadPersonas = ?, cantidadCamas= ?, precioNoche=? WHERE  idCategoria = ?";
+        sql = "UPDATE categoria SET tipoDeCamas = ?,nombre=?, cantidadPersonas = ?, cantidadCamas= ?, precioNoche=? , estado=? WHERE  idCategoria = ?";
         try {
             ps = con.prepareStatement(sql);
 
@@ -55,7 +54,7 @@ public class CategoriaData {
             ps.setDouble(5, categoria.getPrecioNoche());
 
 
-            ps.setInt(6, categoria.getIdCategoria());
+            ps.setInt(7, categoria.getIdCategoria());
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -126,6 +125,8 @@ public class CategoriaData {
                 c.setCantidadCamas(rs.getInt(4));
                 c.setCantidadPersonas(rs.getInt(3));
                 c.setPrecioNoche(rs.getDouble(6));
+                System.out.println("categoria obtenida exitosamente");
+                System.out.println(c);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la categoria");
@@ -133,6 +134,24 @@ public class CategoriaData {
         }
         return c;
     }
-    
+    /**hecho por tam*/
+    public static void cambiarPrecioCategoria(double precio,String nombreCategoria){
+        sql="UPDATE categoria SET precioNoche=? WHERE nombre=?";
+        
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setDouble(1, precio);
+            ps.setString(2, nombreCategoria);
+            
+            int f=ps.executeUpdate();
+            
+            if(f>0){
+                JOptionPane.showMessageDialog(null, "se ha cambiado el precio");
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "No se pudo cambiar el precio de la categoria");
+           System.out.println("Error en la Clase CategoriaData, metodo cambiarPrecioCategoria " + ex.getMessage());
+        }
+    }
 
 }

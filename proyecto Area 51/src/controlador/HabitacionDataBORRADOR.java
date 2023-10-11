@@ -266,5 +266,30 @@ public class HabitacionDataBORRADOR {
         }
         return idHabitaciones;
     }
+    
+    public static ArrayList<Habitacion> listarHabitacionesXCategoriaYOcupada(int idCategoria,int estado){
+        ArrayList<Habitacion> Habitaciones = new ArrayList<>();
+
+        sql = "SELECT idHabitacion,habitacion.idCategoria,piso,estado FROM habitacion,categoria WHERE idCategoria=? AND habitacion.estado=?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idCategoria);
+            ps.setInt(2, estado);
+            
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                Habitaciones.add(new Habitacion(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4)));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCategoriaYOcupada: " + ex.getMessage());
+        
+        }
+        return Habitaciones;
+        
+    
+    }
 
 }
