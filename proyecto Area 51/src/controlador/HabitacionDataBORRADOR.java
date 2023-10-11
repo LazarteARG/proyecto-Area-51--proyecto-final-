@@ -168,8 +168,8 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al verificar si la habitacion esta libre");
-            System.out.println("Error en las clase HabitacionData metodo isLibre() " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al averiguar si la habitacion esta libre");
+            System.out.println("Error en las clase HabitacionData metodo isLibre " + ex.getMessage());
         }
         return true;
     }

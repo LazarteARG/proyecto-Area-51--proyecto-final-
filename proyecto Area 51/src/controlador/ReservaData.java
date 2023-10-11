@@ -41,10 +41,7 @@ public class ReservaData {
 
             int f = ps.executeUpdate();
             if (f > 0) {
-                Habitacion h = r.getHabitacion();
-                h.setEstado(1);
-                HabitacionDataBORRADOR.actualizarHabitacion(h);
-                JOptionPane.showMessageDialog(null, "habitacion reservada con exito");
+               JOptionPane.showMessageDialog(null, "habitacion reservada con exito");
             }
 
         } catch (SQLException ex) {
@@ -156,7 +153,6 @@ public class ReservaData {
 
             if (f > 0) {
 
-                HabitacionDataBORRADOR.actualizarHabitacion(r.getHabitacion());
                 JOptionPane.showMessageDialog(null, "Actualizacion de reserva exitosa");
             }
 
@@ -326,7 +322,6 @@ public class ReservaData {
     public static void finReserva(Huesped h) {
         Reserva r = buscarReservaPorHuesped(h.getIdHuesped());
         r.setEstado(false);
-        r.getHabitacion().setEstado(0);
         actualizarReserva(r);
     }
 
