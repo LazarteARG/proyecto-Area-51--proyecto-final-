@@ -16,6 +16,7 @@ public class Habitacion {
         this.idCategoria = idCategoria;
         this.piso = piso;
         this.estado = estado;
+
     }
 
     public Habitacion(int idHabitacion, int idCategoria, int piso, int estado) {
@@ -23,9 +24,13 @@ public class Habitacion {
         this.idCategoria = idCategoria;
         this.piso = piso;
         this.estado = estado;
+
     }
 
+    
+
 //metodos
+    
 
     public int getIdHabitacion() {
         return idHabitacion;

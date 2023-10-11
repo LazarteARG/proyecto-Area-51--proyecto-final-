@@ -285,6 +285,34 @@ public class ReservaData {
       return reserva;
      
      }
+     
+    public static ArrayList<Habitacion> buscarHabitacionPersonalizado(String categoria,int cantidadPersonas,double Precio){
+        ArrayList<Habitacion> habiDisponibles=new ArrayList<>();
+        ArrayList<Habitacion> habits=new ArrayList<>();
+        ArrayList<Habitacion> habiTodas=HabitacionDataBORRADOR.listaHabitaciones();
+        ArrayList<Integer> idsXprecios=HabitacionDataBORRADOR.buscarHabitacionesXPrecio(Precio);
+        ArrayList<Integer> idsXcategoria=HabitacionDataBORRADOR.buscarHabitacionesXCategoria(categoria);
+        ArrayList<Integer> idsXcantPersonas=HabitacionDataBORRADOR.buscarHabitacionesXCantPersonas(cantidadPersonas);
+        for(Habitacion h:habiTodas){
+            if(HabitacionDataBORRADOR.isLibre(h)){
+                habiDisponibles.add(h);
+
+            }
+        }
+
+        
+        for(Habitacion hab:habiDisponibles){
+            if(!categoria.equals("")){
+                if(idsXprecios.contains(hab.getIdHabitacion())&&idsXcantPersonas.contains(hab.getIdHabitacion())&&idsXcategoria.contains(hab.getIdHabitacion())){
+                    habits.add(hab);
+                }
+            }else if(idsXprecios.contains(hab.getIdHabitacion())&&idsXcantPersonas.contains(hab.getIdHabitacion())){
+                habits.add(hab);
+            }
+        }        
+        return habits;
+    
+    }
     
 }
 
@@ -293,3 +321,4 @@ public class ReservaData {
 
 //VAMOS BOCAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 //¿Existira vida en otros planetas? no se, pero si tendras un buen rato en tu vida si te hospedas en el Hotel Area 51 ;)//
+//Hospedarte en el Hotel Area 51 sera una experiencia de otro planeta

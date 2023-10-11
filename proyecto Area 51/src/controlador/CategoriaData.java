@@ -19,16 +19,17 @@ public class CategoriaData {
     private static ResultSet rs;
 
     //metodos
-    //int idCategoria, String tipoDeCamas, int cantidadPersonas, int cantidadCamas, precioNoche) {
+    //int idCategoria,nombre, String tipoDeCamas, int cantidadPersonas, int cantidadCamas, precioNoche) {
     public static void subirCategoria(Categoria categoria) {
-        sql = "INSERT INTO categoria (tipoDeCamas, cantidadPersonas, cantidadCamas, precioNoche) VALUES (?,?,?,?)";
+        sql = "INSERT INTO categoria (tipoDeCamas,nombre, cantidadPersonas, cantidadCamas, precioNoche) VALUES (?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, categoria.getTipoDeCamas());
-            ps.setInt(2, categoria.getCantidadPersonas());
-            ps.setInt(3, categoria.getCantidadCamas());
+            ps.setString(2, categoria.getNombre());
+            ps.setInt(3, categoria.getCantidadPersonas());
             ps.setInt(4, categoria.getCantidadCamas());
+            ps.setInt(5, categoria.getCantidadCamas());
 
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
@@ -43,16 +44,18 @@ public class CategoriaData {
     }
 
     public static void actualizarCategoria(Categoria categoria) {
-        sql = "UPDATE categoria SET tipoDeCamas = ?, cantidadPersonas = ?, cantidadCamas= ?, precioNoche=?  WHERE  idCategoria = ?";
+        sql = "UPDATE categoria SET tipoDeCamas = ?,nombre=?, cantidadPersonas = ?, cantidadCamas= ?, precioNoche=? WHERE  idCategoria = ?";
         try {
             ps = con.prepareStatement(sql);
 
             ps.setString(1, categoria.getTipoDeCamas());
-            ps.setInt(2, categoria.getCantidadPersonas());
-            ps.setInt(3, categoria.getCantidadCamas());
-            ps.setDouble(4, categoria.getPrecioNoche());
+            ps.setString(2, categoria.getNombre());
+            ps.setInt(3, categoria.getCantidadPersonas());
+            ps.setInt(4, categoria.getCantidadCamas());
+            ps.setDouble(5, categoria.getPrecioNoche());
 
-            ps.setInt(5, categoria.getIdCategoria());
+
+            ps.setInt(6, categoria.getIdCategoria());
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -89,9 +92,10 @@ public class CategoriaData {
      while(rs.next()){
      Categoria categoria = new Categoria();
      categoria.setIdCategoria(rs.getInt(1));
-     categoria.setTipoDeCamas(rs.getString(2));
-     categoria.setCantidadPersonas(rs.getInt(rs.getInt(3)));
-     categoria.setPrecioNoche(rs.getDouble(4));
+     categoria.setNombre(rs.getString(2));
+     categoria.setTipoDeCamas(rs.getString(3));
+     categoria.setCantidadPersonas(rs.getInt(rs.getInt(4)));
+     categoria.setPrecioNoche(rs.getDouble(5));
      
      lista.add(categoria);
    }
@@ -117,11 +121,11 @@ public class CategoriaData {
             while (rs.next()) {
 
                 c.setIdCategoria(rs.getInt(1));
-                c.setTipoDeCamas(rs.getString(2));
-                c.setCantidadCamas(rs.getInt(3));
-                c.setCantidadPersonas(rs.getInt(4));
-                c.setPrecioNoche(rs.getDouble(5));
-                System.out.println("categoria obtenida exitosamente");
+                c.setNombre(rs.getString(2));
+                c.setTipoDeCamas(rs.getString(5));
+                c.setCantidadCamas(rs.getInt(4));
+                c.setCantidadPersonas(rs.getInt(3));
+                c.setPrecioNoche(rs.getDouble(6));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la categoria");

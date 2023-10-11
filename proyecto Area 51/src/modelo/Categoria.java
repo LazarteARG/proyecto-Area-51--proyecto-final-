@@ -5,27 +5,40 @@ package modelo;
 
 public class Categoria {
     private int idCategoria;
+    private String nombre;
     private String tipoDeCamas;
     private int cantidadPersonas;
     private int cantidadCamas;
     private double precioNoche;
 
+
     public Categoria() {
     }
 
-    public Categoria(int idCategoria, String tipoDeCamas, int cantidadPersonas, int cantidadCamas,double precioNoche) {
+    public Categoria(int idCategoria,String nombre, String tipoDeCamas, int cantidadPersonas, int cantidadCamas,double precioNoche) {
         this.idCategoria = idCategoria;
         this.tipoDeCamas = tipoDeCamas;
         this.cantidadPersonas = cantidadPersonas;
         this.cantidadCamas = cantidadCamas;
         this.precioNoche=precioNoche;
+        this.nombre=nombre;
     }
 
-    public Categoria(String tipoDeCamas, int cantidadPersonas, int cantidadCamas,double precioNoche) {
+    public Categoria(String tipoDeCamas,String nombre, int cantidadPersonas, int cantidadCamas,double precioNoche) {
         this.tipoDeCamas = tipoDeCamas;
         this.cantidadPersonas = cantidadPersonas;
         this.cantidadCamas = cantidadCamas;
         this.precioNoche=precioNoche;
+        this.nombre=nombre;
+    }
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public double getPrecioNoche() {
