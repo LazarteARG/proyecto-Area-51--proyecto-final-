@@ -78,7 +78,19 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 0, -1, -1));
         getContentPane().add(fieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 200, -1));
         getContentPane().add(fieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 200, -1));
+
+        fieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fieldNombreKeyReleased(evt);
+            }
+        });
         getContentPane().add(fieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 200, -1));
+
+        fieldApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fieldApellidoKeyReleased(evt);
+            }
+        });
         getContentPane().add(fieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 200, -1));
         getContentPane().add(fieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 200, -1));
         getContentPane().add(fieldDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 200, -1));
@@ -167,13 +179,18 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //buscar por id
-    
-        if(!fieldID.getText().isEmpty()){
-         int idHuesped = Integer.parseInt(fieldID.getText());   
-         buscarPorId(idHuesped);
-        }else{
-          String nombreHuesped = fieldNombre.getText();     
-          buscarPorNombre(nombreHuesped);
+        borrarFilasTabla();
+        if (!fieldID.getText().isEmpty()) {
+            int idHuesped = Integer.parseInt(fieldID.getText());
+            buscarPorId(idHuesped);
+        } else if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
+            String nombreHuesped = fieldNombre.getText();
+            String apellido = fieldApellido.getText();
+            buscarPorNombreYApellido(nombreHuesped, apellido);
+
+        } else {
+            String nombreHuesped = fieldNombre.getText();
+            buscarPorNombre(nombreHuesped);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -191,7 +208,50 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
     private void btnLimpiarValoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarValoresActionPerformed
         limpiarFields();
+        borrarFilasTabla();
+
+
     }//GEN-LAST:event_btnLimpiarValoresActionPerformed
+
+    private void fieldNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldNombreKeyReleased
+        if (fieldApellido.getText().isEmpty()) {
+            borrarFilasTabla();
+            ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
+
+            for (Huesped huesped : listCompleta) {
+                if (huesped.getNombre().startsWith(fieldNombre.getText())) {
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                }
+            }
+        }else{
+            for (Huesped huesped : buscarPorApellidoTipeado()) {
+                if (huesped.getNombre().startsWith(fieldNombre.getText())) {
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_fieldNombreKeyReleased
+
+    private void fieldApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoKeyReleased
+        if (fieldNombre.getText().isEmpty()) {
+            borrarFilasTabla();
+            ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
+
+            for (Huesped huesped : listCompleta) {
+                if (huesped.getApellido().startsWith(fieldApellido.getText())) {
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                }
+            }
+        }else{
+            for (Huesped huesped : buscarPorNombreTipeado()) {
+                if (huesped.getApellido().startsWith(fieldApellido.getText())) {
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                }
+            }
+        }
+
+    }//GEN-LAST:event_fieldApellidoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -229,11 +289,17 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         modelo.addColumn("Apellido");
         modelo.addColumn("Dni");
     }
-    
-    public void agregarFila(int id, String nombre, String apellido, int dni){
-    modelo.addRow(new Object[]{id,nombre,apellido, dni});    
+
+    public void agregarFila(int id, String nombre, String apellido, int dni) {
+        modelo.addRow(new Object[]{id, nombre, apellido, dni});
     }
-    
+
+    private void borrarFilasTabla() {
+
+        for (int f = modelo.getRowCount() - 1; f > -1; f--) {
+            modelo.removeRow(f);
+        }
+    }
 
     public void limpiarFields() {
         fieldID.setText("");
@@ -247,9 +313,9 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         radioButton.setSelected(false);
 
     }
-    
-    public void buscarPorId(int idHuesped){
-   
+
+    public void buscarPorId(int idHuesped) {
+
         Huesped huesped = HuespedData.obtenerHuespedXid(idHuesped);
 
         fieldNombre.setText(huesped.getNombre());
@@ -265,20 +331,60 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             radioButton.setSelected(false);
         }
 
-    
+    }
+
+    public ArrayList<Huesped> buscarPorNombre(String nombreHuesped) {
+
+        ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
+        ArrayList<Huesped> listaMismoNombre = new ArrayList<>();
+        for (Huesped huesped : listaCompleta) {
+            if (huesped.getNombre().equalsIgnoreCase(nombreHuesped)) {
+                listaMismoNombre.add(huesped);
+               agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+            }
+        }
+        return listaMismoNombre;
+
+    }
+
+    public void buscarPorNombreYApellido(String nombreHuesped, String apellido) {
+        ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
+        ArrayList<Huesped> listaMismoNombre = new ArrayList<>();
+        for (Huesped huesped : listaCompleta) {
+            if (huesped.getNombre().equalsIgnoreCase(nombreHuesped) && huesped.getApellido().equalsIgnoreCase(apellido)) {
+                agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+
+            }
+        }
+
     }
     
-    public void buscarPorNombre(String nombreHuesped){
-
-         ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
-         ArrayList<Huesped> listaMismoNombre = new ArrayList<>();                
-          for (Huesped huesped : listaCompleta) {
-              if(huesped.getNombre().equalsIgnoreCase(nombreHuesped)){  
-              listaMismoNombre.add(huesped);
-              agregarFila(huesped.getIdHuesped(),huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
-              }
-            }
     
+    
+    public ArrayList<Huesped> buscarPorApellidoTipeado(){
+        borrarFilasTabla();
+        ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
+        ArrayList<Huesped> listaNombrados=new ArrayList<>();
+        for (Huesped huesped : listCompleta) {
+            if (huesped.getApellido().startsWith(fieldApellido.getText())) {
+                    listaNombrados.add(huesped);
+            }
+        }
+        
+        return listaNombrados;
+    }
+    
+    public ArrayList<Huesped> buscarPorNombreTipeado(){
+        borrarFilasTabla();
+        ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
+        ArrayList<Huesped> listaNombrados=new ArrayList<>();
+        for (Huesped huesped : listCompleta) {
+            if (huesped.getNombre().startsWith(fieldNombre.getText())) {
+                    listaNombrados.add(huesped);
+            }
+        }
+        
+        return listaNombrados;
     }
 
 }
