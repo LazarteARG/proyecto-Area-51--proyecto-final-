@@ -214,18 +214,22 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarValoresActionPerformed
 
     private void fieldNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldNombreKeyReleased
-        if (fieldApellido.getText().isEmpty()) {
+        if(fieldApellido.getText().isEmpty() &&fieldNombre.getText().isEmpty()){
+        
+            borrarFilasTabla();
+        
+        }else if (fieldApellido.getText().isEmpty()) {
             borrarFilasTabla();
             ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
 
             for (Huesped huesped : listCompleta) {
-                if (huesped.getNombre().startsWith(fieldNombre.getText())) {
+                if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
             }
         }else{
             for (Huesped huesped : buscarPorApellidoTipeado()) {
-                if (huesped.getNombre().startsWith(fieldNombre.getText())) {
+                if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
             }
@@ -234,18 +238,22 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fieldNombreKeyReleased
 
     private void fieldApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoKeyReleased
-        if (fieldNombre.getText().isEmpty()) {
+        if(fieldApellido.getText().isEmpty() &&fieldNombre.getText().isEmpty()){
+        
+            borrarFilasTabla();
+        
+        }else if (fieldNombre.getText().isEmpty()) {
             borrarFilasTabla();
             ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
 
             for (Huesped huesped : listCompleta) {
-                if (huesped.getApellido().startsWith(fieldApellido.getText())) {
+                if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
             }
         }else{
             for (Huesped huesped : buscarPorNombreTipeado()) {
-                if (huesped.getApellido().startsWith(fieldApellido.getText())) {
+                if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
             }
