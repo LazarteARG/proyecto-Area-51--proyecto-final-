@@ -193,15 +193,19 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         if (!fieldID.getText().isEmpty()) {
             int idHuesped = Integer.parseInt(fieldID.getText());
             buscarPorId(idHuesped);
-        } else if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
+        } else if(!fieldDNI.getText().isEmpty()){
+            int dni=Integer.parseInt(fieldDNI.getText());
+            buscarPorDNI(dni);
+        }else if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
             String nombreHuesped = fieldNombre.getText();
             String apellido = fieldApellido.getText();
             buscarPorNombreYApellido(nombreHuesped, apellido);
 
-        } else {
+        } else if (!fieldNombre.getText().isEmpty() && fieldApellido.getText().isEmpty()){
             String nombreHuesped = fieldNombre.getText();
             buscarPorNombre(nombreHuesped);
         }
+    
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -363,6 +367,25 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             radioButton.setSelected(false);
         }
 
+    }
+    
+    public void buscarPorDNI(int dni){
+        Huesped huesped = HuespedData.obtenerHuespedXDni(dni);
+        
+        fieldID.setText(huesped.getIdHuesped()+"");
+        fieldNombre.setText(huesped.getNombre());
+        fieldApellido.setText(huesped.getApellido());
+        fieldCorreo.setText(huesped.getCorreo());
+        //fieldDNI.setText(huesped.getDNI() + "");
+        fieldDomicilio.setText(huesped.getDomicilio());
+        fieldCelular.setText(huesped.getCelular() + "");
+
+        if (huesped.isEstado()) {
+            radioButton.setSelected(true);
+        } else {
+            radioButton.setSelected(false);
+        }
+    
     }
 
     public ArrayList<Huesped> buscarPorNombre(String nombreHuesped) {
