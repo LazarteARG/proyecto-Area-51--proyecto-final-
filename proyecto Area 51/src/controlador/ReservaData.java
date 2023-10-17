@@ -47,7 +47,11 @@ public class ReservaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "*ERROR*: No se a podido guardar/subir la nueva reserva");
             System.out.println("Error: el error se encuentra en el metodo subirReserva(), por favor revise. ");
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se a podido guardar/subir la nueva reserva");
+            System.out.println("Error: el error se encuentra en el metodo subirReserva(), por favor revise. ");
         }
+
 
     }
 
@@ -69,6 +73,9 @@ public class ReservaData {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido dar de baja la reserva del humano del area 51 ");
+            System.out.println("Error. el error se encuentra en el metodo bajarReserva(), por favor revise. ");
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido dar de baja la reserva del humano del area 51 ");
             System.out.println("Error. el error se encuentra en el metodo bajarReserva(), por favor revise. ");
         }
@@ -94,7 +101,11 @@ public class ReservaData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido eliminar la reserca del humano del area 51");
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido eliminar la reserva del humano del area 51");
+            System.out.println("Error. el error se encuentra en el metodo eliminarReserva(), por favor revise. ");
+
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido eliminar la reserva del humano del area 51");
             System.out.println("Error. el error se encuentra en el metodo eliminarReserva(), por favor revise. ");
 
         }
@@ -123,7 +134,13 @@ public class ReservaData {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido oobtener la reserva del humano en el area 51");
+            System.out.println("Error. el error se encuentra en el metodo obtenerReservaPorHuesped(), por favor revise. ");
+
+        }catch(Exception ex){   
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido oobtener la reserva del humano en el area 51");
+            System.out.println("Error. el error se encuentra en el metodo obtenerReservaPorHuesped(), por favor revise. ");
+
         }
 
         return r;
@@ -159,6 +176,9 @@ public class ReservaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se ha podido actualizar la reserva, error: " + ex.getMessage());
             System.out.println("error en metodo actualizarReserva en reservaData error: " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se ha podido actualizar la reserva, error: " + ex.getMessage());
+            System.out.println("error en metodo actualizarReserva en reservaData error: " + ex.getMessage());
         }
 
     }
@@ -179,8 +199,11 @@ public class ReservaData {
                 reservas.add(new Reserva(rs.getInt(1), HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)), HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se ha podido actualizar la reserva, error: " + ex.getMessage());
-            System.out.println("error en metodo actualizarReserva en reservaData error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "No se ha podido listar las reservas activas, error: " + ex.getMessage());
+            System.out.println("error en metodo listarReservasActivas en reservaData error: " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se ha podido listar las reservas activas, error: " + ex.getMessage());
+            System.out.println("error en metodo listarReservasActivas en reservaData error: " + ex.getMessage());
         }
         return reservas;
     }
@@ -197,7 +220,10 @@ public class ReservaData {
                 lista.add(new Reserva(rs.getInt(1), HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)), HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se ah podido cargar la lista de Reservas bajas: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "No se ha podido cargar la lista de Reservas bajas: " + ex.getMessage());
+            System.out.println("error en metodo listarMateriasBajas de la clase Reserva: " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se ha podido cargar la lista de Reservas bajas: " + ex.getMessage());
             System.out.println("error en metodo listarMateriasBajas de la clase Reserva: " + ex.getMessage());
         }
         return lista;
@@ -215,6 +241,9 @@ public class ReservaData {
                 lista.add(new Reserva(rs.getInt(1), HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)), HuespedData.obtenerHuespedXid(rs.getInt(2)), rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getInt(6), rs.getDouble(7), rs.getBoolean(8)));
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se ha podido cargar la lista completa de Reservas: " + ex.getMessage());
+            System.out.println("error en metodo listarTodasLasReservas en reservaData error: " + ex.getMessage());
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "No se ha podido cargar la lista completa de Reservas: " + ex.getMessage());
             System.out.println("error en metodo listarTodasLasReservas en reservaData error: " + ex.getMessage());
         }
@@ -246,7 +275,10 @@ public class ReservaData {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al buscar la reserva, error: " + ex.getMessage());
-            System.out.println("error en metodo actualizarReserva en reservaData error: " + ex.getMessage());
+            System.out.println("error en metodo buscarReservaPorHabitacion en reservaData error: " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la reserva, error: " + ex.getMessage());
+            System.out.println("error en metodo buscarReservaPorHabitacion en reservaData error: " + ex.getMessage());
         }
         return reserva;
     }
@@ -275,6 +307,9 @@ public class ReservaData {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar Reserva por Id");
+            System.out.println("Error CLASE ReservaData METODO buscarReservaXid");
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al buscar Reserva por Id");
             System.out.println("Error CLASE ReservaData METODO buscarReservaXid");
         }
@@ -349,6 +384,9 @@ public class ReservaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al buscar Reserva por fechaInicio");
             System.out.println("Error CLASE ReservaData METODO buscarReservaPorFechaInicio");
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar Reserva por fechaInicio");
+            System.out.println("Error CLASE ReservaData METODO buscarReservaPorFechaInicio");
         }
 
         return reserva;
@@ -377,6 +415,9 @@ public class ReservaData {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar Reserva por fechaSalida");
+            System.out.println("Error CLASE ReservaData METODO buscarReservaPorFechaFin");
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al buscar Reserva por fechaSalida");
             System.out.println("Error CLASE ReservaData METODO buscarReservaPorFechaFin");
         }

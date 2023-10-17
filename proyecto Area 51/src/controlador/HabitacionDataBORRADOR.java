@@ -37,6 +37,9 @@ public class HabitacionDataBORRADOR {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al subir la habitación");
             System.out.println("Error clase HabitaciónData metodo subirHabitacion " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al subir la habitación");
+            System.out.println("Error clase HabitaciónData metodo subirHabitacion " + ex.getMessage());
         }
     }
 
@@ -59,6 +62,9 @@ public class HabitacionDataBORRADOR {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al actualizar la habitación");
             System.out.println("Error en la Clase HabitacionData metodo actualizarHabitacion() " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar la habitación");
+            System.out.println("Error en la Clase HabitacionData metodo actualizarHabitacion() " + ex.getMessage());
         }
     }
 
@@ -75,6 +81,9 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al dar de baja habitación");
+            System.out.println("Error en la clase HabitacionData metodo bajarHabitación() " + ex.getMessage());
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al dar de baja habitación");
             System.out.println("Error en la clase HabitacionData metodo bajarHabitación() " + ex.getMessage());
         }
@@ -100,6 +109,9 @@ public class HabitacionDataBORRADOR {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al obtener lista de todas las habitaciones");
             System.out.println("Error en la clase HabitacionData metodo listaDeHabitaciones() " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener lista de todas las habitaciones");
+            System.out.println("Error en la clase HabitacionData metodo listaDeHabitaciones() " + ex.getMessage());
         }
         return lista;
     }
@@ -122,6 +134,9 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones activas");
+            System.out.println("Error en las clase HabitacionData metodo listaHabitacionesActivas() " + ex.getMessage());
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones activas");
             System.out.println("Error en las clase HabitacionData metodo listaHabitacionesActivas() " + ex.getMessage());
         }
@@ -149,6 +164,9 @@ public class HabitacionDataBORRADOR {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones en baja");
             System.out.println("Error en las clase HabitacionData metodo listaHabitacionesBajas() " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones en baja");
+            System.out.println("Error en las clase HabitacionData metodo listaHabitacionesBajas() " + ex.getMessage());
         }
 
         return lista;
@@ -168,6 +186,9 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al averiguar si la habitacion esta libre");
+            System.out.println("Error en las clase HabitacionData metodo isLibre " + ex.getMessage());
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al averiguar si la habitacion esta libre");
             System.out.println("Error en las clase HabitacionData metodo isLibre " + ex.getMessage());
         }
@@ -196,6 +217,9 @@ public class HabitacionDataBORRADOR {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la habitacion");
             System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo obtenerHabitacionXId " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la habitacion");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo obtenerHabitacionXId " + ex.getMessage());
         }
         return h;
 
@@ -216,6 +240,10 @@ public class HabitacionDataBORRADOR {
                 idHabitaciones.add(rs.getInt(1));
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXPrecio " + ex.getMessage());
+        
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
             System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXPrecio " + ex.getMessage());
         
@@ -241,6 +269,10 @@ public class HabitacionDataBORRADOR {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
             System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCategoria: " + ex.getMessage());
         
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCategoria: " + ex.getMessage());
+        
         }
         return idHabitaciones;
     }
@@ -260,6 +292,10 @@ public class HabitacionDataBORRADOR {
                 idHabitaciones.add(rs.getInt(1));
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCantidadPersonas: " + ex.getMessage());
+        
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
             System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCantidadPersonas: " + ex.getMessage());
         
@@ -283,6 +319,10 @@ public class HabitacionDataBORRADOR {
                 Habitaciones.add(new Habitacion(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4)));
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCategoriaYOcupada: " + ex.getMessage());
+        
+        }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los ids de las habitaciones");
             System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCategoriaYOcupada: " + ex.getMessage());
         

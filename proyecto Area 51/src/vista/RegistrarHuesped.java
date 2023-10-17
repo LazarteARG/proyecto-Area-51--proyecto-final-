@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.HuespedData;
+import java.awt.dnd.DropTarget;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
@@ -19,6 +20,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         initComponents();
         tabla.setModel(modelo);
         agregarCabeceraTabla();
+        radioButton.setToolTipText("PRESIONE BUSCAR PARA VER LA LISTA COMPLETA DE HUESPEDES");
     }
 
     @SuppressWarnings("unchecked")
@@ -185,6 +187,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 350, 280));
 
         listarTodos_checkBox.setText("LISTAR TODOS");
+        listarTodos_checkBox.setToolTipText("PRESIONE BUSCAR PARA VER LA LISTA COMPLETA DE HUESPEDES");
+        listarTodos_checkBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listarTodos_checkBox.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         listarTodos_checkBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

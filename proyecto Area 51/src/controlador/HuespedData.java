@@ -41,6 +41,9 @@ public class HuespedData {
      } catch (SQLException ex) {
          JOptionPane.showMessageDialog(null, "No se pudo subir el huesped");
          System.out.println("Error en la Clase HuespedData, metodo subirHuesped "+ ex.getMessage());
+     }catch (Exception e){
+         JOptionPane.showMessageDialog(null, "Error, no se pudo subir el huesped");
+         System.out.println("Error en la Clase HuespedData, metodo suubirHuesped "+e.getMessage());
      }
  
 }
@@ -69,6 +72,9 @@ public class HuespedData {
          } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null, "No se pudieron actualizar los datos del huesped");
              System.out.println("Error en la Clase HuespedData, metodo actualizarHuesped "+ ex.getMessage());
+         }catch (Exception e){
+         JOptionPane.showMessageDialog(null, "No se pudieron actualizar los datos del huesped");
+             System.out.println("Error en la Clase HuespedData, metodo actualizarHuesped "+ e.getMessage());
          }
 
      }
@@ -87,7 +93,11 @@ public class HuespedData {
              JOptionPane.showMessageDialog(null, "Se ha dado de baja al huesped de la nave nodri");
          }
      } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "*Error*: no se ha podido dar de baja al huesped al ser humano");
+                JOptionPane.showMessageDialog(null, "*Error*: no se ha podido dar de baja al huesped, ser humano");
+         System.out.println("Error en la Clase HuespedData, metodo bajarHuesped "+ex.getMessage());
+     }catch (Exception e){
+         JOptionPane.showMessageDialog(null, "*Error*: no se ha podido dar de baja al huesped al ser humano");
+         System.out.println("Error en la Clase HuespedData, metodo bajarHuesped "+e.getMessage());
      }
      
  }
@@ -113,6 +123,9 @@ public class HuespedData {
              h.setEstado(rs.getBoolean(8));
          }
      } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos del huesped");
+         System.out.println("Error en la Clase HuespedData, metodo obtenerHuespedXDni "+ ex.getMessage());
+    }catch(Exception ex){
          JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos del huesped");
          System.out.println("Error en la Clase HuespedData, metodo obtenerHuespedXDni "+ ex.getMessage());
     }
@@ -146,6 +159,9 @@ public class HuespedData {
      } catch (SQLException ex) {
          JOptionPane.showMessageDialog(null, "Error, no se pudo devolver la lista");
          System.out.println("Error en la Clase HuespedData, metodo listaCompletaHuespedes "+ex.getMessage());
+     }catch (Exception e){
+         JOptionPane.showMessageDialog(null, "Error, no se pudo devolver la lista");
+         System.out.println("Error en la Clase HuespedData, metodo listaCompletaHuespedes "+e.getMessage());
      }
 
  
@@ -180,6 +196,10 @@ public class HuespedData {
          }
          
      } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(null, "*ERROR*: No se pudo obtener los datos de los huespedes activos");
+         System.out.println("Error en la clase HuespedData, en el metodo ListadeHuespedActivos()");
+         
+     }catch (Exception e){
          JOptionPane.showMessageDialog(null, "*ERROR*: No se pudo obtener los datos de los huespedes activos");
          System.out.println("Error en la clase HuespedData, en el metodo ListadeHuespedActivos()");
          
@@ -218,7 +238,11 @@ public class HuespedData {
             JOptionPane.showMessageDialog(null, "*ERROR*: No se pudo obtener los datos de los huespedes no activos");
             System.out.println("Error en la clase HuespedData, en el metodo ListadeHuespedNoActivos()");
             
-        }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se pudo obtener los datos de los huespedes no activos");
+            System.out.println("Error en la clase HuespedData, en el metodo ListadeHuespedNoActivos()");
+            
+     }
         return huespedes;
     }
      
@@ -247,7 +271,10 @@ public class HuespedData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos del huesped");
             System.out.println("Error en la Clase HuespedData, metodo obtenerHuespedXDni " + ex.getMessage());
-        }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos del huesped");
+            System.out.println("Error en la Clase HuespedData, metodo obtenerHuespedXDni " + e.getMessage());
+     }
         return h;
     }
     

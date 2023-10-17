@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 
@@ -39,7 +37,11 @@ public class CategoriaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al subir la categoria");
             System.out.println("Error clase CategoriaData metodo subirCategoria " + ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al subir la categoria");
+            System.out.println("Error clase CategoriaData metodo subirCategoria " + ex.getMessage());
         }
+        
     }
 
     public static void actualizarCategoria(Categoria categoria) {
@@ -63,6 +65,10 @@ public class CategoriaData {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al actualizar Categoria");
+            System.out.println("Error clase CategoriaData metodo actualizarCategoria " + ex.getMessage());
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Error al actualizar Categoria");
+            System.out.println("Error clase CategoriaData metodo actualizarCategoria " + ex.getMessage());
         }
     }
 
@@ -78,6 +84,10 @@ public class CategoriaData {
            }
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error al eliminar Categoria");  
+            System.out.println("Error clase CategoriaData metodo elimiarCategoria " + ex.getMessage());
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(null, "Error al eliminar Categoria");  
+            System.out.println("Error clase CategoriaData metodo elimiarCategoria " + ex.getMessage());
         }
     }
 //int idCategoria, String tipoDeCamas, int cantidadPersonas, int cantidadCamas, precioNoche) {    
@@ -100,6 +110,9 @@ public class CategoriaData {
    }
     
   }catch(SQLException ex){
+    JOptionPane.showMessageDialog(null, "Error al cargar la lista de categorias");
+      System.out.println("Error en las clase CategoriaData metodo listaCategorias() "+ex.getMessage());
+  }catch(Exception ex){
     JOptionPane.showMessageDialog(null, "Error al cargar la lista de categorias");
       System.out.println("Error en las clase CategoriaData metodo listaCategorias() "+ex.getMessage());
   }
@@ -131,6 +144,9 @@ public class CategoriaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la categoria");
             System.out.println("Error en la Clase CategoriaData, metodo obtenerCategoriaXId " + ex.getMessage());
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la categoria");
+            System.out.println("Error en la Clase CategoriaData, metodo obtenerCategoriaXId " + ex.getMessage());
         }
         return c;
     }
@@ -149,6 +165,9 @@ public class CategoriaData {
                 JOptionPane.showMessageDialog(null, "se ha cambiado el precio");
             }
         } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "No se pudo cambiar el precio de la categoria");
+           System.out.println("Error en la Clase CategoriaData, metodo cambiarPrecioCategoria " + ex.getMessage());
+        }catch(Exception ex) {
            JOptionPane.showMessageDialog(null, "No se pudo cambiar el precio de la categoria");
            System.out.println("Error en la Clase CategoriaData, metodo cambiarPrecioCategoria " + ex.getMessage());
         }
