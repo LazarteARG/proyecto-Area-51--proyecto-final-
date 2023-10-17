@@ -7,7 +7,12 @@ import modelo.Huesped;
 
 public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo = new DefaultTableModel(){
+    
+    @Override
+    public boolean isCellEditable(int f, int c){    
+        return false;    
+    }};
 
     public RegistrarHuesped() {
         initComponents();
@@ -162,6 +167,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 350, 280));
@@ -260,6 +270,20 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_fieldApellidoKeyReleased
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+      int filaSeleccionada = tabla.getSelectedRow();
+      if(filaSeleccionada != -1){
+        int idHuespedSeleccionado = (int)tabla.getValueAt(filaSeleccionada, 0);
+        fieldID.setText(idHuespedSeleccionado+"");
+        buscarPorId(idHuespedSeleccionado);
+        
+      
+      }
+        
+
+
+    }//GEN-LAST:event_tablaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
