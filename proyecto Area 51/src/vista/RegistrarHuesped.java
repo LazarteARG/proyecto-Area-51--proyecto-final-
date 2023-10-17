@@ -7,12 +7,13 @@ import modelo.Huesped;
 
 public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
-    DefaultTableModel modelo = new DefaultTableModel(){
-    
-    @Override
-    public boolean isCellEditable(int f, int c){    
-        return false;    
-    }};
+    DefaultTableModel modelo = new DefaultTableModel() {
+
+        @Override
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
 
     public RegistrarHuesped() {
         initComponents();
@@ -50,8 +51,10 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         btnLimpiarValores = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        listarTodos_checkBox = new javax.swing.JCheckBox();
 
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(1100, 505));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
@@ -106,6 +109,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 radioButtonActionPerformed(evt);
             }
         });
+        radioButton.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                radioButtonPropertyChange(evt);
+            }
+        });
         getContentPane().add(radioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         btnEliminar.setText("Eliminar Huesped");
@@ -114,7 +122,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 140, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 140, -1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +130,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +138,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, -1));
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +146,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +154,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, -1, -1));
 
         btnLimpiarValores.setText("Limpiar Valores");
         btnLimpiarValores.addActionListener(new java.awt.event.ActionListener() {
@@ -176,42 +184,82 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 350, 280));
 
+        listarTodos_checkBox.setText("LISTAR TODOS");
+        listarTodos_checkBox.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        listarTodos_checkBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarTodos_checkBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(listarTodos_checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 120, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonActionPerformed
-        // TODO add your handling code here:
+        borrarFilasTabla();
+        /*if (!fieldID.getText().isEmpty()) {
+            int idHuesped = Integer.parseInt(fieldID.getText());
+            buscarPorId(idHuesped);
+            //si no, por DNI 
+        } else if (!fieldDNI.getText().isEmpty()) {
+            int dni = Integer.parseInt(fieldDNI.getText());
+            buscarPorDNI(dni);
+            //sino, por nombre y apellido    
+        } else*/ if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
+            String nombreHuesped = fieldNombre.getText();
+            String apellido = fieldApellido.getText();
+            buscarPorNombreYApellido(nombreHuesped, apellido);
+            //sino solo por nombre    
+        } else if (!fieldNombre.getText().isEmpty() && fieldApellido.getText().isEmpty()) {
+            String nombreHuesped = fieldNombre.getText();
+            buscarPorNombre(nombreHuesped);
+            //sino solo por apellido    
+        } else if (fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
+            ArrayList<Huesped> apellidados=buscarPorApellidoTipeado();
+            agregarFilas(apellidados);
+            //sino solo por estado    
+        } else if (radioButton.isSelected()) {
+            agregarFilas(HuespedData.listadeHuespedActivos());
+        } else if (!radioButton.isSelected()) {
+            agregarFilas(HuespedData.listadeHuespedNoActivos());
+        }
     }//GEN-LAST:event_radioButtonActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //buscar por id
         borrarFilasTabla();
         //si tiene id, busca por id
-        if (!fieldID.getText().isEmpty()) {
+        if(listarTodos_checkBox.isSelected()){
+            limpiarFields();
+            agregarFilas(HuespedData.listaCompletaHuespedes());
+        }else if (!fieldID.getText().isEmpty()) {
             int idHuesped = Integer.parseInt(fieldID.getText());
             buscarPorId(idHuesped);
-        //si no, por DNI 
-        } else if(!fieldDNI.getText().isEmpty()){ 
-            int dni=Integer.parseInt(fieldDNI.getText());
+            //si no, por DNI 
+        } else if (!fieldDNI.getText().isEmpty()) {
+            int dni = Integer.parseInt(fieldDNI.getText());
             buscarPorDNI(dni);
-        //sino, por nombre y apellido    
-        }else if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
+            //sino, por nombre y apellido    
+        } else if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
             String nombreHuesped = fieldNombre.getText();
             String apellido = fieldApellido.getText();
             buscarPorNombreYApellido(nombreHuesped, apellido);
-        //sino solo por nombre    
-        } else if (!fieldNombre.getText().isEmpty() && fieldApellido.getText().isEmpty()){
+            //sino solo por nombre    
+        } else if (!fieldNombre.getText().isEmpty() && fieldApellido.getText().isEmpty()) {
             String nombreHuesped = fieldNombre.getText();
             buscarPorNombre(nombreHuesped);
-        //solo por estado    
-        }else if(radioButton.isSelected()){
-           agregarFilas(HuespedData.listadeHuespedActivos());        
+            //solo por estado    
+        } else if (radioButton.isSelected()) {
+            agregarFilas(HuespedData.listadeHuespedActivos());
+        } else if (!radioButton.isSelected()) {
+            agregarFilas(HuespedData.listadeHuespedNoActivos());
         }
-    
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -229,50 +277,64 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private void btnLimpiarValoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarValoresActionPerformed
         limpiarFields();
         borrarFilasTabla();
-
+        listarTodos_checkBox.setSelected(false);
+        
 
     }//GEN-LAST:event_btnLimpiarValoresActionPerformed
 
     private void fieldNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldNombreKeyReleased
-        if(fieldApellido.getText().isEmpty() &&fieldNombre.getText().isEmpty()){
-        
+        if (fieldApellido.getText().isEmpty() && fieldNombre.getText().isEmpty()) {
+
             borrarFilasTabla();
-        
-        }else if (fieldApellido.getText().isEmpty()) {
+
+        } else if (fieldApellido.getText().isEmpty()) {
             borrarFilasTabla();
             ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
 
+            if (radioButton.isSelected()) {
+                listCompleta = buscarHuespedesActivos(listCompleta);
+            }
             for (Huesped huesped : listCompleta) {
                 if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
             }
-        }else{
-            for (Huesped huesped : buscarPorApellidoTipeado()) {
+        } else {
+            ArrayList<Huesped> listaNombrados=buscarPorApellidoTipeado();
+            if(radioButton.isSelected()){
+                listaNombrados =  buscarHuespedesActivos(listaNombrados);
+            }
+            for (Huesped huesped : listaNombrados){
                 if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
             }
         }
-        
+
     }//GEN-LAST:event_fieldNombreKeyReleased
 
     private void fieldApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoKeyReleased
-        if(fieldApellido.getText().isEmpty() &&fieldNombre.getText().isEmpty()){
-        
+        if (fieldApellido.getText().isEmpty() && fieldNombre.getText().isEmpty()) {
+
             borrarFilasTabla();
-        
-        }else if (fieldNombre.getText().isEmpty()) {
+
+        } else if (fieldNombre.getText().isEmpty()) {
             borrarFilasTabla();
             ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
-
+            if (radioButton.isSelected()) {
+                listCompleta = buscarHuespedesActivos(listCompleta);
+            }
             for (Huesped huesped : listCompleta) {
                 if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
             }
-        }else{
-            for (Huesped huesped : buscarPorNombreTipeado()) {
+        } else {
+            ArrayList<Huesped> listaNombrados=buscarPorNombreTipeado();
+            if(radioButton.isSelected()){
+                listaNombrados =  buscarHuespedesActivos(listaNombrados);
+            }
+            for (Huesped huesped : listaNombrados) {
                 if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
                     agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
                 }
@@ -282,18 +344,24 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fieldApellidoKeyReleased
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-      int filaSeleccionada = tabla.getSelectedRow();
-      if(filaSeleccionada != -1){
-        int idHuespedSeleccionado = (int)tabla.getValueAt(filaSeleccionada, 0);
-        fieldID.setText(idHuespedSeleccionado+"");
-        buscarPorId(idHuespedSeleccionado);
-        
-      
-      }
-        
+        int filaSeleccionada = tabla.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int idHuespedSeleccionado = (int) tabla.getValueAt(filaSeleccionada, 0);
+            fieldID.setText(idHuespedSeleccionado + "");
+            buscarPorId(idHuespedSeleccionado);
+
+        }
 
 
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void radioButtonPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_radioButtonPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioButtonPropertyChange
+
+    private void listarTodos_checkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarTodos_checkBoxActionPerformed
+        
+    }//GEN-LAST:event_listarTodos_checkBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -321,6 +389,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox listarTodos_checkBox;
     private javax.swing.JRadioButton radioButton;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
@@ -331,7 +400,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         modelo.addColumn("Apellido");
         modelo.addColumn("Dni");
     }
-   
+
     public void agregarFila(int id, String nombre, String apellido, int dni) {
         modelo.addRow(new Object[]{id, nombre, apellido, dni});
     }
@@ -374,11 +443,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         }
 
     }
-    
-    public void buscarPorDNI(int dni){
+
+    public void buscarPorDNI(int dni) {
         Huesped huesped = HuespedData.obtenerHuespedXDni(dni);
-        
-        fieldID.setText(huesped.getIdHuesped()+"");
+
+        fieldID.setText(huesped.getIdHuesped() + "");
         fieldNombre.setText(huesped.getNombre());
         fieldApellido.setText(huesped.getApellido());
         fieldCorreo.setText(huesped.getCorreo());
@@ -391,7 +460,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         } else {
             radioButton.setSelected(false);
         }
-    
+
     }
 
     public ArrayList<Huesped> buscarPorNombre(String nombreHuesped) {
@@ -399,15 +468,16 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
         ArrayList<Huesped> listaMismoNombre = new ArrayList<>();
         for (Huesped huesped : listaCompleta) {
-            if (huesped.getNombre().equalsIgnoreCase(nombreHuesped)) {
-                listaMismoNombre.add(huesped);               
+            //FUE EN ESTE IF
+            if (huesped.getNombre().toLowerCase().startsWith(nombreHuesped.toLowerCase())) {
+                listaMismoNombre.add(huesped);
             }
         }
-        if(radioButton.isSelected()){
-          listaMismoNombre =  buscarHuespedesActivos(listaMismoNombre);
+        if (radioButton.isSelected()) {
+            listaMismoNombre = buscarHuespedesActivos(listaMismoNombre);
         }
         agregarFilas(listaMismoNombre);
-        
+
         return listaMismoNombre;
 
     }
@@ -416,77 +486,68 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
         ArrayList<Huesped> listaMismoNombreYApellido = new ArrayList<>();
         for (Huesped huesped : listaCompleta) {
-            if (huesped.getNombre().equalsIgnoreCase(nombreHuesped) && huesped.getApellido().equalsIgnoreCase(apellido)) {
-                   listaMismoNombreYApellido.add(huesped);     
+            //FUE EN ESTE IF
+            if (huesped.getNombre().toLowerCase().startsWith(nombreHuesped.toLowerCase()) && huesped.getApellido().toLowerCase().startsWith(apellido.toLowerCase())) {
+                listaMismoNombreYApellido.add(huesped);
 
             }
         }
-        
-        if(radioButton.isSelected()){
-          listaMismoNombreYApellido =  buscarHuespedesActivos(listaMismoNombreYApellido);
+
+        if (radioButton.isSelected()) {
+            listaMismoNombreYApellido = buscarHuespedesActivos(listaMismoNombreYApellido);
         }
         agregarFilas(listaMismoNombreYApellido);
 
     }
-    
-    
-    
-    public ArrayList<Huesped> buscarPorApellidoTipeado(){
+
+    public ArrayList<Huesped> buscarPorApellidoTipeado() {
         borrarFilasTabla();
         ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
-        ArrayList<Huesped> listaNombrados=new ArrayList<>();
+        ArrayList<Huesped> listaNombrados = new ArrayList<>();
         for (Huesped huesped : listCompleta) {
             if (huesped.getApellido().startsWith(fieldApellido.getText())) {
-                    listaNombrados.add(huesped);
+                listaNombrados.add(huesped);
             }
         }
-        
-        if(radioButton.isSelected()){
-          listaNombrados =  buscarHuespedesActivos(listaNombrados);
+
+        if (radioButton.isSelected()) {
+            listaNombrados = buscarHuespedesActivos(listaNombrados);
         }
-        
+
         return listaNombrados;
     }
-    
-    public ArrayList<Huesped> buscarPorNombreTipeado(){
+
+    public ArrayList<Huesped> buscarPorNombreTipeado() {
         borrarFilasTabla();
         ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
-        ArrayList<Huesped> listaNombrados=new ArrayList<>();
+        ArrayList<Huesped> listaNombrados = new ArrayList<>();
         for (Huesped huesped : listCompleta) {
             if (huesped.getNombre().startsWith(fieldNombre.getText())) {
-                    listaNombrados.add(huesped);
+                listaNombrados.add(huesped);
+
             }
         }
-        
-        if(radioButton.isSelected()){
-          listaNombrados =  buscarHuespedesActivos(listaNombrados);
-        }
-        
+
         return listaNombrados;
     }
 
-    
-    public ArrayList<Huesped> buscarHuespedesActivos(ArrayList<Huesped> lista){
+    public ArrayList<Huesped> buscarHuespedesActivos(ArrayList<Huesped> lista) {
         ArrayList<Huesped> listaActivos = new ArrayList<>();
         for (Huesped huesped : lista) {
-            if(huesped.isEstado()){
-              listaActivos.add(huesped);
+            if (huesped.isEstado()) {
+                listaActivos.add(huesped);
             }
         }
-        return listaActivos ;   
-     }
-    
-    
-    public void agregarFilas(ArrayList<Huesped> lista){
-    
-    for (Huesped huesped : lista) {
-    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+        return listaActivos;
+    }
+
+    public void agregarFilas(ArrayList<Huesped> lista) {
+
+        for (Huesped huesped : lista) {
+            agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
 
         }
-    
-    
+
     }
-    
-    
-    
+
 }
