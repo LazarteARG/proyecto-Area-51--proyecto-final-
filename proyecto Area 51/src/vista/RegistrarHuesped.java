@@ -190,20 +190,26 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //buscar por id
         borrarFilasTabla();
+        //si tiene id, busca por id
         if (!fieldID.getText().isEmpty()) {
             int idHuesped = Integer.parseInt(fieldID.getText());
             buscarPorId(idHuesped);
-        } else if(!fieldDNI.getText().isEmpty()){
+        //si no, por DNI 
+        } else if(!fieldDNI.getText().isEmpty()){ 
             int dni=Integer.parseInt(fieldDNI.getText());
             buscarPorDNI(dni);
+        //sino, por nombre y apellido    
         }else if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
             String nombreHuesped = fieldNombre.getText();
             String apellido = fieldApellido.getText();
             buscarPorNombreYApellido(nombreHuesped, apellido);
-
+        //sino solo por nombre    
         } else if (!fieldNombre.getText().isEmpty() && fieldApellido.getText().isEmpty()){
             String nombreHuesped = fieldNombre.getText();
             buscarPorNombre(nombreHuesped);
+        //solo por estado    
+        }else if(radioButton.isSelected()){
+           agregarFilas(HuespedData.listadeHuespedActivos());        
         }
     
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -325,7 +331,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         modelo.addColumn("Apellido");
         modelo.addColumn("Dni");
     }
-
+   
     public void agregarFila(int id, String nombre, String apellido, int dni) {
         modelo.addRow(new Object[]{id, nombre, apellido, dni});
     }
@@ -394,23 +400,32 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         ArrayList<Huesped> listaMismoNombre = new ArrayList<>();
         for (Huesped huesped : listaCompleta) {
             if (huesped.getNombre().equalsIgnoreCase(nombreHuesped)) {
-                listaMismoNombre.add(huesped);
-               agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                listaMismoNombre.add(huesped);               
             }
         }
+        if(radioButton.isSelected()){
+          listaMismoNombre =  buscarHuespedesActivos(listaMismoNombre);
+        }
+        agregarFilas(listaMismoNombre);
+        
         return listaMismoNombre;
 
     }
 
     public void buscarPorNombreYApellido(String nombreHuesped, String apellido) {
         ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
-        ArrayList<Huesped> listaMismoNombre = new ArrayList<>();
+        ArrayList<Huesped> listaMismoNombreYApellido = new ArrayList<>();
         for (Huesped huesped : listaCompleta) {
             if (huesped.getNombre().equalsIgnoreCase(nombreHuesped) && huesped.getApellido().equalsIgnoreCase(apellido)) {
-                agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                   listaMismoNombreYApellido.add(huesped);     
 
             }
         }
+        
+        if(radioButton.isSelected()){
+          listaMismoNombreYApellido =  buscarHuespedesActivos(listaMismoNombreYApellido);
+        }
+        agregarFilas(listaMismoNombreYApellido);
 
     }
     
@@ -426,6 +441,10 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
         }
         
+        if(radioButton.isSelected()){
+          listaNombrados =  buscarHuespedesActivos(listaNombrados);
+        }
+        
         return listaNombrados;
     }
     
@@ -439,7 +458,35 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
         }
         
+        if(radioButton.isSelected()){
+          listaNombrados =  buscarHuespedesActivos(listaNombrados);
+        }
+        
         return listaNombrados;
     }
 
+    
+    public ArrayList<Huesped> buscarHuespedesActivos(ArrayList<Huesped> lista){
+        ArrayList<Huesped> listaActivos = new ArrayList<>();
+        for (Huesped huesped : lista) {
+            if(huesped.isEstado()){
+              listaActivos.add(huesped);
+            }
+        }
+        return listaActivos ;   
+     }
+    
+    
+    public void agregarFilas(ArrayList<Huesped> lista){
+    
+    for (Huesped huesped : lista) {
+    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+
+        }
+    
+    
+    }
+    
+    
+    
 }
