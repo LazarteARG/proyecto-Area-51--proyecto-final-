@@ -1,7 +1,7 @@
 package vista;
 
 import controlador.HuespedData;
-import java.awt.dnd.DropTarget;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
@@ -20,7 +20,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         initComponents();
         tabla.setModel(modelo);
         agregarCabeceraTabla();
-        radioButton.setToolTipText("PRESIONE BUSCAR PARA VER LA LISTA COMPLETA DE HUESPEDES");
+        textoAyuda.setBackground(Color.LIGHT_GRAY);
     }
 
     @SuppressWarnings("unchecked")
@@ -54,57 +54,60 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         listarTodos_checkBox = new javax.swing.JCheckBox();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textoAyuda = new javax.swing.JTextArea();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1100, 505));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
 
         jLabel2.setText("Apellido:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, 20));
 
         jLabel3.setText("DNI:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, -1));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 198, -1, -1));
 
         jLabel5.setText("ID:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, 20));
 
         jLabel6.setText("Domicilio:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
         jLabel7.setText("Correo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
 
         jLabel8.setText("Celular:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
         jLabel9.setText("Estado:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
 
-        jLabel10.setText("ADBDUCION DE HUESPED (REGISTRO HUESPED)");
+        jLabel10.setText("ABDUCCION DE HUESPED (REGISTRO HUESPED)");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 0, -1, -1));
-        getContentPane().add(fieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 200, -1));
-        getContentPane().add(fieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 200, -1));
+        getContentPane().add(fieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 200, -1));
+        getContentPane().add(fieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 200, -1));
 
         fieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fieldNombreKeyReleased(evt);
             }
         });
-        getContentPane().add(fieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 200, -1));
+        getContentPane().add(fieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 200, -1));
 
         fieldApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fieldApellidoKeyReleased(evt);
             }
         });
-        getContentPane().add(fieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 200, -1));
-        getContentPane().add(fieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 200, -1));
-        getContentPane().add(fieldDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 200, -1));
-        getContentPane().add(fieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 200, -1));
+        getContentPane().add(fieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 200, -1));
+        getContentPane().add(fieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 200, -1));
+        getContentPane().add(fieldDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 200, -1));
+        getContentPane().add(fieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 200, -1));
 
         radioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +119,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 radioButtonPropertyChange(evt);
             }
         });
-        getContentPane().add(radioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
+        getContentPane().add(radioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
 
         btnEliminar.setText("Eliminar Huesped");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +127,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 140, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, 140, -1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +135,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +143,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, -1));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +151,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, -1, -1));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +159,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
 
         btnLimpiarValores.setText("Limpiar Valores");
         btnLimpiarValores.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +167,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnLimpiarValoresActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiarValores, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
+        getContentPane().add(btnLimpiarValores, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,7 +187,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 350, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 350, 280));
 
         listarTodos_checkBox.setText("LISTAR TODOS");
         listarTodos_checkBox.setToolTipText("PRESIONE BUSCAR PARA VER LA LISTA COMPLETA DE HUESPEDES");
@@ -195,7 +198,20 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 listarTodos_checkBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(listarTodos_checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 120, -1));
+        getContentPane().add(listarTodos_checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 120, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        jScrollPane2.setForeground(new java.awt.Color(102, 102, 102));
+
+        textoAyuda.setEditable(false);
+        textoAyuda.setColumns(20);
+        textoAyuda.setRows(2);
+        textoAyuda.setText("Para buscar,registrar o eliminar ingrese datos del huesped y use los botones,\n para editar primero busque el huesped");
+        textoAyuda.setAutoscrolls(false);
+        textoAyuda.setBorder(null);
+        jScrollPane2.setViewportView(textoAyuda);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 500, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -300,7 +316,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
             for (Huesped huesped : listCompleta) {
                 if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
                 }
             }
         } else {
@@ -310,7 +326,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
             for (Huesped huesped : listaNombrados){
                 if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
                 }
             }
         }
@@ -330,7 +346,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
             for (Huesped huesped : listCompleta) {
                 if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
                 }
             }
         } else {
@@ -340,7 +356,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
             for (Huesped huesped : listaNombrados) {
                 if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
                 }
             }
         }
@@ -364,7 +380,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_radioButtonPropertyChange
 
     private void listarTodos_checkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarTodos_checkBoxActionPerformed
-        
+        limpiarFields();
     }//GEN-LAST:event_listarTodos_checkBoxActionPerformed
 
 
@@ -384,6 +400,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fieldNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -393,9 +410,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JCheckBox listarTodos_checkBox;
     private javax.swing.JRadioButton radioButton;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextArea textoAyuda;
     // End of variables declaration//GEN-END:variables
 
     public void agregarCabeceraTabla() {
@@ -403,10 +422,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Dni");
+        modelo.addColumn("Estado");
     }
 
-    public void agregarFila(int id, String nombre, String apellido, int dni) {
-        modelo.addRow(new Object[]{id, nombre, apellido, dni});
+    public void agregarFila(int id, String nombre, String apellido, int dni,boolean estado) {
+        modelo.addRow(new Object[]{id, nombre, apellido, dni,estado});
     }
 
     private void borrarFilasTabla() {
@@ -548,7 +568,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     public void agregarFilas(ArrayList<Huesped> lista) {
 
         for (Huesped huesped : lista) {
-            agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI());
+            agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
 
         }
 
