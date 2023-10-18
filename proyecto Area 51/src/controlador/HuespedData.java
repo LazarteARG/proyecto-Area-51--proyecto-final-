@@ -91,6 +91,8 @@ public class HuespedData {
          
          if (fila == 1) {
              JOptionPane.showMessageDialog(null, "Se ha dado de baja al huesped de la nave nodri");
+         }else{
+           JOptionPane.showMessageDialog(null, "No se pudo eliminar el huesped, verifique que exista ese huesped");
          }
      } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "*Error*: no se ha podido dar de baja al huesped, ser humano");
