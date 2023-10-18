@@ -238,7 +238,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             buscarPorNombre(nombreHuesped);
             //sino solo por apellido    
         } else if (fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
-            ArrayList<Huesped> apellidados=buscarPorApellidoTipeado();
+            ArrayList<Huesped> apellidados = buscarPorApellidoTipeado();
             agregarFilas(apellidados);
             //sino solo por estado    
         } else if (radioButton.isSelected()) {
@@ -249,17 +249,31 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_radioButtonActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+
+        if (!fieldID.getText().isEmpty()) {
+            if (verificadorSoloNumeros()) {
+                int idHuesped = Integer.parseInt(fieldID.getText());
+                HuespedData.bajarHuesped(idHuesped);
+
+            } else {
+                JOptionPane.showMessageDialog(null, closable + "No debe contener letras el ID");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Para poder dar de baja un huesped debe escribir su id, en caso de no conocerlo busuqelo en la tabla y seleccionelo allí");
+        }
+
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //buscar por id
         borrarFilasTabla();
         //si tiene id, busca por id
-        if(listarTodos_checkBox.isSelected()){
+        if (listarTodos_checkBox.isSelected()) {
             limpiarFields();
             agregarFilas(HuespedData.listaCompletaHuespedes());
-        }else if (!fieldID.getText().isEmpty()) {
+        } else if (!fieldID.getText().isEmpty()) {
             int idHuesped = Integer.parseInt(fieldID.getText());
             buscarPorId(idHuesped);
             //si no, por DNI 
@@ -289,27 +303,27 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if(fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() ||fieldCorreo.getText().isEmpty()||fieldCelular.getText().isEmpty() ||fieldDomicilio.getText().isEmpty()){
+        if (fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
-        }else{
-            String nombre=fieldNombre.getText();
-            String apellido=fieldApellido.getText();
-            String domicilio=fieldDomicilio.getText();
-            String correo=fieldCorreo.getText();
-            int id=Integer.parseInt(fieldID.getText());
-            int dni=Integer.parseInt(fieldDNI.getText());
-            int celular=Integer.parseInt(fieldCelular.getText());
-            boolean estado=radioButton.isSelected();
-            int condicion=1;
-            if(!estado){
-                condicion=JOptionPane.showConfirmDialog(this, "El estado esta en inactivo, ¿el dato es correcto?");
-            }else{
-                condicion=0;    
+        } else {
+            String nombre = fieldNombre.getText();
+            String apellido = fieldApellido.getText();
+            String domicilio = fieldDomicilio.getText();
+            String correo = fieldCorreo.getText();
+            int id = Integer.parseInt(fieldID.getText());
+            int dni = Integer.parseInt(fieldDNI.getText());
+            int celular = Integer.parseInt(fieldCelular.getText());
+            boolean estado = radioButton.isSelected();
+            int condicion = 1;
+            if (!estado) {
+                condicion = JOptionPane.showConfirmDialog(this, "El estado esta en inactivo, ¿el dato es correcto?");
+            } else {
+                condicion = 0;
             }
-            if(condicion==0){
+            if (condicion == 0) {
                 JOptionPane.showMessageDialog(this, "Se intentara actualizar el huesped");
-                HuespedData.actualizarHuesped(new Huesped(id,nombre, apellido, dni, domicilio, correo, celular, estado));
-            }else{
+                HuespedData.actualizarHuesped(new Huesped(id, nombre, apellido, dni, domicilio, correo, celular, estado));
+            } else {
                 JOptionPane.showMessageDialog(this, "no se subira el huesped");
             }
         }
@@ -323,7 +337,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         limpiarFields();
         borrarFilasTabla();
         listarTodos_checkBox.setSelected(false);
-        
+
 
     }//GEN-LAST:event_btnLimpiarValoresActionPerformed
 
@@ -341,17 +355,17 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
             for (Huesped huesped : listCompleta) {
                 if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
                 }
             }
         } else {
-            ArrayList<Huesped> listaNombrados=buscarPorApellidoTipeado();
-            if(radioButton.isSelected()){
-                listaNombrados =  buscarHuespedesActivos(listaNombrados);
+            ArrayList<Huesped> listaNombrados = buscarPorApellidoTipeado();
+            if (radioButton.isSelected()) {
+                listaNombrados = buscarHuespedesActivos(listaNombrados);
             }
-            for (Huesped huesped : listaNombrados){
+            for (Huesped huesped : listaNombrados) {
                 if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
                 }
             }
         }
@@ -371,17 +385,17 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
             for (Huesped huesped : listCompleta) {
                 if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
                 }
             }
         } else {
-            ArrayList<Huesped> listaNombrados=buscarPorNombreTipeado();
-            if(radioButton.isSelected()){
-                listaNombrados =  buscarHuespedesActivos(listaNombrados);
+            ArrayList<Huesped> listaNombrados = buscarPorNombreTipeado();
+            if (radioButton.isSelected()) {
+                listaNombrados = buscarHuespedesActivos(listaNombrados);
             }
             for (Huesped huesped : listaNombrados) {
                 if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
+                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
                 }
             }
         }
@@ -450,9 +464,9 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         modelo.addColumn("Estado");
     }
 
-    public void agregarFila(int id, String nombre, String apellido, int dni,boolean estado) {
-        String estad=(estado) ? "Hospedada/o":"No Hospedada/o";
-        modelo.addRow(new Object[]{id, nombre, apellido, dni,estad});
+    public void agregarFila(int id, String nombre, String apellido, int dni, boolean estado) {
+        String estad = (estado) ? "Hospedada/o" : "No Hospedada/o";
+        modelo.addRow(new Object[]{id, nombre, apellido, dni, estad});
     }
 
     private void borrarFilasTabla() {
@@ -599,10 +613,23 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     public void agregarFilas(ArrayList<Huesped> lista) {
 
         for (Huesped huesped : lista) {
-            agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),huesped.isEstado());
+            agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
 
         }
 
+    }
+
+    public boolean verificadorSoloNumeros() {
+        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+
+        for (char letra : letras) {
+            if (fieldID.getText().toLowerCase().contains(letra + "")) {
+                return false;
+            } else if (fieldID.getText().contains(letra + "")) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
