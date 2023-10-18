@@ -249,19 +249,28 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_radioButtonActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
-        if (!fieldID.getText().isEmpty()) {
-            if (verificadorSoloNumeros()) {
+  if (!fieldID.getText().isEmpty()) {
+            if (verificadorSoloNumeros(fieldID.getText())) {
                 int idHuesped = Integer.parseInt(fieldID.getText());
                 HuespedData.bajarHuesped(idHuesped);
 
             } else {
                 JOptionPane.showMessageDialog(null, closable + "No debe contener letras el ID");
             }
+        } else if (!fieldDNI.getText().isEmpty()) {
+            if (verificadorSoloNumeros(fieldDNI.getText())) {
+                int dni = Integer.parseInt(fieldDNI.getText());
+                int idHuesped = HuespedData.obtenerHuespedXDni(dni).getIdHuesped();
+                HuespedData.bajarHuesped(idHuesped);
+
+            } else {
+                JOptionPane.showMessageDialog(null, closable + "No debe contener letras el DNI");
+            }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Para poder dar de baja un huesped debe escribir su id, en caso de no conocerlo busuqelo en la tabla y seleccionelo allí");
+            JOptionPane.showMessageDialog(null, "Para poder dar de baja un huesped debe escribir su id o su dni, en caso de no conocerlo busuqelo en la tabla y seleccionelo allí");
         }
+
 
 
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -619,11 +628,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
     }
 
-    public boolean verificadorSoloNumeros() {
+ public boolean verificadorSoloNumeros(String cadena) {
         char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
         for (char letra : letras) {
-            if (fieldID.getText().toLowerCase().contains(letra + "")) {
+            if (cadena.toLowerCase().contains(letra + "")) {
                 return false;
             } else if (fieldID.getText().contains(letra + "")) {
                 return false;
