@@ -255,7 +255,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 HuespedData.bajarHuesped(idHuesped);
 
             } else {
-                JOptionPane.showMessageDialog(null, closable + "No debe contener letras el ID");
+                JOptionPane.showMessageDialog(null, "No debe contener letras el ID");
             }
         } else if (!fieldDNI.getText().isEmpty()) {
             if (verificadorSoloNumeros(fieldDNI.getText())) {
@@ -264,7 +264,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 HuespedData.bajarHuesped(idHuesped);
 
             } else {
-                JOptionPane.showMessageDialog(null, closable + "No debe contener letras el DNI");
+                JOptionPane.showMessageDialog(null,"No debe contener letras el DNI");
             }
 
         } else {
