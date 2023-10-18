@@ -3,6 +3,7 @@ package vista;
 import controlador.HuespedData;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
 
@@ -21,6 +22,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         tabla.setModel(modelo);
         agregarCabeceraTabla();
         textoAyuda.setBackground(Color.LIGHT_GRAY);
+        btnEditar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -59,7 +61,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         textoAyuda = new javax.swing.JTextArea();
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(1100, 505));
+        setPreferredSize(new java.awt.Dimension(1150, 505));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
@@ -187,7 +189,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 350, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 450, 280));
 
         listarTodos_checkBox.setText("LISTAR TODOS");
         listarTodos_checkBox.setToolTipText("PRESIONE BUSCAR PARA VER LA LISTA COMPLETA DE HUESPEDES");
@@ -206,7 +208,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         textoAyuda.setEditable(false);
         textoAyuda.setColumns(20);
         textoAyuda.setRows(2);
-        textoAyuda.setText("Para buscar,registrar o eliminar ingrese datos del huesped y use los botones,\n para editar primero busque el huesped");
+        textoAyuda.setText("Para buscar,registrar o eliminar ingrese datos del huesped y use los botones,\n para editar primero busque el huesped, para buscar de nuevo primero limpie los valores");
         textoAyuda.setAutoscrolls(false);
         textoAyuda.setBorder(null);
         jScrollPane2.setViewportView(textoAyuda);
@@ -287,7 +289,30 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        if(fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() ||fieldCorreo.getText().isEmpty()||fieldCelular.getText().isEmpty() ||fieldDomicilio.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
+        }else{
+            String nombre=fieldNombre.getText();
+            String apellido=fieldApellido.getText();
+            String domicilio=fieldDomicilio.getText();
+            String correo=fieldCorreo.getText();
+            int id=Integer.parseInt(fieldID.getText());
+            int dni=Integer.parseInt(fieldDNI.getText());
+            int celular=Integer.parseInt(fieldCelular.getText());
+            boolean estado=radioButton.isSelected();
+            int condicion=1;
+            if(!estado){
+                condicion=JOptionPane.showConfirmDialog(this, "El estado esta en inactivo, ¿el dato es correcto?");
+            }else{
+                condicion=0;    
+            }
+            if(condicion==0){
+                JOptionPane.showMessageDialog(this, "Se intentara actualizar el huesped");
+                HuespedData.actualizarHuesped(new Huesped(id,nombre, apellido, dni, domicilio, correo, celular, estado));
+            }else{
+                JOptionPane.showMessageDialog(this, "no se subira el huesped");
+            }
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -369,7 +394,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             int idHuespedSeleccionado = (int) tabla.getValueAt(filaSeleccionada, 0);
             fieldID.setText(idHuespedSeleccionado + "");
             buscarPorId(idHuespedSeleccionado);
-
+            fieldID.setEditable(false);
         }
 
 
@@ -426,7 +451,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
 
     public void agregarFila(int id, String nombre, String apellido, int dni,boolean estado) {
-        modelo.addRow(new Object[]{id, nombre, apellido, dni,estado});
+        String estad=(estado) ? "Hospedada/o":"No Hospedada/o";
+        modelo.addRow(new Object[]{id, nombre, apellido, dni,estad});
     }
 
     private void borrarFilasTabla() {
@@ -446,6 +472,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         fieldCelular.setText("");
 
         radioButton.setSelected(false);
+        btnEditar.setEnabled(false);
+        fieldID.setEditable(true);
 
     }
 
@@ -465,7 +493,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         } else {
             radioButton.setSelected(false);
         }
-
+        btnEditar.setEnabled(true);
+        fieldID.setEditable(false);
     }
 
     public void buscarPorDNI(int dni) {
@@ -484,6 +513,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         } else {
             radioButton.setSelected(false);
         }
+        btnEditar.setEnabled(true);
+        fieldID.setEditable(false);
 
     }
 
