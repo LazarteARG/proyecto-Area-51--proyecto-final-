@@ -315,7 +315,27 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        try {
+            String nombre = fieldNombre.getText();
+            String apellido = fieldApellido.getText();
+            String domicilio = fieldDomicilio.getText();
+            String correo = fieldCorreo.getText();
+            int dni = Integer.parseInt(fieldDNI.getText());
+            int celular = Integer.parseInt(fieldCelular.getText());
+            
+            if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
+                
+            }else {
+            Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
+            
+            }
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error en el boton registrar");
+             System.out.println("error en el metodo actionPerformed btnRegistrarActionPerformed(). por favor, verifique. ");
+             
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
