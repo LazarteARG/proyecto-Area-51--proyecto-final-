@@ -315,6 +315,23 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese celular");
             }
+        }else if(!fieldCorreo.getText().isEmpty()){
+            String correo=fieldCorreo.getText();
+            int id=buscarPorCorreo(correo);
+            if(id!=0){
+                buscarPorId(id); 
+            }else {
+                JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese correo");
+            }
+            
+        }else if(!fieldDomicilio.getText().isEmpty()){
+            String domicilio=fieldDomicilio.getText();
+            int id=buscarPorDomicilio(domicilio);
+            if(id!=0){
+                buscarPorId(id); 
+            }else {
+                JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese domicilio");
+            }
         }else if (radioButton.isSelected()) {
             agregarFilas(HuespedData.listadeHuespedActivos());
         } else if (!radioButton.isSelected()) {
@@ -681,6 +698,23 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     public int buscarPorCelular(int cel){
         for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
             if(Huesped.getCelular()==cel){
+                return Huesped.getIdHuesped();
+            }
+        }
+        return 0;
+    }
+        public int buscarPorCorreo(String correo){
+        for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
+            if(Huesped.getCorreo().startsWith(correo)){
+                return Huesped.getIdHuesped();
+            }
+        }
+        return 0;
+    }
+    
+    public int buscarPorDomicilio(String domicilio){
+        for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
+            if(Huesped.getDomicilio().startsWith(domicilio)){
                 return Huesped.getIdHuesped();
             }
         }
