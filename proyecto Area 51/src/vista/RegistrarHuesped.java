@@ -331,6 +331,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             String correo = fieldCorreo.getText();
             int dni = Integer.parseInt(fieldDNI.getText());
             int celular = Integer.parseInt(fieldCelular.getText());
+            //poner mas verificaciones: de no usen numeros en el nombre, apellido; que no se pueda usar "@" o otro signo en los campos (excepto en correo); 
             
             if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
@@ -338,7 +339,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }else {
             Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
              HuespedData.subirHuesped(huespedAct);
-            JOptionPane.showMessageDialog(null, "Se ha agregado un nuevo huesped con exito ");
             
             }
             
