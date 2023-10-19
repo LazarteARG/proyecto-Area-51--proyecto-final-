@@ -299,7 +299,14 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             String nombreHuesped = fieldNombre.getText();
             buscarPorNombre(nombreHuesped);
             //solo por estado    
-        } else if (radioButton.isSelected()) {
+        } else if(!fieldCelular.getText().isEmpty()){
+            int result=buscarPorCelular(Integer.parseInt(fieldCelular.getText()));
+            if(result!=0){
+                buscarPorId(result); 
+            }else {
+                JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese celular");
+            }
+        }else if (radioButton.isSelected()) {
             agregarFilas(HuespedData.listadeHuespedActivos());
         } else if (!radioButton.isSelected()) {
             agregarFilas(HuespedData.listadeHuespedNoActivos());
@@ -639,6 +646,14 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             }
         }
         return true;
+    }
+    public int buscarPorCelular(int cel){
+        for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
+            if(Huesped.getCelular()==cel){
+                return Huesped.getIdHuesped();
+            }
+        }
+        return 0;
     }
 
 }
