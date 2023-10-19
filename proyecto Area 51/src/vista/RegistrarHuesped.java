@@ -337,6 +337,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 
             }else {
             Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
+             HuespedData.subirHuesped(huespedAct);
+            JOptionPane.showMessageDialog(null, "Se ha agregado un nuevo huesped con exito ");
             
             }
             
