@@ -249,28 +249,37 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_radioButtonActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-  if (!fieldID.getText().isEmpty()) {
-            if (verificadorSoloNumeros(fieldID.getText())) {
-                int idHuesped = Integer.parseInt(fieldID.getText());
-                HuespedData.bajarHuesped(idHuesped);
+  
+        int seguro = JOptionPane.showConfirmDialog(rootPane, "¿Seguro que desea eliminar?");
+
+        if (seguro == 0) {
+            if (!fieldID.getText().isEmpty()) {
+                if (verificadorSoloNumeros(fieldID.getText())) {
+                    int idHuesped = Integer.parseInt(fieldID.getText());
+                    HuespedData.bajarHuesped(idHuesped);
+                    limpiarFields();
+                    borrarFilasTabla(); 
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No debe contener letras el ID");
+                }
+            } else if (!fieldDNI.getText().isEmpty()) {
+                if (verificadorSoloNumeros(fieldDNI.getText())) {
+                    int dni = Integer.parseInt(fieldDNI.getText());
+                    int idHuesped = HuespedData.obtenerHuespedXDni(dni).getIdHuesped();
+                    HuespedData.bajarHuesped(idHuesped);
+                    limpiarFields();
+                    borrarFilasTabla(); 
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "No debe contener letras el DNI");
+                }
 
             } else {
-                JOptionPane.showMessageDialog(null, "No debe contener letras el ID");
+                JOptionPane.showMessageDialog(null, "Para poder dar de baja un huesped debe escribir su id o su dni, en caso de no conocerlo busuqelo en la tabla y seleccionelo allí");
             }
-        } else if (!fieldDNI.getText().isEmpty()) {
-            if (verificadorSoloNumeros(fieldDNI.getText())) {
-                int dni = Integer.parseInt(fieldDNI.getText());
-                int idHuesped = HuespedData.obtenerHuespedXDni(dni).getIdHuesped();
-                HuespedData.bajarHuesped(idHuesped);
-
-            } else {
-                JOptionPane.showMessageDialog(null,"No debe contener letras el DNI");
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Para poder dar de baja un huesped debe escribir su id o su dni, en caso de no conocerlo busuqelo en la tabla y seleccionelo allí");
+           
         }
-
 
 
     }//GEN-LAST:event_btnEliminarActionPerformed
