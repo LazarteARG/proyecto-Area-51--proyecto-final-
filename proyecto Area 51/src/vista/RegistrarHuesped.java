@@ -23,6 +23,16 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         agregarCabeceraTabla();
         textoAyuda.setBackground(Color.LIGHT_GRAY);
         btnEditar.setEnabled(false);
+        terminacionesCorreo.addItem("SELECCIONE UNO");
+        terminacionesCorreo.addItem("@gmail.com");
+        terminacionesCorreo.addItem("@hotmail.com");
+        terminacionesCorreo.addItem("@outlook.com");
+        terminacionesCorreo.addItem("@icloud.com");
+        terminacionesCorreo.addItem("@protonmail.com");
+        terminacionesCorreo.addItem("@me.com");
+        terminacionesCorreo.addItem("@mac.com");
+        terminacionesCorreo.addItem("@gmx.es");
+        terminacionesCorreo.addItem("@yahoo.com");
     }
 
     @SuppressWarnings("unchecked")
@@ -59,6 +69,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textoAyuda = new javax.swing.JTextArea();
+        terminacionesCorreo = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1150, 505));
@@ -91,7 +102,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
         jLabel10.setText("ABDUCCION DE HUESPED (REGISTRO HUESPED)");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 0, -1, -1));
-        getContentPane().add(fieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 200, -1));
+        getContentPane().add(fieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 180, -1));
         getContentPane().add(fieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 200, -1));
 
         fieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -215,6 +226,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 500, 40));
 
+        getContentPane().add(terminacionesCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 160, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -249,7 +262,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_radioButtonActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-  
+
         int seguro = JOptionPane.showConfirmDialog(rootPane, "¿Seguro que desea eliminar?");
 
         if (seguro == 0) {
@@ -258,7 +271,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                     int idHuesped = Integer.parseInt(fieldID.getText());
                     HuespedData.bajarHuesped(idHuesped);
                     limpiarFields();
-                    borrarFilasTabla(); 
+                    borrarFilasTabla();
 
                 } else {
                     JOptionPane.showMessageDialog(null, "No debe contener letras el ID");
@@ -269,8 +282,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                     int idHuesped = HuespedData.obtenerHuespedXDni(dni).getIdHuesped();
                     HuespedData.bajarHuesped(idHuesped);
                     limpiarFields();
-                    borrarFilasTabla(); 
-                    
+                    borrarFilasTabla();
+
                 } else {
                     JOptionPane.showMessageDialog(null, "No debe contener letras el DNI");
                 }
@@ -278,7 +291,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Para poder dar de baja un huesped debe escribir su id o su dni, en caso de no conocerlo busuqelo en la tabla y seleccionelo allí");
             }
-           
+
         }
 
 
@@ -308,31 +321,31 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             String nombreHuesped = fieldNombre.getText();
             buscarPorNombre(nombreHuesped);
             //solo por estado    
-        } else if(!fieldCelular.getText().isEmpty()){
-            int result=buscarPorCelular(Integer.parseInt(fieldCelular.getText()));
-            if(result!=0){
-                buscarPorId(result); 
-            }else {
+        } else if (!fieldCelular.getText().isEmpty()) {
+            int result = buscarPorCelular(Integer.parseInt(fieldCelular.getText()));
+            if (result != 0) {
+                buscarPorId(result);
+            } else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese celular");
             }
-        }else if(!fieldCorreo.getText().isEmpty()){
-            String correo=fieldCorreo.getText();
-            int id=buscarPorCorreo(correo);
-            if(id!=0){
-                buscarPorId(id); 
-            }else {
+        } else if (!fieldCorreo.getText().isEmpty()) {
+            String correo = fieldCorreo.getText();
+            int id = buscarPorCorreo(correo);
+            if (id != 0) {
+                buscarPorId(id);
+            } else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese correo");
             }
-            
-        }else if(!fieldDomicilio.getText().isEmpty()){
-            String domicilio=fieldDomicilio.getText();
-            int id=buscarPorDomicilio(domicilio);
-            if(id!=0){
-                buscarPorId(id); 
-            }else {
+
+        } else if (!fieldDomicilio.getText().isEmpty()) {
+            String domicilio = fieldDomicilio.getText();
+            int id = buscarPorDomicilio(domicilio);
+            if (id != 0) {
+                buscarPorId(id);
+            } else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese domicilio");
             }
-        }else if (radioButton.isSelected()) {
+        } else if (radioButton.isSelected()) {
             agregarFilas(HuespedData.listadeHuespedActivos());
         } else if (!radioButton.isSelected()) {
             agregarFilas(HuespedData.listadeHuespedNoActivos());
@@ -345,36 +358,53 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             String nombre = fieldNombre.getText();
             String apellido = fieldApellido.getText();
             String domicilio = fieldDomicilio.getText();
-            String correo = fieldCorreo.getText().trim();
-            verificarCorreo(correo);
+            String correo = fieldCorreo.getText().trim() + terminacionesCorreo.getSelectedItem();
             int dni = Integer.parseInt(fieldDNI.getText());
             int celular = Integer.parseInt(fieldCelular.getText());
             //poner mas verificaciones: de no usen numeros en el nombre, apellido; que no se pueda usar "@" o otro signo en los campos (excepto en correo); 
+            //VERIFICACIONES YA HECHAS:
+            /*
+            _Correo valido
+            _dni sin letras ni signos
+            _dni obligatorio de 8 digitos
+            _campos vacios*/
             
             if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
-                
-            }else {
-            Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
-             HuespedData.subirHuesped(huespedAct);
-            
+            } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
+                JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presiones editar nuevamente");
+            } else if (verificadorSoloNumeros(fieldDNI.getText())) {
+                JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presiones editar nuevamente");
+            } else if (fieldDNI.getText().length() != 8) {
+                JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presiones editar nuevamente");
+            } else {
+                Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
+                HuespedData.subirHuesped(huespedAct);
+                limpiarFields();
+                borrarFilasTabla();
             }
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton registrar");
-             System.out.println("error en el metodo actionPerformed btnRegistrarActionPerformed(). por favor, verifique. ");
-             
+            System.out.println("error en el metodo actionPerformed btnRegistrarActionPerformed(). por favor, verifique. ");
+
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if (fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
+        } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
+            JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presiones editar nuevamente");
+        } else if (verificadorSoloNumeros(fieldDNI.getText())) {
+            JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presiones editar nuevamente");
+        } else if (fieldDNI.getText().length() != 8) {
+            JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presiones editar nuevamente");
         } else {
+            String correo = fieldCorreo.getText().trim() + terminacionesCorreo.getSelectedItem();
             String nombre = fieldNombre.getText();
             String apellido = fieldApellido.getText();
             String domicilio = fieldDomicilio.getText();
-            String correo = fieldCorreo.getText();
             int id = Integer.parseInt(fieldID.getText());
             int dni = Integer.parseInt(fieldDNI.getText());
             int celular = Integer.parseInt(fieldCelular.getText());
@@ -386,11 +416,13 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 condicion = 0;
             }
             if (condicion == 0) {
-                JOptionPane.showMessageDialog(this, "Se intentara actualizar el huesped");
                 HuespedData.actualizarHuesped(new Huesped(id, nombre, apellido, dni, domicilio, correo, celular, estado));
+                limpiarFields();
+                borrarFilasTabla();
             } else {
                 JOptionPane.showMessageDialog(this, "no se subira el huesped");
             }
+
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -518,6 +550,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox listarTodos_checkBox;
     private javax.swing.JRadioButton radioButton;
     private javax.swing.JTable tabla;
+    private javax.swing.JComboBox<String> terminacionesCorreo;
     private javax.swing.JTextArea textoAyuda;
     // End of variables declaration//GEN-END:variables
 
@@ -551,6 +584,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         fieldCelular.setText("");
 
         radioButton.setSelected(false);
+        terminacionesCorreo.setSelectedIndex(0);
         btnEditar.setEnabled(false);
         fieldID.setEditable(true);
 
@@ -560,9 +594,9 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
         Huesped huesped = HuespedData.obtenerHuespedXid(idHuesped);
 
+        fieldID.setText(huesped.getIdHuesped() + "");
         fieldNombre.setText(huesped.getNombre());
         fieldApellido.setText(huesped.getApellido());
-        fieldCorreo.setText(huesped.getCorreo());
         fieldDNI.setText(huesped.getDNI() + "");
         fieldDomicilio.setText(huesped.getDomicilio());
         fieldCelular.setText(huesped.getCelular() + "");
@@ -572,6 +606,25 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         } else {
             radioButton.setSelected(false);
         }
+
+        //COLOCA EL CORREO
+        String correoHuesped = huesped.getCorreo();
+        String correoName = "";
+        boolean flag = true, flag2 = true;
+
+        for (int i = 0; i < correoHuesped.length(); i++) {
+            if (flag2 && !(correoHuesped.charAt(i) == '@')) {
+                correoName = correoName + correoHuesped.charAt(i);
+                if (flag && correoHuesped.endsWith(terminacionesCorreo.getItemAt(i))) {
+                    terminacionesCorreo.setSelectedIndex(i);
+                    flag = false;
+                }
+            } else {
+                flag2 = false;
+            }
+        }
+        fieldCorreo.setText(correoName);
+
         btnEditar.setEnabled(true);
         fieldID.setEditable(false);
     }
@@ -582,8 +635,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         fieldID.setText(huesped.getIdHuesped() + "");
         fieldNombre.setText(huesped.getNombre());
         fieldApellido.setText(huesped.getApellido());
-        fieldCorreo.setText(huesped.getCorreo());
-        //fieldDNI.setText(huesped.getDNI() + "");
+        fieldDNI.setText(huesped.getDNI() + "");
         fieldDomicilio.setText(huesped.getDomicilio());
         fieldCelular.setText(huesped.getCelular() + "");
 
@@ -592,6 +644,25 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         } else {
             radioButton.setSelected(false);
         }
+
+        //COLOCA EL CORREO
+        String correoHuesped = huesped.getCorreo();
+        String correoName = "";
+        boolean flag = true, flag2 = true;
+
+        for (int i = 0; i < correoHuesped.length(); i++) {
+            if (flag2 && !(correoHuesped.charAt(i) == '@')) {
+                correoName = correoName + correoHuesped.charAt(i);
+                if (flag && correoHuesped.endsWith(terminacionesCorreo.getItemAt(i))) {
+                    terminacionesCorreo.setSelectedIndex(i);
+                    flag = false;
+                }
+            } else {
+                flag2 = false;
+            }
+        }
+        fieldCorreo.setText(correoName);
+
         btnEditar.setEnabled(true);
         fieldID.setEditable(false);
 
@@ -684,7 +755,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
     }
 
- public boolean verificadorSoloNumeros(String cadena) {
+    public boolean verificadorSoloNumeros(String cadena) {
         char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
         for (char letra : letras) {
@@ -696,50 +767,62 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    public int buscarPorCelular(int cel){
+
+    public int buscarPorCelular(int cel) {
         for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
-            if(Huesped.getCelular()==cel){
-                return Huesped.getIdHuesped();
-            }
-        }
-        return 0;
-    }
-        public int buscarPorCorreo(String correo){
-        for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
-            if(Huesped.getCorreo().startsWith(correo)){
-                return Huesped.getIdHuesped();
-            }
-        }
-        return 0;
-    }
-    
-    public int buscarPorDomicilio(String domicilio){
-        for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
-            if(Huesped.getDomicilio().startsWith(domicilio)){
+            if (Huesped.getCelular() == cel) {
                 return Huesped.getIdHuesped();
             }
         }
         return 0;
     }
 
-    public boolean verificarCorreo (String correo) {
-        System.out.println(correo.substring(correo.length()-4, correo.length()));
-        String variableMuyUtil = correo.substring(correo.length()-4, correo.length());
-        boolean variableArroba = correo.contains(".@") && correo.contains("@.");
-        String principiodelCorreo = correo.substring(0, correo.length()-5);
-        System.out.println(principiodelCorreo);
-        System.out.println(correo.charAt(0));
-        String nombreCorreo;
-        
-        for (int contadorLetras = 0; contadorLetras < correo.length(); contadorLetras++) {            
-            if ((correo.charAt(contadorLetras)== "@")) {
-                nombreCorreo=nombreCorreo+correo.charAt(contadorLetras);
+    public int buscarPorCorreo(String correo) {
+        for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
+            if (Huesped.getCorreo().startsWith(correo)) {
+                return Huesped.getIdHuesped();
             }
         }
-        
-        return correo.contains("@") && variableMuyUtil.equals(".com") && !principiodelCorreo.contains(".com") && !(correo.charAt(0) == '@') && !(correo.charAt(0) == '.') && !(variableArroba);
-        
+        return 0;
     }
-    
-    
+
+    public int buscarPorDomicilio(String domicilio) {
+        for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
+            if (Huesped.getDomicilio().startsWith(domicilio)) {
+                return Huesped.getIdHuesped();
+            }
+        }
+        return 0;
+    }
+
+    public boolean verificarCorreo(String nombreCorreo) {
+        String ultimaLetraCorreo = nombreCorreo.substring(nombreCorreo.length() - 1, nombreCorreo.length());
+        String primeraLetraCorreo = nombreCorreo.substring(0, 1);
+
+        boolean letrado = false, signado = false, numerado = false;
+        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+        String[] numeros = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
+        for (int i = 0; i < letras.length; i++) {
+            if (!(letrado) && nombreCorreo.toLowerCase().substring(i, i + 1).equals(letras[i])) {
+                letrado = true;
+            } else if (i <= 10 && nombreCorreo.toLowerCase().substring(i, i + 1).equals(numeros[i])) {
+
+            } else if (nombreCorreo.toLowerCase().substring(i, i + 1).equals(".")) {
+
+            } else {
+                signado = true;
+                break;
+            }
+        }
+        System.out.println("primera letra nombre correo: " + primeraLetraCorreo);
+        System.out.println("ultima letra nombre correo: " + ultimaLetraCorreo);
+        System.out.println("nombreCorreo: " + nombreCorreo);
+        System.out.println("letrado: " + letrado);
+        System.out.println("signado: " + signado);
+
+        return !nombreCorreo.contains("@") && !nombreCorreo.contains(".com") && !primeraLetraCorreo.equals(".") && !ultimaLetraCorreo.equals(".") && !nombreCorreo.toLowerCase().contains("ñ") && !(signado) && letrado && (nombreCorreo.length() > 5 && nombreCorreo.length() < 31);
+
+    }
+
 }
