@@ -345,7 +345,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             String nombre = fieldNombre.getText();
             String apellido = fieldApellido.getText();
             String domicilio = fieldDomicilio.getText();
-            String correo = fieldCorreo.getText();
+            String correo = fieldCorreo.getText().trim();
+            verificarCorreo(correo);
             int dni = Integer.parseInt(fieldDNI.getText());
             int celular = Integer.parseInt(fieldCelular.getText());
             //poner mas verificaciones: de no usen numeros en el nombre, apellido; que no se pueda usar "@" o otro signo en los campos (excepto en correo); 
@@ -721,4 +722,24 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         return 0;
     }
 
+    public boolean verificarCorreo (String correo) {
+        System.out.println(correo.substring(correo.length()-4, correo.length()));
+        String variableMuyUtil = correo.substring(correo.length()-4, correo.length());
+        boolean variableArroba = correo.contains(".@") && correo.contains("@.");
+        String principiodelCorreo = correo.substring(0, correo.length()-5);
+        System.out.println(principiodelCorreo);
+        System.out.println(correo.charAt(0));
+        String nombreCorreo;
+        
+        for (int contadorLetras = 0; contadorLetras < correo.length(); contadorLetras++) {            
+            if ((correo.charAt(contadorLetras)== "@")) {
+                nombreCorreo=nombreCorreo+correo.charAt(contadorLetras);
+            }
+        }
+        
+        return correo.contains("@") && variableMuyUtil.equals(".com") && !principiodelCorreo.contains(".com") && !(correo.charAt(0) == '@') && !(correo.charAt(0) == '.') && !(variableArroba);
+        
+    }
+    
+    
 }
