@@ -21,18 +21,9 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         initComponents();
         tabla.setModel(modelo);
         agregarCabeceraTabla();
+        llenarComboCorreos();
         textoAyuda.setBackground(Color.LIGHT_GRAY);
         btnEditar.setEnabled(false);
-        terminacionesCorreo.addItem("SELECCIONE UNO");
-        terminacionesCorreo.addItem("@gmail.com");
-        terminacionesCorreo.addItem("@hotmail.com");
-        terminacionesCorreo.addItem("@outlook.com");
-        terminacionesCorreo.addItem("@icloud.com");
-        terminacionesCorreo.addItem("@protonmail.com");
-        terminacionesCorreo.addItem("@me.com");
-        terminacionesCorreo.addItem("@mac.com");
-        terminacionesCorreo.addItem("@gmx.es");
-        terminacionesCorreo.addItem("@yahoo.com");
     }
 
     @SuppressWarnings("unchecked")
@@ -824,5 +815,17 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         return !nombreCorreo.contains("@") && !nombreCorreo.contains(".com") && !primeraLetraCorreo.equals(".") && !ultimaLetraCorreo.equals(".") && !nombreCorreo.toLowerCase().contains("ñ") && !(signado) && letrado && (nombreCorreo.length() > 5 && nombreCorreo.length() < 31);
 
     }
-
+    
+    public void llenarComboCorreos(){
+        terminacionesCorreo.addItem("SELECCIONE UNO");
+        terminacionesCorreo.addItem("@gmail.com");
+        terminacionesCorreo.addItem("@hotmail.com");
+        terminacionesCorreo.addItem("@outlook.com");
+        terminacionesCorreo.addItem("@icloud.com");
+        terminacionesCorreo.addItem("@protonmail.com");
+        terminacionesCorreo.addItem("@me.com");
+        terminacionesCorreo.addItem("@mac.com");
+        terminacionesCorreo.addItem("@gmx.es");
+        terminacionesCorreo.addItem("@yahoo.com");
+    }
 }
