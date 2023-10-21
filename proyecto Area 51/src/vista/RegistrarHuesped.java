@@ -791,19 +791,28 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         String primeraLetraCorreo = nombreCorreo.substring(0, 1);
 
         boolean letrado = false, signado = false, numerado = false;
-        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+        String[] letras = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"};
         String[] numeros = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 
-        for (int i = 0; i < letras.length; i++) {
-            if (!(letrado) && nombreCorreo.toLowerCase().substring(i, i + 1).equals(letras[i])) {
-                letrado = true;
-            } else if (i <= 10 && nombreCorreo.toLowerCase().substring(i, i + 1).equals(numeros[i])) {
-
-            } else if (nombreCorreo.toLowerCase().substring(i, i + 1).equals(".")) {
-
+        for (int i = 0; i < nombreCorreo.length(); i++) {
+            if (!letrado) {
+                for (int j = 0; j < letras.length; j++) {
+                    if(nombreCorreo.toLowerCase().substring(i,i+1).contains(letras[i])){
+                        letrado = true;
+                    }
+                }
+                
+            } else if (!numerado) {
+                for (int j = 0; j < letras.length; j++) {
+                    if(nombreCorreo.toLowerCase().substring(i,i+1).contains(numeros[i])){
+                        letrado = true;
+                        continue;
+                    }
+                }
+            } else if (nombreCorreo.toLowerCase().contains(".")) {
+                continue;
             } else {
                 signado = true;
-                break;
             }
         }
         System.out.println("primera letra nombre correo: " + primeraLetraCorreo);
