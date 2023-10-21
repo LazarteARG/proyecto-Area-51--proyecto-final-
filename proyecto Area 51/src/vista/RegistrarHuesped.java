@@ -797,7 +797,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         for (int i = 0; i < nombreCorreo.length(); i++) {
             if (!letrado) {
                 for (int j = 0; j < letras.length; j++) {
-                    if(nombreCorreo.toLowerCase().substring(i,i+1).contains(letras[i])){
+                    if(nombreCorreo.toLowerCase().substring(i,i+1).contains(letras[j])){
                         letrado = true;
                     }
                 }
