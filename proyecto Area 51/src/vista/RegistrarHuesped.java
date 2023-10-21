@@ -364,7 +364,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
             } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
                 JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione registrar nuevamente");
-            } else if (verificadorNumeros(fieldDNI.getText())) {
+            } else if (!verificadorSoloNumeros(fieldDNI.getText())) {
                 JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione registrar nuevamente");
             } else if (fieldDNI.getText().length() != 8) {
                 JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione registrar nuevamente");
@@ -387,7 +387,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
         } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
             JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione editar nuevamente");
-        } else if (verificadorNumeros(fieldDNI.getText().trim())) {
+        } else if (!verificadorSoloNumeros(fieldDNI.getText().trim())) {
             JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (fieldDNI.getText().length() != 8) {
             JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione editar nuevamente");
@@ -829,12 +829,12 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 signado = true;
             }
         }
-        System.out.println("primera letra nombre correo: " + primeraLetraCorreo);
+        /*System.out.println("primera letra nombre correo: " + primeraLetraCorreo);
         System.out.println("ultima letra nombre correo: " + ultimaLetraCorreo);
         System.out.println("nombreCorreo: " + nombreCorreo);
         System.out.println("letrado: " + letrado);
         System.out.println("signado: " + signado);
-
+*/
         return !nombreCorreo.contains("@") && !nombreCorreo.contains(".com") && !primeraLetraCorreo.equals(".") && !ultimaLetraCorreo.equals(".") && !nombreCorreo.toLowerCase().contains("ñ") && !(signado) && letrado && (nombreCorreo.length() > 5 && nombreCorreo.length() < 31);
 
     }
