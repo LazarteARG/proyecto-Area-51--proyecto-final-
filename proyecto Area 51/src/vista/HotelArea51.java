@@ -17,6 +17,7 @@ public class HotelArea51 extends javax.swing.JFrame {
      */
     public HotelArea51() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
