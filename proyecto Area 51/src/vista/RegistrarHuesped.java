@@ -363,11 +363,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
             } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
-                JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presiones editar nuevamente");
+                JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione registrar nuevamente");
             } else if (verificadorSoloNumeros(fieldDNI.getText())) {
-                JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presiones editar nuevamente");
+                JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione registrar nuevamente");
             } else if (fieldDNI.getText().length() != 8) {
-                JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presiones editar nuevamente");
+                JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione registrar nuevamente");
             } else {
                 Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
                 HuespedData.subirHuesped(huespedAct);
@@ -386,11 +386,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         if (fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
         } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
-            JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presiones editar nuevamente");
-        } else if (verificadorSoloNumeros(fieldDNI.getText())) {
-            JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presiones editar nuevamente");
+            JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione editar nuevamente");
+        } else if (verificadorSoloNumeros(fieldDNI.getText().trim())) {
+            JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (fieldDNI.getText().length() != 8) {
-            JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presiones editar nuevamente");
+            JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione editar nuevamente");
         } else {
             String correo = fieldCorreo.getText().trim() + terminacionesCorreo.getSelectedItem();
             String nombre = fieldNombre.getText();
@@ -747,10 +747,10 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
 
     public boolean verificadorSoloNumeros(String cadena) {
-        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ñ', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+        String[] letras = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"};
 
-        for (char letra : letras) {
-            if (cadena.toLowerCase().contains(letra + "")) {
+        for (String letra : letras) {
+            if (cadena.toLowerCase().contains(letra)) {
                 return false;
             } else if (fieldID.getText().contains(letra + "")) {
                 return false;
