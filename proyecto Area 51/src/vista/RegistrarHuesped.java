@@ -359,12 +359,12 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             _dni sin letras ni signos
             _dni obligatorio de 8 digitos
             _campos vacios*/
-            
+
             if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
             } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
                 JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione registrar nuevamente");
-            } else if (verificadorSoloNumeros(fieldDNI.getText())) {
+            } else if (verificadorNumeros(fieldDNI.getText())) {
                 JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione registrar nuevamente");
             } else if (fieldDNI.getText().length() != 8) {
                 JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione registrar nuevamente");
@@ -387,7 +387,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
         } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
             JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione editar nuevamente");
-        } else if (verificadorSoloNumeros(fieldDNI.getText().trim())) {
+        } else if (verificadorNumeros(fieldDNI.getText().trim())) {
             JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (fieldDNI.getText().length() != 8) {
             JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione editar nuevamente");
@@ -747,15 +747,29 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
 
     public boolean verificadorSoloNumeros(String cadena) {
-        String[] letras = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"};
+        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
-        for (String letra : letras) {
-            if (cadena.toLowerCase().contains(letra)) {
+        for (char letra : letras) {
+            if (cadena.toLowerCase().contains(letra + "")) {
                 return false;
             } else if (fieldID.getText().contains(letra + "")) {
                 return false;
             }
         }
+        return true;
+    }
+
+    public boolean verificadorNumeros(String cadena) {
+        String[] letras = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"};
+
+        for (int i = 0; i < cadena.length(); i++) {
+            for (int j = 0; j < letras.length; j++) {
+                if (cadena.toLowerCase().substring(i, i + 1).contains(letras[j])){
+                    return false;
+                }
+            }
+        }
+        
         return true;
     }
 
@@ -797,14 +811,14 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         for (int i = 0; i < nombreCorreo.length(); i++) {
             if (!letrado) {
                 for (int j = 0; j < letras.length; j++) {
-                    if(nombreCorreo.toLowerCase().substring(i,i+1).contains(letras[j])){
+                    if (nombreCorreo.toLowerCase().substring(i, i + 1).contains(letras[j])) {
                         letrado = true;
                     }
                 }
-                
+
             } else if (!numerado) {
                 for (int j = 0; j < letras.length; j++) {
-                    if(nombreCorreo.toLowerCase().substring(i,i+1).contains(numeros[i])){
+                    if (nombreCorreo.toLowerCase().substring(i, i + 1).contains(numeros[i])) {
                         letrado = true;
                         continue;
                     }
@@ -824,8 +838,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         return !nombreCorreo.contains("@") && !nombreCorreo.contains(".com") && !primeraLetraCorreo.equals(".") && !ultimaLetraCorreo.equals(".") && !nombreCorreo.toLowerCase().contains("ñ") && !(signado) && letrado && (nombreCorreo.length() > 5 && nombreCorreo.length() < 31);
 
     }
-    
-    public void llenarComboCorreos(){
+
+    public void llenarComboCorreos() {
         terminacionesCorreo.addItem("SELECCIONE UNO");
         terminacionesCorreo.addItem("@gmail.com");
         terminacionesCorreo.addItem("@hotmail.com");
