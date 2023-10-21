@@ -387,7 +387,9 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
         } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
             JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione editar nuevamente");
-        } else if (!verificadorSoloNumeros(fieldDNI.getText().trim())) {
+        } else if(terminacionesCorreo.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para la direccion de correo electronico");
+        }else if (!verificadorSoloNumeros(fieldDNI.getText().trim())) {
             JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (fieldDNI.getText().length() != 8) {
             JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione editar nuevamente");
@@ -759,19 +761,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         return true;
     }
 
-    public boolean verificadorNumeros(String cadena) {
-        String[] letras = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"};
-
-        for (int i = 0; i < cadena.length(); i++) {
-            for (int j = 0; j < letras.length; j++) {
-                if (cadena.toLowerCase().substring(i, i + 1).contains(letras[j])){
-                    return false;
-                }
-            }
-        }
-        
-        return true;
-    }
 
     public int buscarPorCelular(int cel) {
         for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
@@ -818,13 +807,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
             } else if (!numerado) {
                 for (int j = 0; j < letras.length; j++) {
-                    if (nombreCorreo.toLowerCase().substring(i, i + 1).contains(numeros[i])) {
-                        letrado = true;
-                        continue;
+                    if (nombreCorreo.toLowerCase().substring(i, i + 1).contains(numeros[j])) {
+                        numerado = true;
                     }
                 }
             } else if (nombreCorreo.toLowerCase().contains(".")) {
-                continue;
             } else {
                 signado = true;
             }
