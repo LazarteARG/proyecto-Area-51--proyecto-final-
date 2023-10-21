@@ -3,6 +3,7 @@ package vista;
 import controlador.HuespedData;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
@@ -362,13 +363,13 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
             if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
-            }else if (!verificadorSoloNumeros(fieldDNI.getText())) {
+            } else if (!verificadorSoloNumeros(fieldDNI.getText())) {
                 JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione registrar nuevamente");
-            }else if (fieldDNI.getText().length() != 8) {
+            } else if (fieldDNI.getText().length() != 8) {
                 JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione registrar nuevamente");
             } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
                 JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione registrar nuevamente");
-            }else if(terminacionesCorreo.getSelectedIndex()==0){
+            } else if (terminacionesCorreo.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para que la direccion de correo electronico sea valida");
             } else {
                 Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
@@ -387,15 +388,15 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if (fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
-        }else if (!verificadorSoloNumeros(fieldDNI.getText().trim())) {
+        } else if (!verificadorSoloNumeros(fieldDNI.getText().trim())) {
             JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (fieldDNI.getText().trim().length() != 8) {
             JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione editar nuevamente");
-        }else if(verificadorSoloNumeros(fieldCelular.getText().trim())){
-            JOptionPane.showMessageDialog(this, "El celular posee algun caracter no numerico, no debe tener letras, ni cualquier otro signo, verifique y presione editar nuevamente");    
+        } else if (verificadorSoloNumeros(fieldCelular.getText().trim())) {
+            JOptionPane.showMessageDialog(this, "El celular posee algun caracter no numerico, no debe tener letras, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
             JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione editar nuevamente");
-        } else if(terminacionesCorreo.getSelectedIndex()==0){
+        } else if (terminacionesCorreo.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para que la direccion de correo electronico sea valida");
         } else {
             String correo = fieldCorreo.getText().trim() + terminacionesCorreo.getSelectedItem();
@@ -765,7 +766,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         return true;
     }
 
-
     public int buscarPorCelular(int cel) {
         for (Huesped Huesped : HuespedData.listaCompletaHuespedes()) {
             if (Huesped.getCelular() == cel) {
@@ -794,35 +794,52 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
 
     public boolean verificarCorreo(String nombreCorreo) {
-        String ultimaLetraCorreo = nombreCorreo.substring(nombreCorreo.length()-1, nombreCorreo.length());
+        String ultimaLetraCorreo = nombreCorreo.substring(nombreCorreo.length() - 1, nombreCorreo.length());
         String primeraLetraCorreo = nombreCorreo.substring(0, 1);
 
-        boolean letrado = false, signado = false, numerado = false;
-        String[] letras = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"};
+        //SE CREAN LAS BANDERAS
+        boolean letrado = false, signado = false, numerado = false, punteado = false;
+        //SE CREAN LOS ARRAYLIST
+        String[] abc ={"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"};
         String[] numeros = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-
+        ArrayList<String> letras = new ArrayList<>();
+        ArrayList<String> numeros1=new ArrayList<>();
+        for (String l : abc) {
+            letras.add(l);
+        }
+        for (String num : numeros) {
+            numeros1.add(num);
+        }
+        
+        //SE EMPIEZAN LAS VERIFICACIONES
         for (int i = 0; i < nombreCorreo.length(); i++) {
-            System.out.println("vuelta "+ i +", letra: "+nombreCorreo.toLowerCase().substring(i, i + 1));
-            if (!letrado) {
+            System.out.println("vuelta " + i + ", letra: " + nombreCorreo.toLowerCase().substring(i, i + 1));
+            if (letras.contains(nombreCorreo.toLowerCase().substring(i, i + 1))) {
                 System.out.println("entra if letrado");
-                letrado=false;
-                int j = 0;
+                
+                letrado = true;
+                continue;
+
+                /*int j = 0;
                 for (; j < letras.length; j++) {
                     if (nombreCorreo.toLowerCase().substring(i, i + 1).equals(letras[j])) {
                         letrado = true;
                         continue;
                     }
-                }
-
-            } else if (nombreCorreo.substring(i,i+1).equals("0") ||nombreCorreo.substring(i,i+1).equals("1") ||nombreCorreo.substring(i,i+1).equals("2") ||nombreCorreo.substring(i,i+1).equals("3") ||nombreCorreo.substring(i,i+1).equals("4") ||nombreCorreo.substring(i,i+1).equals("5") ||nombreCorreo.substring(i,i+1).equals("6") ||nombreCorreo.substring(i,i+1).equals("7") ||nombreCorreo.substring(i,i+1).equals("8") ||nombreCorreo.substring(i,i+1).equals("9")) {
+                }*/
+            } else if(numeros1.contains(nombreCorreo.substring(i, i + 1))){
+            //if (nombreCorreo.substring(i, i + 1).equals("0") || nombreCorreo.substring(i, i + 1).equals("1") || nombreCorreo.substring(i, i + 1).equals("2") || nombreCorreo.substring(i, i + 1).equals("3") || nombreCorreo.substring(i, i + 1).equals("4") || nombreCorreo.substring(i, i + 1).equals("5") || nombreCorreo.substring(i, i + 1).equals("6") || nombreCorreo.substring(i, i + 1).equals("7") || nombreCorreo.substring(i, i + 1).equals("8") || nombreCorreo.substring(i, i + 1).equals("9")) {
                 System.out.println("entra if numerico");
+                numerado = true;
                 continue;
             } else if (nombreCorreo.contains(".")) {
                 System.out.println("entra if punto");
+                punteado = true;
                 continue;
-            } else if(signado){
+            } else {
                 System.out.println("entra if signado");
                 signado = true;
+                break;
             }
         }
         System.out.println("primera letra nombre correo: " + primeraLetraCorreo);
