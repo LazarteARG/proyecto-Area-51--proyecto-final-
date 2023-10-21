@@ -364,6 +364,8 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
             } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
                 JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione registrar nuevamente");
+            }else if(terminacionesCorreo.getSelectedIndex()==0){
+                JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para que la direccion de correo electronico sea valida");
             } else if (!verificadorSoloNumeros(fieldDNI.getText())) {
                 JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione registrar nuevamente");
             } else if (fieldDNI.getText().length() != 8) {
@@ -388,7 +390,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
             JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione editar nuevamente");
         } else if(terminacionesCorreo.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para la direccion de correo electronico");
+            JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para que la direccion de correo electronico sea valida");
         }else if (!verificadorSoloNumeros(fieldDNI.getText().trim())) {
             JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (fieldDNI.getText().length() != 8) {
@@ -806,7 +808,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 }
 
             } else if (!numerado) {
-                for (int j = 0; j < letras.length; j++) {
+                for (int j = 0; j < numeros.length; j++) {
                     if (nombreCorreo.toLowerCase().substring(i, i + 1).contains(numeros[j])) {
                         numerado = true;
                     }
