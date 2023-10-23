@@ -360,7 +360,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             _dni sin letras ni signos
             _dni obligatorio de 8 digitos
             _campos vacios*/
-
             if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
             } else if (!verificadorSoloNumeros(fieldDNI.getText())) {
@@ -377,11 +376,10 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 limpiarFields();
                 borrarFilasTabla();
             }
-
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton registrar");
             System.out.println("error en el metodo actionPerformed btnRegistrarActionPerformed(). por favor, verifique. ");
-
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -853,7 +851,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
 
     public void llenarComboCorreos() {
-        terminacionesCorreo.addItem("SELECCIONE UNO");
+        terminacionesCorreo.addItem("@");
         terminacionesCorreo.addItem("@gmail.com");
         terminacionesCorreo.addItem("@hotmail.com");
         terminacionesCorreo.addItem("@outlook.com");
