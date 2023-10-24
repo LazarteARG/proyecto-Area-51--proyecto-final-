@@ -2,14 +2,17 @@ package vista;
 
 import controlador.HuespedData;
 import java.awt.Color;
+import java.awt.Desktop;
+import static java.awt.Desktop.getDesktop;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
 
 public class RegistrarHuesped extends javax.swing.JInternalFrame {
-
+    int idAEliminar;
     DefaultTableModel modelo = new DefaultTableModel() {
 
         @Override
@@ -27,6 +30,17 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         btnEditar.setEnabled(false);
     }
 
+    public RegistrarHuesped(int idAEliminar) {
+        initComponents();
+        tabla.setModel(modelo);
+        agregarCabeceraTabla();
+        llenarComboCorreos();
+        textoAyuda.setBackground(Color.LIGHT_GRAY);
+        btnEditar.setEnabled(false);
+        this.idAEliminar = idAEliminar;
+        llenarImputsBtnEliminarDeOtraVentana(idAEliminar);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -62,9 +76,10 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textoAyuda = new javax.swing.JTextArea();
         terminacionesCorreo = new javax.swing.JComboBox<>();
+        btnSalir2 = new javax.swing.JButton();
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(1150, 505));
+        setPreferredSize(new java.awt.Dimension(700, 505));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
@@ -74,20 +89,20 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, 20));
 
         jLabel3.setText("DNI:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 198, -1, -1));
 
         jLabel5.setText("ID:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, 20));
 
         jLabel6.setText("Domicilio:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
 
         jLabel7.setText("Correo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         jLabel8.setText("Celular:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         jLabel9.setText("Estado:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
@@ -140,7 +155,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 160, 20, 0));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +179,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
 
         btnLimpiarValores.setText("Limpiar Valores");
         btnLimpiarValores.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +207,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 450, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 10, 0));
 
         listarTodos_checkBox.setText("LISTAR TODOS");
         listarTodos_checkBox.setToolTipText("PRESIONE BUSCAR PARA VER LA LISTA COMPLETA DE HUESPEDES");
@@ -203,7 +218,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 listarTodos_checkBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(listarTodos_checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 120, -1));
+        getContentPane().add(listarTodos_checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 10, 0));
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
         jScrollPane2.setForeground(new java.awt.Color(102, 102, 102));
@@ -219,6 +234,14 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 500, 40));
 
         getContentPane().add(terminacionesCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 160, -1));
+
+        btnSalir2.setText("Lista Huespedes");
+        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -360,6 +383,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             _dni sin letras ni signos
             _dni obligatorio de 8 digitos
             _campos vacios*/
+
             if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
             } else if (!verificadorSoloNumeros(fieldDNI.getText())) {
@@ -376,10 +400,11 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 limpiarFields();
                 borrarFilasTabla();
             }
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton registrar");
             System.out.println("error en el metodo actionPerformed btnRegistrarActionPerformed(). por favor, verifique. ");
-            System.out.println(e.getMessage());
+
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -390,7 +415,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (fieldDNI.getText().trim().length() != 8) {
             JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitos, ni mas, ni menos, verifique y presione editar nuevamente");
-        } else if (verificadorSoloNumeros(fieldCelular.getText().trim())) {
+        } else if (!verificadorSoloNumeros(fieldCelular.getText().trim())) {
             JOptionPane.showMessageDialog(this, "El celular posee algun caracter no numerico, no debe tener letras, ni cualquier otro signo, verifique y presione editar nuevamente");
         } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
             JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, verifique y presione editar nuevamente");
@@ -515,6 +540,17 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         limpiarFields();
     }//GEN-LAST:event_listarTodos_checkBoxActionPerformed
 
+    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
+        ListaHuesped lh = new ListaHuesped();
+        JDesktopPane desktop = getDesktopPane();
+        
+        desktop.add(lh);
+        
+        lh.setVisible(true);
+        dispose();    
+
+    }//GEN-LAST:event_btnSalir2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -523,6 +559,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiarValores;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSalir2;
     private javax.swing.JTextField fieldApellido;
     private javax.swing.JTextField fieldCelular;
     private javax.swing.JTextField fieldCorreo;
@@ -665,7 +702,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
 
     public ArrayList<Huesped> buscarPorNombre(String nombreHuesped) {
-
         ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
         ArrayList<Huesped> listaMismoNombre = new ArrayList<>();
         for (Huesped huesped : listaCompleta) {
@@ -851,7 +887,7 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
 
     public void llenarComboCorreos() {
-        terminacionesCorreo.addItem("@");
+        terminacionesCorreo.addItem("SELECCIONE UNO");
         terminacionesCorreo.addItem("@gmail.com");
         terminacionesCorreo.addItem("@hotmail.com");
         terminacionesCorreo.addItem("@outlook.com");
@@ -862,4 +898,12 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         terminacionesCorreo.addItem("@gmx.es");
         terminacionesCorreo.addItem("@yahoo.com");
     }
+    
+    
+    public void llenarImputsBtnEliminarDeOtraVentana(int id){
+      buscarPorId(id);
+    
+    }
+    
+    
 }
