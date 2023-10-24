@@ -2,7 +2,6 @@ package vista;
 
 public class HotelArea51 extends javax.swing.JFrame {
 
-   
     public HotelArea51() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -95,40 +94,54 @@ public class HotelArea51 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MItemRHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MItemRHuespedActionPerformed
-       jDesktopPane1.removeAll();
-       jDesktopPane1.repaint();
-       RegistrarHuesped registrarHuesped = new RegistrarHuesped();
-       registrarHuesped.setVisible(true);
-       jDesktopPane1.add(registrarHuesped);
-       jDesktopPane1.moveToFront(registrarHuesped);
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        RegistrarHuesped registrarHuesped = new RegistrarHuesped();
+        registrarHuesped.setVisible(true);
+        jDesktopPane1.add(registrarHuesped);
+        jDesktopPane1.moveToFront(registrarHuesped);
+
     }//GEN-LAST:event_MItemRHuespedActionPerformed
 
     private void MItemLHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MItemLHuespedActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ListaHuesped listahuesped = new ListaHuesped();
+        listahuesped.setVisible(true);
+        jDesktopPane1.add(listahuesped);
+        jDesktopPane1.moveToFront(listahuesped);
     }//GEN-LAST:event_MItemLHuespedActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-       jDesktopPane1.removeAll();
-       jDesktopPane1.repaint();
-       ListaHuesped  listahuesped = new ListaHuesped();
-       listahuesped.setVisible(true);
-       jDesktopPane1.add(listahuesped);
-       jDesktopPane1.moveToFront(listahuesped);
+        
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-       jDesktopPane1.removeAll();
-       jDesktopPane1.repaint();
-       ListaHuesped  listahuesped = new ListaHuesped();
-       listahuesped.setVisible(true);
-       jDesktopPane1.add(listahuesped);
-       jDesktopPane1.moveToFront(listahuesped);
+//        jDesktopPane1.removeAll();
+//        jDesktopPane1.repaint();
+//        ListaHuesped listahuesped = new ListaHuesped();
+//        listahuesped.setVisible(true);
+//        jDesktopPane1.add(listahuesped);
+//        jDesktopPane1.moveToFront(listahuesped);
     }//GEN-LAST:event_jMenu1MouseClicked
 
-    
     public static void main(String args[]) {
-   
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(HotelArea51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(HotelArea51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(HotelArea51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(HotelArea51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new HotelArea51().setVisible(true);
@@ -147,9 +160,5 @@ public class HotelArea51 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
-
-
-
-
 
 }
