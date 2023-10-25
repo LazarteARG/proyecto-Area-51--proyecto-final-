@@ -275,4 +275,24 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbRegistrarCategoria;
     private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables
+
+     public boolean verificadorSoloNumeros(String cadena) {
+        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+
+        for (char letra : letras) {
+            if (cadena.toLowerCase().contains(letra + "")) {
+                return false;
+            } else if (fieldID.getText().contains(letra + "")) {
+                return false;
+            } else if (fieldCantdeCamas.getText().contains(letra + "")) {
+                return false;
+            } else if (fieldCantdePersonas.getText().contains(letra + "")) {
+                return false;
+            } else if (fieldPrecioxNoche.getText().contains(letra + "")) {
+                return false;
+            }
+        }
+        return true;
+
+ }
 }
