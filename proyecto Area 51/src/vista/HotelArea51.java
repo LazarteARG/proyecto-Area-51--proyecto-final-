@@ -23,6 +23,8 @@ public class HotelArea51 extends javax.swing.JFrame {
         busquedasHabitacionesMenu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jmAdministracionCategoria = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -75,6 +77,11 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Habitaciones");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         resgitrarHabitacionMenu.setText("Registrar Habitacion");
         resgitrarHabitacionMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,6 +122,23 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Categoria");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+
+        jmAdministracionCategoria.setText("Administracion de Categoria");
+        jmAdministracionCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAdministracionCategoriaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmAdministracionCategoria);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -202,6 +226,24 @@ public class HotelArea51 extends javax.swing.JFrame {
         jDesktopPane1.moveToFront(rh);
     }//GEN-LAST:event_busquedasHabitacionesMenuActionPerformed
 
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jmAdministracionCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAdministracionCategoriaActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        AdministracionCategoria rh = new AdministracionCategoria();
+        rh.setVisible(true);
+        jDesktopPane1.add(rh);
+        jDesktopPane1.moveToFront(rh);
+        
+    }//GEN-LAST:event_jmAdministracionCategoriaActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -234,10 +276,12 @@ public class HotelArea51 extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jmAdministracionCategoria;
     private javax.swing.JMenuItem resgitrarHabitacionMenu;
     // End of variables declaration//GEN-END:variables
 
