@@ -19,7 +19,7 @@ public class CategoriaData {
     //metodos
     //int idCategoria,nombre, String tipoDeCamas, int cantidadPersonas, int cantidadCamas, precioNoche) {
     public static void subirCategoria(Categoria categoria) {
-        sql = "INSERT INTO categoria (tipoDeCamas,nombre, cantidadPersonas, cantidadCamas, precioNoche,estado) VALUES (?,?,?,?,?,?)";
+        sql = "INSERT INTO categoria (tipoDeCamas,nombre, cantidadPersonas, cantidadCamas, precioNoche) VALUES (?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -27,7 +27,7 @@ public class CategoriaData {
             ps.setString(2, categoria.getNombre());
             ps.setInt(3, categoria.getCantidadPersonas());
             ps.setInt(4, categoria.getCantidadCamas());
-            ps.setInt(5, categoria.getCantidadCamas());
+            ps.setDouble(5, categoria.getPrecioNoche());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
 
@@ -45,7 +45,7 @@ public class CategoriaData {
     }
 
     public static void actualizarCategoria(Categoria categoria) {
-        sql = "UPDATE categoria SET tipoDeCamas = ?,nombre=?, cantidadPersonas = ?, cantidadCamas= ?, precioNoche=? , estado=? WHERE  idCategoria = ?";
+        sql = "UPDATE categoria SET tipoDeCamas = ?,nombre=?, cantidadPersonas = ?, cantidadCamas= ?, precioNoche=?  WHERE  idCategoria = ?";
         try {
             ps = con.prepareStatement(sql);
 
@@ -56,11 +56,11 @@ public class CategoriaData {
             ps.setDouble(5, categoria.getPrecioNoche());
 
 
-            ps.setInt(7, categoria.getIdCategoria());
+            ps.setInt(6, categoria.getIdCategoria());
 
             int filasAfectadas = ps.executeUpdate();
 
-            if (filasAfectadas > 1) {
+            if (filasAfectadas > 0) {
                 JOptionPane.showMessageDialog(null, "Categoria actualizada con exito");
             }
         } catch (SQLException ex) {
@@ -79,7 +79,7 @@ public class CategoriaData {
           ps.setInt(1,idCategoria);
           
           int filasAfectadas = ps.executeUpdate();
-           if (filasAfectadas > 1){ 
+           if (filasAfectadas > 0){ 
           JOptionPane.showMessageDialog(null, "Categoria eliminada con exito");
            }
         } catch (SQLException ex) {
@@ -93,7 +93,7 @@ public class CategoriaData {
 //int idCategoria, String tipoDeCamas, int cantidadPersonas, int cantidadCamas, precioNoche) {    
    public static ArrayList<Categoria> listaCategoriaesActivas(){
   ArrayList <Categoria> lista =  new ArrayList<>();
-  sql = "SELECT * FROM categoria WHERE estado = 1";
+  sql = "SELECT * FROM categoria";
   try{
     ps = con.prepareStatement(sql);
     rs = ps.executeQuery();
