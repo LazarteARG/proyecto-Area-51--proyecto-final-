@@ -210,7 +210,35 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbEditarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarCategoriaActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            if (fieldCantdeCamas.getText().isEmpty() || fieldCantdePersonas.getText().isEmpty() || fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldPrecioxNoche.getText().isEmpty() || fieldTiposdeCamas.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
+            }else if(verificadorSoloNumeros(fieldID.getText())){
+                int id= Integer.parseInt(fieldID.getText());
+                String  nombre= fieldNombre.getText();
+                String  tipoCamas= fieldTiposdeCamas.getText();
+                int cantPersonas=Integer.parseInt(fieldCantdePersonas.getText());
+                int cantCamas=Integer.parseInt(fieldCantdeCamas.getText());
+                double precioxNoche= Double.parseDouble(fieldPrecioxNoche.getText());
+            
+                Categoria c=new Categoria(id, nombre, tipoCamas, cantPersonas, cantCamas, precioxNoche);
+                
+                CategoriaData.actualizarCategoria(c);
+
+            }else{
+                JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras");        
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras.");
+            System.out.println("NumberFormatException en boton editar, error= "+e.getMessage());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error en el boton Editar");
+            System.out.println("Error en el metodo jbEditarCategoriaActionPerformed(), por favor revise.");    
+        }
+
+
     }//GEN-LAST:event_jbEditarCategoriaActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
