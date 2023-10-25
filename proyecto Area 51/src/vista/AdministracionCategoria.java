@@ -6,7 +6,6 @@ import modelo.Categoria;
 
 public class AdministracionCategoria extends javax.swing.JInternalFrame {
 
-
     public AdministracionCategoria() {
         initComponents();
     }
@@ -49,7 +48,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         jTextArea1.setRows(3);
         jTextArea1.setText("*Para registrar, editar o eliminar una categoria primero ingrese \nlos datos en los campos respectivos y luego use el boton que necesita.\nPero si necesita ver la lista de categoria aprete el boton 'Lista'.");
         jTextArea1.setAutoscrolls(false);
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -113,6 +112,11 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         });
 
         jbLimpiarValores.setText("Limpiar");
+        jbLimpiarValores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarValoresActionPerformed(evt);
+            }
+        });
 
         jbListadeCategoria.setText("Lista");
 
@@ -222,7 +226,12 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fieldPrecioxNocheActionPerformed
 
     private void fieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIDActionPerformed
-        // TODO add your handling code here:
+        if (verificadorSoloNumeros(fieldID.getText())) {
+            int idCategoria = Integer.parseInt(fieldID.getText());
+            CategoriaData.eliminarCategoria(idCategoria);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Id no valido");
+        }
     }//GEN-LAST:event_fieldIDActionPerformed
 
     private void jbEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarCategoriaActionPerformed
@@ -240,16 +249,25 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
             int cantdePersonas = Integer.parseInt(fieldCantdePersonas.getText());
             int cantdeCamas = Integer.parseInt(fieldCantdeCamas.getText());
             double precioNoche = Double.parseDouble(fieldPrecioxNoche.getText());
-            
+
             if (fieldNombre.getText().isEmpty() || fieldTiposdeCamas.getText().isEmpty() || fieldCantdePersonas.getText().isEmpty() || fieldCantdeCamas.getText().isEmpty() || fieldPrecioxNoche.getText().isEmpty()) {
-                
+
             }
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton Registrar");
             System.out.println("Error en el metodo jbRegistrarCategoriaActionPerformed(), por favor revise.");
         }
     }//GEN-LAST:event_jbRegistrarCategoriaActionPerformed
+
+    private void jbLimpiarValoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarValoresActionPerformed
+         fieldCantdeCamas.setText("");
+         fieldCantdePersonas.setText("");
+         fieldID.setText("");
+         fieldNombre.setText("");
+         fieldPrecioxNoche.setText("");
+         fieldTiposdeCamas.setText("");
+    }//GEN-LAST:event_jbLimpiarValoresActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -276,7 +294,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables
 
-     public boolean verificadorSoloNumeros(String cadena) {
+    public boolean verificadorSoloNumeros(String cadena) {
         char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
         for (char letra : letras) {
@@ -294,5 +312,5 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         }
         return true;
 
- }
+    }
 }
