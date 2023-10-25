@@ -61,17 +61,12 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
 public void agregarCabeceraTabla(){
+model.addColumn("idCategoria");
+model.addColumn("Nombre");
+model.addColumn("TipoDeCamas");
 model.addColumn("");
 model.addColumn("");
-model.addColumn("");
-model.addColumn("");
-model.addColumn("");
-
-   
-
-
-
-}
+ }
 
 
 

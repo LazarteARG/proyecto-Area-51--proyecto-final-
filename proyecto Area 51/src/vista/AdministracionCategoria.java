@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.CategoriaData;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
 
@@ -118,6 +119,11 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         });
 
         jbListadeCategoria.setText("Lista");
+        jbListadeCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbListadeCategoriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -295,6 +301,15 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
          fieldPrecioxNoche.setText("");
          fieldTiposdeCamas.setText("");
     }//GEN-LAST:event_jbLimpiarValoresActionPerformed
+
+    private void jbListadeCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListadeCategoriaActionPerformed
+       AdministrarCategoriaTabla act = new AdministrarCategoriaTabla();
+      
+        JDesktopPane desktop = getDesktopPane();
+        desktop.add(act);
+        act.setVisible(true);
+        dispose();   
+    }//GEN-LAST:event_jbListadeCategoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
