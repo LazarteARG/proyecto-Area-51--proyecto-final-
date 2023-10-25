@@ -32,7 +32,7 @@ public class HabitacionDataBORRADOR {
 
             if (rs.next()) {
                 habitacion.setIdCategoria(1);
-                JOptionPane.showConfirmDialog(null, "Habitación agregada con exito");
+                JOptionPane.showMessageDialog(null, "Habitación agregada con exito");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al subir la habitación");
