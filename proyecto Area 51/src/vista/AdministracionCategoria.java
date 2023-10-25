@@ -230,6 +230,8 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
                 Categoria c=new Categoria(id, nombre, tipoCamas, cantPersonas, cantCamas, precioxNoche);
                 
                 CategoriaData.actualizarCategoria(c);
+                
+                limpiarFields();
 
             }else{
                 JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras");        
@@ -262,6 +264,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         if (verificadorSoloNumeros(fieldID.getText())) {
             int idCategoria = Integer.parseInt(fieldID.getText());
             CategoriaData.eliminarCategoria(idCategoria);
+            limpiarFields();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Id no valido");
         }
@@ -292,9 +295,9 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
             } else if (!verificadorParaPrecioxNoche(fieldPrecioxNoche.getText())) {
                 JOptionPane.showMessageDialog(this, "No se puede usar letras en el campo 'Precio x Noche'.");
             } else {
-                Categoria categoria = new Categoria(nombre, tipoDeCamas, cantidadPersonas,cantidadCamas, precioNoche);
+                Categoria categoria = new Categoria(tipoDeCamas, nombre, cantidadPersonas,cantidadCamas, precioNoche);
                 CategoriaData.subirCategoria(categoria);
-                
+                limpiarFields();
             }
 
         } catch (NumberFormatException e) {
@@ -378,6 +381,15 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
      }
      return true;
  }
+    
+    public void limpiarFields(){
+        fieldCantdeCamas.setText("");
+        fieldCantdePersonas.setText("");
+        fieldID.setText("");
+        fieldNombre.setText("");
+        fieldPrecioxNoche.setText("");
+        fieldTiposdeCamas.setText("");
+    }
      public boolean verificadorParaPrecioxNoche (String cadena) {
      char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
      

@@ -33,6 +33,7 @@ public class CategoriaData {
 
             if (rs.next()) {
                 categoria.setIdCategoria(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Categoria agregada con exito");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al subir la categoria");
@@ -161,12 +162,10 @@ public class CategoriaData {
 
                 c.setIdCategoria(rs.getInt(1));
                 c.setNombre(rs.getString(2));
-                c.setTipoDeCamas(rs.getString(5));
+                c.setTipoDeCamas(rs.getString(3));
                 c.setCantidadCamas(rs.getInt(4));
-                c.setCantidadPersonas(rs.getInt(3));
+                c.setCantidadPersonas(rs.getInt(5));
                 c.setPrecioNoche(rs.getDouble(6));
-                System.out.println("categoria obtenida exitosamente");
-                System.out.println(c);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudieron obtener los datos de la categoria");

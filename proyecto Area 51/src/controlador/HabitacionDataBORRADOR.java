@@ -362,7 +362,7 @@ public class HabitacionDataBORRADOR {
         public static ArrayList<Integer> buscarHabitacionesXCantPersonas(int cantPersonas) {
         ArrayList<Integer> idHabitaciones = new ArrayList<>();
 
-        sql = "SELECT idHabitacion FROM habitacion,categoria WHERE categoria.idCategoria=habitacion.idCategoria and categoria.cantPersonas >= ?";
+        sql = "SELECT idHabitacion FROM habitacion,categoria WHERE  categoria.cantidadPersonas >= ? AND categoria.idCategoria=habitacion.idCategoria";
 
         try {
             ps = con.prepareStatement(sql);

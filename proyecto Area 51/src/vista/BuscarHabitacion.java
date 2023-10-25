@@ -9,6 +9,7 @@ import controlador.HabitacionDataBORRADOR;
 import controlador.ReservaData;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Categoria;
 import modelo.Habitacion;
@@ -188,41 +189,44 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(titulojLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nroHabitacionjLabel1)
-                            .addComponent(nroPisojLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(pisoFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(categoriajLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cantPersonasField))
+                                .addGap(198, 198, 198)
+                                .addComponent(titulojLabel))
+                            .addComponent(ayudajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(nroHabitacionField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(categoriajLabel)
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nroHabitacionjLabel1)
+                                    .addComponent(nroPisojLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CategoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                        .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pisoFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(categoriajLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cantPersonasField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(nroHabitacionField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(categoriajLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CategoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(104, 104, 104)
+                                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(254, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(listarTodas)
                             .addComponent(listarLibres)
                             .addComponent(listarOcupadas)
                             .addComponent(listarActivas)
-                            .addComponent(listarInactivas)))
-                    .addComponent(ayudajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                            .addComponent(listarInactivas))
+                        .addGap(66, 66, 66))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +235,10 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
                 .addComponent(titulojLabel)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addComponent(listarTodas)
                         .addGap(18, 18, 18)
                         .addComponent(listarLibres)
@@ -240,33 +247,26 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addComponent(listarActivas)
                         .addGap(18, 18, 18)
-                        .addComponent(listarInactivas))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(listarInactivas)))
                 .addGap(17, 17, 17)
                 .addComponent(ayudajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(nroHabitacionjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nroHabitacionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(CategoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(categoriajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(categoriajLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cantPersonasField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(pisoFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nroPisojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nroHabitacionjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nroHabitacionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CategoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(categoriajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botonVolver)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(categoriajLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cantPersonasField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pisoFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nroPisojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -337,6 +337,8 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
             retornos.add(String.valueOf(categoriaSeleccionada(String.valueOf(tabla.getValueAt(filaSeleccionada, 1))).getIdCategoria()));
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 2)));
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 4)));
+            retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 5)));
+            retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 6)));
         }
     }//GEN-LAST:event_tablaMouseClicked
 
@@ -379,7 +381,21 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CategoriasComboBoxActionPerformed
 
     private void cantPersonasFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantPersonasFieldKeyReleased
-        // TODO add your handling code here:
+        
+        try {
+            if (verificadorSoloNumeros(cantPersonasField.getText())) {
+                int cantPersonas=Integer.parseInt(cantPersonasField.getText());
+                ArrayList<Integer> idsHabitaciones = HabitacionDataBORRADOR.buscarHabitacionesXCantPersonas(cantPersonas);
+                agregarFilas(buscarXcantPersonas(idsHabitaciones));
+            } else {
+                JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras");
+                cantPersonasField.setText("");
+            }            
+        } catch (NumberFormatException e) {
+            borrarFilasTabla();
+            cantPersonasField.setText("");
+        }
+
     }//GEN-LAST:event_cantPersonasFieldKeyReleased
 
 
@@ -417,42 +433,67 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         modelo.addColumn("Piso");
         modelo.addColumn("Ocupacion");
         modelo.addColumn("Estado");
-
+        modelo.addColumn("Personas Minimas");
+        modelo.addColumn("Tipo de Camas");
+        modelo.addColumn("Precio X Noche");
         tabla.setModel(modelo);
-        tabla.getColumn("Categoria").setPreferredWidth(tabla.getColumn("Categoria").getWidth() + 15);
+        tabla.getColumn("Estado").setPreferredWidth(tabla.getColumn("Estado").getWidth() - 17);
+        tabla.getColumn("Piso").setPreferredWidth(tabla.getColumn("Piso").getWidth() - 20);
+        tabla.getColumn("Categoria").setPreferredWidth(tabla.getColumn("Categoria").getWidth() + 20);
+        tabla.getColumn("Personas Minimas").setPreferredWidth(tabla.getColumn("Personas Minimas").getWidth() +10);
+    
+    
     }
 
-    public void agregarFila(int id, int idCat, int piso, int estado) {
-        String estad = (HabitacionDataBORRADOR.isLibre(new Habitacion(id, idCat, piso, estado))) ? "LIBRE" : "OCUPADA";
-        String estado1 = (estado == 1) ? "Habilitada" : "No Habilitada";
-        Categoria c = CategoriaData.obtenerCategoriaXId(idCat);
-        modelo.addRow(new Object[]{id, c.getNombre(), piso, estad, estado1});
+    public void agregarFila(int id, int idCat, int piso, int estado,int cantPersonas,String tipoCamas,double PrecioXNoche) {
+        try {
+            String estad = (HabitacionDataBORRADOR.isLibre(new Habitacion(id, idCat, piso, estado))) ? "LIBRE" : "OCUPADA";
+            String estado1 = (estado == 1) ? "Habilitada" : "No Habilitada";
+            Categoria c = CategoriaData.obtenerCategoriaXId(idCat);
+            modelo.addRow(new Object[]{id, c.getNombre(), piso, estad, estado1,cantPersonas,tipoCamas,PrecioXNoche});
+        } catch (Exception e) {
+            System.out.println("error en agregarFila, en vista buscarHabitacion,error: " + e.getMessage());
+        }
+
     }
 
     private Categoria categoriaSeleccionada(String nomCat) {
-        for (Categoria c1 : CategoriaData.listarTodasLasCategorias()) {
-            if (c1.getNombre().equalsIgnoreCase(nomCat)) {
-                return c1;
+        try {
+            for (Categoria c1 : CategoriaData.listarTodasLasCategorias()) {
+                if (c1.getNombre().equalsIgnoreCase(nomCat)) {
+                    return c1;
+                }
             }
+        } catch (Exception e) {
+            System.out.println("error en categoriaSeleccionada, en vista buscarHabitacion,error: " + e.getMessage());
         }
         return new Categoria();
+
     }
 
     public void agregarFilas(ArrayList<Habitacion> lista) {
         borrarFilasTabla();
-        for (Habitacion h : lista) {
-            agregarFila(h.getIdHabitacion(), h.getIdCategoria(), h.getPiso(), h.getEstado());
 
+        try {
+            for (Habitacion h : lista) {
+                agregarFila(h.getIdHabitacion(), h.getIdCategoria(), h.getPiso(), h.getEstado(),CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getCantidadPersonas(),CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getTipoDeCamas(),CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getPrecioNoche());
+
+            }
+        } catch (Exception e) {
+            System.out.println("error en agregarFilas, en vista buscarHabitacion,error: " + e.getMessage());
         }
-
     }
 
     public void llenarComboCategorias() {
         CategoriasComboBox.addItem((String) "SELECCIONE UNA CATEGORIA");
         String texto;
-        for (Categoria c : CategoriaData.listarTodasLasCategorias()) {
-            texto = c.getIdCategoria() + "_ " + c.getNombre();
-            CategoriasComboBox.addItem((String) texto);
+        try {
+            for (Categoria c : CategoriaData.listarTodasLasCategorias()) {
+                texto = c.getIdCategoria() + "_ " + c.getNombre();
+                CategoriasComboBox.addItem((String) texto);
+            }
+        } catch (Exception e) {
+            System.out.println("error en llenar combo Categorias, en vista buscarHabitacion,error: " + e.getMessage());
         }
     }
 
@@ -469,12 +510,15 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         if (idHabitacion != 0) {
             borrarFilasTabla();
             Habitacion hs = HabitacionDataBORRADOR.obtenerHabitacionXId(idHabitacion);
-            agregarFila(hs.getIdCategoria(), hs.getIdCategoria(), hs.getPiso(), hs.getEstado());
+            agregarFila(hs.getIdCategoria(), hs.getIdCategoria(), hs.getPiso(), hs.getEstado()
+                ,CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getCantidadPersonas()
+                ,CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getTipoDeCamas()
+                ,CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getPrecioNoche());
         }
     }
 
     public int getIdCategoriaCombo(String c) {
-        int idC=0;
+        int idC = 0;
 
         try {
 
@@ -485,10 +529,39 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
             } else {
                 idC = Integer.parseInt(c.substring(0, 3));
             }
-            
+
         } catch (NumberFormatException e) {
         }
         return idC;
     }
 
+    public static ArrayList<Habitacion> buscarXcantPersonas(ArrayList<Integer> ids) {
+        ArrayList<Habitacion> hs = HabitacionDataBORRADOR.listaHabitaciones();
+        ArrayList<Habitacion> hsReturn = new ArrayList<>();
+
+        try {
+            for (Habitacion h : hs) {
+                for (Integer id : ids) {
+                    if(h.getIdHabitacion()==id){
+                        hsReturn.add(h);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("error en buscarXcantPersonas, en vista buscarHabitacion, error: " + e.getMessage());
+        }
+        return hsReturn;
+    }
+
+    public boolean verificadorSoloNumeros(String cadena) {
+        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h'
+                , 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+
+        for (char letra : letras) {
+            if (cadena.toLowerCase().contains(letra + "")) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
