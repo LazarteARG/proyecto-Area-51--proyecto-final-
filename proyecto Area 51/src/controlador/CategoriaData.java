@@ -119,7 +119,34 @@ public class CategoriaData {
     
  return lista;   
 } 
-    
+        //int idCategoria, String tipoDeCamas, int cantidadPersonas, int cantidadCamas, precioNoche) {    
+
+    public static ArrayList<Categoria> listarTodasLasCategorias() {
+        ArrayList<Categoria> lista = new ArrayList<>();
+        sql = "SELECT * FROM categoria";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt(1));
+                categoria.setNombre(rs.getString(2));
+                categoria.setTipoDeCamas(rs.getString(3));
+                categoria.setCantidadPersonas(rs.getInt(4));
+                categoria.setPrecioNoche(rs.getDouble(5));
+                
+
+                lista.add(categoria);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar la lista de categorias");
+            System.out.println("Error en las clase CategoriaData metodo listarTodasLasCategorias() " + ex.getMessage());
+        }
+
+        return lista;
+    }
     /**hecho por tam*/
        public static Categoria obtenerCategoriaXId(int id) {
         Categoria c = new Categoria();

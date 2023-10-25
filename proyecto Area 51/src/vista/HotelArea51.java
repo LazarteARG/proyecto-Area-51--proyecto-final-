@@ -19,6 +19,8 @@ public class HotelArea51 extends javax.swing.JFrame {
         MItemRHuesped = new javax.swing.JMenuItem();
         MItemLHuesped = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        resgitrarHabitacionMenu = new javax.swing.JMenuItem();
+        busquedasHabitacionesMenu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -73,6 +75,33 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Habitaciones");
+
+        resgitrarHabitacionMenu.setText("Registrar Habitacion");
+        resgitrarHabitacionMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resgitrarHabitacionMenuMouseClicked(evt);
+            }
+        });
+        resgitrarHabitacionMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resgitrarHabitacionMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(resgitrarHabitacionMenu);
+
+        busquedasHabitacionesMenu.setText("Busqueda de Habitaciones");
+        busquedasHabitacionesMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                busquedasHabitacionesMenuMouseClicked(evt);
+            }
+        });
+        busquedasHabitacionesMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedasHabitacionesMenuActionPerformed(evt);
+            }
+        });
+        jMenu2.add(busquedasHabitacionesMenu);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Reservas");
@@ -146,6 +175,33 @@ public class HotelArea51 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void resgitrarHabitacionMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resgitrarHabitacionMenuMouseClicked
+
+    }//GEN-LAST:event_resgitrarHabitacionMenuMouseClicked
+
+    private void resgitrarHabitacionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resgitrarHabitacionMenuActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        RegistrarHabitacion rh = new RegistrarHabitacion();
+        rh.setVisible(true);
+        jDesktopPane1.add(rh);
+        jDesktopPane1.moveToFront(rh);
+
+    }//GEN-LAST:event_resgitrarHabitacionMenuActionPerformed
+
+    private void busquedasHabitacionesMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busquedasHabitacionesMenuMouseClicked
+
+    }//GEN-LAST:event_busquedasHabitacionesMenuMouseClicked
+
+    private void busquedasHabitacionesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedasHabitacionesMenuActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        BuscarHabitacion rh = new BuscarHabitacion();
+        rh.setVisible(true);
+        jDesktopPane1.add(rh);
+        jDesktopPane1.moveToFront(rh);
+    }//GEN-LAST:event_busquedasHabitacionesMenuActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -173,6 +229,7 @@ public class HotelArea51 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MItemLHuesped;
     private javax.swing.JMenuItem MItemRHuesped;
+    private javax.swing.JMenuItem busquedasHabitacionesMenu;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -181,6 +238,7 @@ public class HotelArea51 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem resgitrarHabitacionMenu;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -134,7 +134,7 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones activas");
+            JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones en condiciones");
             System.out.println("Error en las clase HabitacionData metodo listaHabitacionesActivas() " + ex.getMessage());
         }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones activas");
@@ -162,7 +162,7 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones en baja");
+            JOptionPane.showMessageDialog(null, "Error al cargar la lista de las habitaciones en reparacion");
             System.out.println("Error en las clase HabitacionData metodo listaHabitacionesBajas() " + ex.getMessage());
         }catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar la lista de habitaciones en baja");
@@ -171,9 +171,94 @@ public class HabitacionDataBORRADOR {
 
         return lista;
     }
+ public static ArrayList<Habitacion> listarHabitacionesLibres() {
+        ArrayList<Habitacion> lista = new ArrayList<>();
+
+        try {
+            for (Habitacion h : listaHabitaciones()) {
+                if (isLibre(h)) {
+                    lista.add(h);
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar las habitaciones libres");
+            System.out.println("Error en las clase HabitacionData metodo listarHabitacionesLibres " + ex.getMessage());
+        }
+
+        return lista;
+    }
+
+    public static ArrayList<Habitacion> listarHabitacionesOcupadas() {
+        ArrayList<Habitacion> lista = new ArrayList<>();
+
+        try {
+            for (Habitacion h : listaHabitaciones()) {
+                if (!isLibre(h)) {
+                    lista.add(h);
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar las habitaciones ocupadas");
+            System.out.println("Error en las clase HabitacionData metodo listarHabitacionesOcupadas " + ex.getMessage());
+        }
+
+        return lista;
+    }
+
+    public static ArrayList<Habitacion> obtenerHabitacionesXPiso(int piso) {
+        ArrayList<Habitacion> lista = new ArrayList<>();
+        sql = "SELECT * FROM habitacion WHERE piso=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, piso);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Habitacion habitacion = new Habitacion();
+                habitacion.setIdHabitacion(rs.getInt(1));
+                habitacion.setIdCategoria(rs.getInt(2));
+                habitacion.setPiso(3);
+                habitacion.setEstado(rs.getInt(4));
+
+                lista.add(habitacion);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar habitaciones por piso");
+            System.out.println("Error en las clase HabitacionData metodo listarHabitacionesXPiso() " + ex.getMessage());
+        }
+
+        return lista;
+
+    }
+
+    public static Habitacion obtenerHabitacionXCategoria(int idCategoria) {
+        Habitacion lista=new Habitacion();
+        sql = "SELECT * FROM habitacion WHERE idCategoria=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idCategoria);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.setIdHabitacion(rs.getInt(1));
+                lista.setIdCategoria(rs.getInt(2));
+                lista.setPiso(3);
+                lista.setEstado(rs.getInt(4));
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar habitacion por categoria");
+            System.out.println("Error en las clase HabitacionData metodo listarHabitacionesXCategoria() " + ex.getMessage());
+        }
+
+        return lista;
+    }
+    
 
     public static boolean isLibre(Habitacion habitacion) {
-        sql = "SELECT * FROM reserva WHERE idHabitacion=? AND estado=1";
+        sql = "SELECT h.idHabitacion,piso,idCategoria,h.estado FROM habitacion as h,reserva as r WHERE r.idHabitacion=? and r.estado=1 and h.estado=1;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -186,11 +271,8 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al averiguar si la habitacion esta libre");
-            System.out.println("Error en las clase HabitacionData metodo isLibre " + ex.getMessage());
-        }catch(Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al averiguar si la habitacion esta libre");
-            System.out.println("Error en las clase HabitacionData metodo isLibre " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al verificar si la habitacion esta libre");
+            System.out.println("Error en las clase HabitacionData metodo isLibre() " + ex.getMessage());
         }
         return true;
     }
