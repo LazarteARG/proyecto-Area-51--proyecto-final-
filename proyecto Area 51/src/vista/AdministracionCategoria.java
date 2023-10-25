@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.CategoriaData;
+import javax.swing.JOptionPane;
 import modelo.Categoria;
 
 public class AdministracionCategoria extends javax.swing.JInternalFrame {
@@ -240,7 +241,13 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
             int cantdeCamas = Integer.parseInt(fieldCantdeCamas.getText());
             double precioNoche = Double.parseDouble(fieldPrecioxNoche.getText());
             
-        } catch (Exception e) {
+            if (fieldNombre.getText().isEmpty() || fieldTiposdeCamas.getText().isEmpty() || fieldCantdePersonas.getText().isEmpty() || fieldCantdeCamas.getText().isEmpty() || fieldPrecioxNoche.getText().isEmpty()) {
+                
+            }
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error en el boton Registrar");
+            System.out.println("Error en el metodo jbRegistrarCategoriaActionPerformed(), por favor revise.");
         }
     }//GEN-LAST:event_jbRegistrarCategoriaActionPerformed
 
