@@ -278,9 +278,9 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     private void jbRegistrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarCategoriaActionPerformed
         try {
             String nombre = fieldNombre.getText();
-            String tipodeCamas = fieldTiposdeCamas.getText();
-            int cantdePersonas = Integer.parseInt(fieldCantdePersonas.getText());
-            int cantdeCamas = Integer.parseInt(fieldCantdeCamas.getText());
+            String tipoDeCamas = fieldTiposdeCamas.getText();
+            int cantidadPersonas = Integer.parseInt(fieldCantdePersonas.getText());
+            int cantidadCamas = Integer.parseInt(fieldCantdeCamas.getText());
             double precioNoche = Double.parseDouble(fieldPrecioxNoche.getText());
 
             if (fieldNombre.getText().isEmpty() || fieldTiposdeCamas.getText().isEmpty() || fieldCantdePersonas.getText().isEmpty() || fieldCantdeCamas.getText().isEmpty() || fieldPrecioxNoche.getText().isEmpty()) {
@@ -291,6 +291,10 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
                 JOptionPane.showConfirmDialog(this, "No se puede usar letras en los campos 'Cant. de camas' y 'Cant. de personas'.");
             } else if (!verificadorParaPrecioxNoche(fieldPrecioxNoche.getText())) {
                 JOptionPane.showMessageDialog(this, "No se puede usar letras en el campo 'Precio x Noche'.");
+            } else {
+                Categoria categoria = new Categoria(nombre, tipoDeCamas, cantidadPersonas,cantidadCamas, precioNoche);
+                CategoriaData.subirCategoria(categoria);
+                
             }
 
         } catch (NumberFormatException e) {
@@ -340,7 +344,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbRegistrarCategoria;
     private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables
-
+    
     public boolean verificadorSoloNumeros(String cadena) {
         char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
