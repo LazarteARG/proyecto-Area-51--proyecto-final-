@@ -284,7 +284,13 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
             double precioNoche = Double.parseDouble(fieldPrecioxNoche.getText());
 
             if (fieldNombre.getText().isEmpty() || fieldTiposdeCamas.getText().isEmpty() || fieldCantdePersonas.getText().isEmpty() || fieldCantdeCamas.getText().isEmpty() || fieldPrecioxNoche.getText().isEmpty()) {
-
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos.");
+            } else if (!verificadorSoloLetras(fieldNombre.getText()) && !verificadorSoloLetras(fieldTiposdeCamas.getText())) {
+                JOptionPane.showMessageDialog(this, "No se puede usar numeros en los campos 'Nombre' y 'Tipos de camas'.");
+            } else if (!verificadorSoloNumeros(fieldCantdeCamas.getText()) &&  !verificadorSoloNumeros(fieldCantdePersonas.getText())) {
+                JOptionPane.showConfirmDialog(this, "No se puede usar letras en los campos 'Cant. de camas' y 'Cant. de personas'.");
+            } else if (!verificadorParaPrecioxNoche(fieldPrecioxNoche.getText())) {
+                JOptionPane.showMessageDialog(this, "No se puede usar letras en el campo 'Precio x Noche'.");
             }
 
         } catch (NumberFormatException e) {
@@ -365,6 +371,17 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
          } else if (fieldTiposdeCamas.getText().contains(numero + "")) {
              return false;
          }
+     }
+     return true;
+ }
+     public boolean verificadorParaPrecioxNoche (String cadena) {
+     char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+     
+     for (char letra : letras) {
+        if (cadena.toLowerCase().contains( letra + "")) {
+            return false;
+        } else if (fieldPrecioxNoche.getText().contains(letra + "")) {
+         return false;}
      }
      return true;
  }
