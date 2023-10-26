@@ -153,7 +153,7 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         String seleccionado = (String) jComboBox1.getSelectedItem();
         ArrayList<Categoria> listaCompleta = CategoriaData.listarTodasLasCategorias();
         ArrayList<Categoria> listaAMostrar = new ArrayList<>();
-
+        //ID, Nombre, TipoDeCamas, CantidadDePersonas, PrecioNoche
         switch (seleccionado) {
             case "ID":
                 vaciarTabla();
@@ -161,9 +161,11 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                     Categoria cate = CategoriaData.obtenerCategoriaXId(Integer.parseInt(jTextField1.getText()));
                     if (cate.getPrecioNoche() != 0.0) {
                         agregarFila(cate);
+                    }else{
+                    JOptionPane.showMessageDialog(rootPane, "ID no encontrado en ninguna Categoria ");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "ID no encontrado en ninguna Categoria ");
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese un ID ");
                 }
                 break;
 
