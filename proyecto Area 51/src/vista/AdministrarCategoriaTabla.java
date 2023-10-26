@@ -2,7 +2,10 @@ package vista;
 
 import controlador.CategoriaData;
 import java.util.ArrayList;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import modelo.Categoria;
 
@@ -20,6 +23,26 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         initComponents();
         tabla.setModel(model);
         agregarCabeceraTabla();
+        
+        btnEliminar.setEnabled(false);
+        btnEditar.setEnabled(false);
+        
+        // Agregar un ListSelectionListener a la tabla
+        tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    // Verificar si alguna fila está seleccionada en la tabla
+                    if (tabla.getSelectedRow() != -1) {
+                        btnEliminar.setEnabled(true); // Habilitar el botón jButton1
+                        btnEditar.setEnabled(true); // Habilitar el botón btnEditar
+                    } else {
+                        btnEliminar.setEnabled(false); // Deshabilitar jButton1 si no hay selección
+                        btnEditar.setEnabled(false); // Deshabilitar btnEditar si no hay selección
+                    }
+                }
+            }
+        });
 
     }
 
@@ -74,8 +97,18 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Buscar por");
 
@@ -176,14 +209,15 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
 
             case "Nombre":
                 if (verificarSoloLetrasYEspacios(jTextField1.getText())) {
-                vaciarTabla();
-                listaAMostrar = new ArrayList<>();
-                for (Categoria categoria : listaCompleta) {
-                    if (categoria.getNombre().startsWith(jTextField1.getText())) {
-                        listaAMostrar.add(categoria);
+                    vaciarTabla();
+                    listaAMostrar = new ArrayList<>();
+                    for (Categoria categoria : listaCompleta) {
+                        if (categoria.getNombre().startsWith(jTextField1.getText())) {
+                            listaAMostrar.add(categoria);
+                        }
                     }
-                }
-                cargarTabla(listaAMostrar);} else {
+                    cargarTabla(listaAMostrar);
+                } else {
                     JOptionPane.showMessageDialog(rootPane, "Caracter invalido, la busqueda permite solo caracter de texto");
 
                 }
@@ -219,22 +253,46 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                 }
                 break;
             case "PrecioNoche":
-                if(verificadorNumerosEnterosYDecimales(jTextField1.getText())){
-                vaciarTabla();
-                listaAMostrar = new ArrayList<>();
-                for (Categoria categoria : listaCompleta) {
-                    if (categoria.getPrecioNoche() == (Double.parseDouble(jTextField1.getText()))) {
-                        listaAMostrar.add(categoria);
+                if (verificadorNumerosEnterosYDecimales(jTextField1.getText())) {
+                    vaciarTabla();
+                    listaAMostrar = new ArrayList<>();
+                    for (Categoria categoria : listaCompleta) {
+                        if (categoria.getPrecioNoche() == (Double.parseDouble(jTextField1.getText()))) {
+                            listaAMostrar.add(categoria);
+                        }
                     }
-                }
-                cargarTabla(listaAMostrar);
-                }else{
-                JOptionPane.showMessageDialog(rootPane, "Solo se permiten valores numericos");
+                    cargarTabla(listaAMostrar);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Solo se permiten valores numericos");
                 }
                 break;
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int row = tabla.getSelectedRow();
+        int id = (int) model.getValueAt(row, 0);
+
+        AdministracionCategoria ac = new AdministracionCategoria(id);
+
+        JDesktopPane desktop = getDesktopPane();
+        desktop.add(ac);
+        ac.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int row = tabla.getSelectedRow();
+        int id = (int) model.getValueAt(row, 0);
+
+        AdministracionCategoria ac = new AdministracionCategoria(id);
+
+        JDesktopPane desktop = getDesktopPane();
+        desktop.add(ac);
+        ac.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -316,7 +374,7 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
     }
 
 
- /*
+    /*
         1	idCategoria 
 	2	nombre		
 	3	tipoDeCamas	

@@ -14,6 +14,12 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+     public AdministracionCategoria(int idCategoria) {
+        initComponents();
+        cargarCategoriaAEliminarOEditar(idCategoria);
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -422,6 +428,38 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         }
         return true;
     }
+    
+    
+    
+    public void cargarCategoriaAEliminarOEditar(int idCategoria){
+        Categoria categoria = CategoriaData.obtenerCategoriaXId(idCategoria);
+        
+        fieldCantdeCamas.setText(categoria.getCantidadCamas()+"");
+        fieldCantdePersonas.setText(categoria.getCantidadPersonas()+"");
+        fieldID.setText(idCategoria+"");
+        fieldNombre.setText(categoria.getNombre());
+        fieldPrecioxNoche.setText(categoria.getPrecioNoche()+"");
+        fieldTiposdeCamas.setText(categoria.getCantidadCamas()+"");
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 ///Seeeeeeeeeeeeeeeh Vamos Bocaaaaaaaaaaaaaaaaaaaaa
