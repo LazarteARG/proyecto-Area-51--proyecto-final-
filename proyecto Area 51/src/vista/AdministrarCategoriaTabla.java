@@ -85,15 +85,6 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(btnBuscarTodas))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -106,7 +97,16 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar)
-                        .addGap(113, 113, 113)))
+                        .addGap(113, 113, 113))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(btnBuscarTodas))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEditar)
                     .addComponent(btnEliminar))
@@ -158,11 +158,16 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
             case "ID":
                 vaciarTabla();
                 if (!jTextField1.getText().isEmpty()) {
-                    Categoria cate = CategoriaData.obtenerCategoriaXId(Integer.parseInt(jTextField1.getText()));
-                    if (cate.getPrecioNoche() != 0.0) {
-                        agregarFila(cate);
-                    }else{
-                    JOptionPane.showMessageDialog(rootPane, "ID no encontrado en ninguna Categoria ");
+                    if (verificadorSoloNumeros(jTextField1.getText())) {
+                        Categoria cate = CategoriaData.obtenerCategoriaXId(Integer.parseInt(jTextField1.getText()));
+                        if (cate.getPrecioNoche() != 0.0) {
+                            agregarFila(cate);
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane, "ID no encontrado en ninguna Categoria ");
+                        }
+                    } else {
+                        jTextField1.setText("");
+                        JOptionPane.showMessageDialog(rootPane, "Solo numeros enteros");
                     }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Ingrese un ID ");
@@ -170,6 +175,7 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                 break;
 
             case "Nombre":
+                if (verificarSoloLetrasYEspacios(jTextField1.getText())) {
                 vaciarTabla();
                 listaAMostrar = new ArrayList<>();
                 for (Categoria categoria : listaCompleta) {
@@ -177,29 +183,43 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                         listaAMostrar.add(categoria);
                     }
                 }
-                cargarTabla(listaAMostrar);
+                cargarTabla(listaAMostrar);} else {
+                    JOptionPane.showMessageDialog(rootPane, "Caracter invalido, la busqueda permite solo caracter de texto");
+
+                }
                 break;
             case "TipoDeCamas":
-                vaciarTabla();
-                listaAMostrar = new ArrayList<>();
-                for (Categoria categoria : listaCompleta) {
-                    if (categoria.getTipoDeCamas().startsWith(jTextField1.getText())) {
-                        listaAMostrar.add(categoria);
+                if (verificarSoloLetrasYEspacios(jTextField1.getText())) {
+                    vaciarTabla();
+                    listaAMostrar = new ArrayList<>();
+                    for (Categoria categoria : listaCompleta) {
+                        if (categoria.getTipoDeCamas().startsWith(jTextField1.getText())) {
+                            listaAMostrar.add(categoria);
+                        }
                     }
+                    cargarTabla(listaAMostrar);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Caracter invalido, la busqueda permite solo caracter de texto");
+
                 }
-                cargarTabla(listaAMostrar);
                 break;
             case "CantidadDePersonas":
-                vaciarTabla();
-                listaAMostrar = new ArrayList<>();
-                for (Categoria categoria : listaCompleta) {
-                    if (categoria.getTipoDeCamas().startsWith(jTextField1.getText())) {
-                        listaAMostrar.add(categoria);
+                if (verificadorSoloNumeros(jTextField1.getText())) {
+                    vaciarTabla();
+                    listaAMostrar = new ArrayList<>();
+                    for (Categoria categoria : listaCompleta) {
+                        if (categoria.getTipoDeCamas().startsWith(jTextField1.getText())) {
+                            listaAMostrar.add(categoria);
+                        }
                     }
+                    cargarTabla(listaAMostrar);
+                } else {
+                    jTextField1.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Solo numeros enteros");
                 }
-                cargarTabla(listaAMostrar);
                 break;
             case "PrecioNoche":
+                if(verificadorNumerosEnterosYDecimales(jTextField1.getText())){
                 vaciarTabla();
                 listaAMostrar = new ArrayList<>();
                 for (Categoria categoria : listaCompleta) {
@@ -208,6 +228,9 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                     }
                 }
                 cargarTabla(listaAMostrar);
+                }else{
+                JOptionPane.showMessageDialog(rootPane, "Solo se permiten valores numericos");
+                }
                 break;
         }
 
@@ -254,4 +277,52 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         }
     }
 
+    public boolean verificadorSoloNumeros(String texto) {
+        /*Expresión regular*/
+        if (texto.matches("\\d+")) {
+            int numeroEntero = Integer.parseInt(texto);
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetras(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetrasYEspacios(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z ]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificadorNumerosEnterosYDecimales(String texto) {
+        /* Expresión regular que permite números enteros o decimales */
+        if (texto.matches("\\d+|\\d*\\.\\d+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+ /*
+        1	idCategoria 
+	2	nombre		
+	3	tipoDeCamas	
+	4	cantidadCamas	
+	5	cantidadPersonas	
+	6	precioNoche
+    
+     */
 }
