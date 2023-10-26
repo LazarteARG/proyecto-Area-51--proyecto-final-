@@ -32,7 +32,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
             idField.setText(datos.get(0));
             pisoField.setText(datos.get(2));
             estadoRadioButtom.setSelected(datos.get(3).equals("Habilitada"));
-            categoriasComboBox.setSelectedIndex(Integer.valueOf(datos.get(1)));
+            categoriasComboBox.setSelectedItem(datos.get(1));
 
             /*TIP: PASAR UNA CADENA CON PALABRAS O FRASES SEPARADAS POR UN CARACTER A UNA LIST
             List<String> id= Arrays.asList(c.split("-"));
@@ -224,7 +224,8 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
             int id = Integer.parseInt(idField.getText());
             int idcategoria = getIdCategoriaCombo(categoriasComboBox.getSelectedItem().toString());
             boolean estado = estadoRadioButtom.isSelected();
-            int condicion = 1;
+            int condicion =1;
+            
 
             if (!estado) {
                 condicion = JOptionPane.showConfirmDialog(this, "El estado esta en inactivo, ¿el dato es correcto?");
@@ -238,7 +239,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 if (h.getIdHabitacion() == 0) {
                     JOptionPane.showMessageDialog(this, "No se ha encontrado la habitacion con ese numero, verifique he intente de nuevo");
                 } else {
-                    HabitacionDataBORRADOR.actualizarHabitacion(new Habitacion(id, idcategoria, piso, condicion));
+                    HabitacionDataBORRADOR.actualizarHabitacion(new Habitacion(id, idcategoria, piso, (estadoRadioButtom.isSelected())?1:0),true);
                     limpiarFields();
                 }
             } else {
@@ -321,7 +322,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
 
 //    public boolean verificarSoloLetras(String nombre) {
 //        //SE CREAN LOS ARRAYLIST
-//        String[] abc ={"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m","ñ"};
+//        String[] abc ={" ","q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m","ñ"};
 //    
 //        ArrayList<String> letras = new ArrayList<>();
 //

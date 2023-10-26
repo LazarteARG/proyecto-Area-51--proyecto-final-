@@ -332,9 +332,10 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
         int filaSeleccionada = tabla.getSelectedRow();
+        Habitacion habitacion=HabitacionDataBORRADOR.obtenerHabitacionXId(Integer.parseInt(String.valueOf(tabla.getValueAt(filaSeleccionada, 0))));
         if (filaSeleccionada != -1) {
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 0)));
-            retornos.add(String.valueOf(categoriaSeleccionada(String.valueOf(tabla.getValueAt(filaSeleccionada, 1))).getIdCategoria()));
+            retornos.add(habitacion.getIdCategoria()+"_ "+CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria()).getNombre());
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 2)));
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 4)));
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 5)));
@@ -454,20 +455,6 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             System.out.println("error en agregarFila, en vista buscarHabitacion,error: " + e.getMessage());
         }
-
-    }
-
-    private Categoria categoriaSeleccionada(String nomCat) {
-        try {
-            for (Categoria c1 : CategoriaData.listarTodasLasCategorias()) {
-                if (c1.getNombre().equalsIgnoreCase(nomCat)) {
-                    return c1;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("error en categoriaSeleccionada, en vista buscarHabitacion,error: " + e.getMessage());
-        }
-        return new Categoria();
 
     }
 

@@ -1,9 +1,12 @@
 package vista;
 
 import controlador.CategoriaData;
+import controlador.HabitacionDataBORRADOR;
+import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import modelo.Categoria;
+import modelo.Habitacion;
 
 public class AdministracionCategoria extends javax.swing.JInternalFrame {
 
@@ -215,34 +218,34 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbEditarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarCategoriaActionPerformed
-        
+
         try {
             if (fieldCantdeCamas.getText().isEmpty() || fieldCantdePersonas.getText().isEmpty() || fieldID.getText().isEmpty() || fieldNombre.getText().isEmpty() || fieldPrecioxNoche.getText().isEmpty() || fieldTiposdeCamas.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
-            }else if(verificadorSoloNumeros(fieldID.getText())){
-                int id= Integer.parseInt(fieldID.getText());
-                String  nombre= fieldNombre.getText();
-                String  tipoCamas= fieldTiposdeCamas.getText();
-                int cantPersonas=Integer.parseInt(fieldCantdePersonas.getText());
-                int cantCamas=Integer.parseInt(fieldCantdeCamas.getText());
-                double precioxNoche= Double.parseDouble(fieldPrecioxNoche.getText());
-            
-                Categoria c=new Categoria(id, nombre, tipoCamas, cantPersonas, cantCamas, precioxNoche);
-                
+            } else if (verificadorSoloNumeros(fieldID.getText())) {
+                int id = Integer.parseInt(fieldID.getText());
+                String nombre = fieldNombre.getText();
+                String tipoCamas = fieldTiposdeCamas.getText();
+                int cantPersonas = Integer.parseInt(fieldCantdePersonas.getText());
+                int cantCamas = Integer.parseInt(fieldCantdeCamas.getText());
+                double precioxNoche = Double.parseDouble(fieldPrecioxNoche.getText());
+
+                Categoria c = new Categoria(id, nombre, tipoCamas, cantPersonas, cantCamas, precioxNoche);
+
                 CategoriaData.actualizarCategoria(c);
-                
+
                 limpiarFields();
 
-            }else{
-                JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras");        
+            } else {
+                JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras");
             }
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras.");
-            System.out.println("NumberFormatException en boton editar, error= "+e.getMessage());
-        }catch(Exception e){
+            System.out.println("NumberFormatException en boton editar, error= " + e.getMessage());
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en el boton Editar");
-            System.out.println("Error en el metodo jbEditarCategoriaActionPerformed(), por favor revise.");    
+            System.out.println("Error en el metodo jbEditarCategoriaActionPerformed(), por favor revise.");
         }
 
 
@@ -271,7 +274,23 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fieldIDActionPerformed
 
     private void jbEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarCategoriaActionPerformed
-        // TODO add your handling code here:
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar la categoria?");
+        if (opcion == 0) {
+            int idCategoria = Integer.parseInt(fieldID.getText());
+            System.out.println("toma el id");
+            ArrayList<Habitacion> habitaciones = HabitacionDataBORRADOR.listarHabitacionesXCategoria(idCategoria);
+
+//        System.out.println("lista las habitaciones por categoria");
+//        System.out.println("habitaciones size:" + habitaciones.size());
+//        
+            for (Habitacion h : habitaciones) {
+                h.setIdCategoria(1);
+                h.setEstado(0);
+                HabitacionDataBORRADOR.actualizarHabitacion(h, false);
+            }
+
+            CategoriaData.eliminarCategoria(idCategoria);
+        }
     }//GEN-LAST:event_jbEliminarCategoriaActionPerformed
 
     private void fieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNombreActionPerformed
@@ -290,12 +309,12 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos.");
             } else if (!verificadorSoloLetras(fieldNombre.getText()) && !verificadorSoloLetras(fieldTiposdeCamas.getText())) {
                 JOptionPane.showMessageDialog(this, "No se puede usar numeros en los campos 'Nombre' y 'Tipos de camas'.");
-            } else if (!verificadorSoloNumeros(fieldCantdeCamas.getText()) &&  !verificadorSoloNumeros(fieldCantdePersonas.getText())) {
+            } else if (!verificadorSoloNumeros(fieldCantdeCamas.getText()) && !verificadorSoloNumeros(fieldCantdePersonas.getText())) {
                 JOptionPane.showConfirmDialog(this, "No se puede usar letras en los campos 'Cant. de camas' y 'Cant. de personas'.");
             } else if (!verificadorParaPrecioxNoche(fieldPrecioxNoche.getText())) {
                 JOptionPane.showMessageDialog(this, "No se puede usar letras en el campo 'Precio x Noche'.");
             } else {
-                Categoria categoria = new Categoria(tipoDeCamas, nombre, cantidadPersonas,cantidadCamas, precioNoche);
+                Categoria categoria = new Categoria(tipoDeCamas, nombre, cantidadPersonas, cantidadCamas, precioNoche);
                 CategoriaData.subirCategoria(categoria);
                 limpiarFields();
             }
@@ -307,21 +326,21 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbRegistrarCategoriaActionPerformed
 
     private void jbLimpiarValoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarValoresActionPerformed
-         fieldCantdeCamas.setText("");
-         fieldCantdePersonas.setText("");
-         fieldID.setText("");
-         fieldNombre.setText("");
-         fieldPrecioxNoche.setText("");
-         fieldTiposdeCamas.setText("");
+        fieldCantdeCamas.setText("");
+        fieldCantdePersonas.setText("");
+        fieldID.setText("");
+        fieldNombre.setText("");
+        fieldPrecioxNoche.setText("");
+        fieldTiposdeCamas.setText("");
     }//GEN-LAST:event_jbLimpiarValoresActionPerformed
 
     private void jbListadeCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListadeCategoriaActionPerformed
-       AdministrarCategoriaTabla act = new AdministrarCategoriaTabla();
-      
+        AdministrarCategoriaTabla act = new AdministrarCategoriaTabla();
+
         JDesktopPane desktop = getDesktopPane();
         desktop.add(act);
         act.setVisible(true);
-        dispose();   
+        dispose();
     }//GEN-LAST:event_jbListadeCategoriaActionPerformed
 
 
@@ -347,7 +366,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbRegistrarCategoria;
     private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables
-    
+
     public boolean verificadorSoloNumeros(String cadena) {
         char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
@@ -366,23 +385,23 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    
-    public boolean verificadorSoloLetras (String cadena) {
-     char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-     
-     for (char numero : numeros) {
-         if (cadena.toLowerCase().contains(numero + "")) {
-             return false;
-         } else if (fieldNombre.getText().contains(numero + "")) {
-             return false;
-         } else if (fieldTiposdeCamas.getText().contains(numero + "")) {
-             return false;
-         }
-     }
-     return true;
- }
-    
-    public void limpiarFields(){
+
+    public boolean verificadorSoloLetras(String cadena) {
+        char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+        for (char numero : numeros) {
+            if (cadena.toLowerCase().contains(numero + "")) {
+                return false;
+            } else if (fieldNombre.getText().contains(numero + "")) {
+                return false;
+            } else if (fieldTiposdeCamas.getText().contains(numero + "")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void limpiarFields() {
         fieldCantdeCamas.setText("");
         fieldCantdePersonas.setText("");
         fieldID.setText("");
@@ -390,17 +409,19 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         fieldPrecioxNoche.setText("");
         fieldTiposdeCamas.setText("");
     }
-     public boolean verificadorParaPrecioxNoche (String cadena) {
-     char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
-     
-     for (char letra : letras) {
-        if (cadena.toLowerCase().contains( letra + "")) {
-            return false;
-        } else if (fieldPrecioxNoche.getText().contains(letra + "")) {
-         return false;}
-     }
-     return true;
- }
+
+    public boolean verificadorParaPrecioxNoche(String cadena) {
+        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+
+        for (char letra : letras) {
+            if (cadena.toLowerCase().contains(letra + "")) {
+                return false;
+            } else if (fieldPrecioxNoche.getText().contains(letra + "")) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 ///Seeeeeeeeeeeeeeeh Vamos Bocaaaaaaaaaaaaaaaaaaaaa
@@ -425,3 +446,4 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
 //_________________ __000_____00_____________________
 //______________________00__00_______________________
 //________________________00_________________________
+//like

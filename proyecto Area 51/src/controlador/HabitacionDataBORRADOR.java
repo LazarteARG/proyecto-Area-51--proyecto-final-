@@ -43,8 +43,8 @@ public class HabitacionDataBORRADOR {
         }
     }
 
-    public static void actualizarHabitacion(Habitacion habitacion) {
-        sql = "UPDATE habitacion SET idCategoria=?, piso=?, estado? VALUES (?,?,?) WHERE idHabitacion = ?";
+    public static void actualizarHabitacion(Habitacion habitacion,boolean muestraCartel) {
+        sql = "UPDATE habitacion SET idCategoria=?, piso=?, estado=?  WHERE idHabitacion = ?";
         try {
             ps = con.prepareStatement(sql);
 
@@ -55,10 +55,14 @@ public class HabitacionDataBORRADOR {
             ps.setInt(4, habitacion.getIdHabitacion());
             int f = ps.executeUpdate();
 
-            if (f > 0) {
-                JOptionPane.showConfirmDialog(null, "Habitación modificada con exito");
+            if (f > 0 && muestraCartel) {
+                JOptionPane.showMessageDialog(null, "Habitación modificada con exito");
+                System.out.println("Filas afectadas: " + f);
+            }else{
+                System.out.println("Habitacion modificada con exito");
                 System.out.println("Filas afectadas: " + f);
             }
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al actualizar la habitación");
             System.out.println("Error en la Clase HabitacionData metodo actualizarHabitacion() " + ex.getMessage());
@@ -118,7 +122,7 @@ public class HabitacionDataBORRADOR {
 
     public static ArrayList<Habitacion> listaHabitacionesActivas() {
         ArrayList<Habitacion> lista = new ArrayList<>();
-        sql = "SELECT * FROM habitacio WHERE estado = 1";
+        sql = "SELECT * FROM habitacion WHERE estado = 1";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -146,7 +150,7 @@ public class HabitacionDataBORRADOR {
 
     public static ArrayList<Habitacion> listaHabitacionesBajas() {
         ArrayList<Habitacion> lista = new ArrayList<>();
-        sql = "SELECT * FROM habitacio WHERE estado = 0";
+        sql = "SELECT * FROM habitacion WHERE estado = 0";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -358,6 +362,39 @@ public class HabitacionDataBORRADOR {
         }
         return idHabitaciones;
     }
+    public static ArrayList<Habitacion> listarHabitacionesXCategoria(int idCategoria) {
+        ArrayList<Habitacion> Habitaciones = new ArrayList<>();
+
+        sql = "SELECT idHabitacion,piso,habitacion.estado,habitacion.idCategoria FROM habitacion,categoria WHERE categoria.idCategoria=? AND categoria.idCategoria=habitacion.idCategoria";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idCategoria);
+            
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                System.out.println("se obtuvieron las habitaciones");
+                Habitacion habitacion = new Habitacion();
+                habitacion.setIdHabitacion(rs.getInt(1));
+                habitacion.setIdCategoria(rs.getInt(4));
+                habitacion.setPiso(2);
+                habitacion.setEstado(rs.getInt(3));
+
+                Habitaciones.add(habitacion);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo listarHabitacionesXCategoria: " + ex.getMessage());
+        
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo listarHabitacionesXCategoria: " + ex.getMessage());
+        
+        }
+        return Habitaciones;
+    }
+    
     
         public static ArrayList<Integer> buscarHabitacionesXCantPersonas(int cantPersonas) {
         ArrayList<Integer> idHabitaciones = new ArrayList<>();
