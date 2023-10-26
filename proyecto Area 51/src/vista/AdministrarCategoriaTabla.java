@@ -157,7 +157,7 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         switch (seleccionado) {
             case "ID":
                 vaciarTabla();
-                if (!jTextField1.getText().isBlank()) {
+                if (!jTextField1.getText().isEmpty()) {
                     Categoria cate = CategoriaData.obtenerCategoriaXId(Integer.parseInt(jTextField1.getText()));
                     if (cate.getPrecioNoche() != 0.0) {
                         agregarFila(cate);
