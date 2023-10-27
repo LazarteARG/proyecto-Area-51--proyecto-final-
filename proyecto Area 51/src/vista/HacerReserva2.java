@@ -35,12 +35,12 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcCategorias = new javax.swing.JComboBox<>();
         jTextArea2 = new javax.swing.JTextArea();
         btn_reservar = new javax.swing.JButton();
         btn_volver = new javax.swing.JButton();
         jlPrecioTotal = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbIrRegistrarHuesped = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -50,7 +50,12 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Seleccione una opción de la tabla:");
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jcCategorias.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jcCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcCategoriasActionPerformed(evt);
+            }
+        });
 
         jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
@@ -75,10 +80,10 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         jlPrecioTotal.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jlPrecioTotal.setText("$0.0");
 
-        jButton1.setText("Registrar Huesped");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbIrRegistrarHuesped.setText("Registrar Huesped");
+        jbIrRegistrarHuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbIrRegistrarHuespedActionPerformed(evt);
             }
         });
 
@@ -122,12 +127,12 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(btn_volver)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1)
+                                    .addComponent(jbIrRegistrarHuesped)
                                     .addGap(101, 101, 101)
                                     .addComponent(btn_reservar))))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1))
                             .addGap(0, 0, Short.MAX_VALUE))))
                 .addGap(74, 74, 74))
@@ -146,7 +151,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                 .addGap(5, 5, 5)
                 .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -157,7 +162,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_reservar)
                     .addComponent(btn_volver)
-                    .addComponent(jButton1))
+                    .addComponent(jbIrRegistrarHuesped))
                 .addGap(28, 28, 28))
         );
 
@@ -178,21 +183,25 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btn_volverActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbIrRegistrarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIrRegistrarHuespedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbIrRegistrarHuespedActionPerformed
+
+    private void jcCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriasActionPerformed
+        
+    }//GEN-LAST:event_jcCategoriasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_reservar;
     private javax.swing.JButton btn_volver;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JButton jbIrRegistrarHuesped;
+    private javax.swing.JComboBox<String> jcCategorias;
     private javax.swing.JLabel jlPrecioTotal;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
@@ -222,6 +231,14 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
  
     }
 
+    public void llenarcbCategorias () {
+        
+        for (Categoria categoria : CategoriaData.listarTodasLasCategorias()) {
+            jcCategorias.addItem(categoria.getIdCategoria()+" ");
+            
+        }
+        
+    }
 
 
 
