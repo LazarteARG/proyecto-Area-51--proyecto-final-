@@ -19,33 +19,33 @@ public class ListaHuesped extends javax.swing.JInternalFrame {
         }
     };
 
+    public ListaHuesped() {
+        initComponents();
+        tabla.setModel(modelo);
+        agregarCabeceraTabla();
+        agregarFilas(HuespedData.listaCompletaHuespedes());
 
-public ListaHuesped() {
-    initComponents();
-    tabla.setModel(modelo);
-    agregarCabeceraTabla();
-    agregarFilas(HuespedData.listaCompletaHuespedes());
-    
-    jButton1.setEnabled(false);
-    btnEditar.setEnabled(false);
-    
-    // Agregar un ListSelectionListener a la tabla
-    tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            if (!e.getValueIsAdjusting()) {
-                // Verificar si alguna fila está seleccionada en la tabla
-                if (tabla.getSelectedRow() != -1) {
-                    jButton1.setEnabled(true); // Habilitar el botón jButton1
-                    btnEditar.setEnabled(true); // Habilitar el botón btnEditar
-                } else {
-                    jButton1.setEnabled(false); // Deshabilitar jButton1 si no hay selección
-                    btnEditar.setEnabled(false); // Deshabilitar btnEditar si no hay selección
+        jButton1.setEnabled(false);
+        btnEditar.setEnabled(false);
+
+        // Agregar un ListSelectionListener a la tabla
+        tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    // Verificar si alguna fila está seleccionada en la tabla
+                    if (tabla.getSelectedRow() != -1) {
+                        jButton1.setEnabled(true); // Habilitar el botón jButton1
+                        btnEditar.setEnabled(true); // Habilitar el botón btnEditar
+                    } else {
+                        jButton1.setEnabled(false); // Deshabilitar jButton1 si no hay selección
+                        btnEditar.setEnabled(false); // Deshabilitar btnEditar si no hay selección
+                    }
                 }
             }
-        }
-    });
-}
+        });
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -235,52 +235,58 @@ public ListaHuesped() {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         jCheckBox2.setSelected(false);
-        
+
         borrarFilasTabla();
         String seleccion = (String) comboBox.getSelectedItem();
         if (!imput_buscar.getText().isEmpty()) {
             if (seleccion.equals("ID")) {
-                if(verificadorSoloNumeros(imput_buscar.getText())){
-                  int id = Integer.parseInt(imput_buscar.getText());
-                  Huesped h1 = HuespedData.obtenerHuespedXid(id);
-                        
-                    if(Integer.parseInt(h1.getDNI()+"") != 0){
-                    agregarFila(h1.getIdHuesped(), h1.getNombre(), h1.getApellido(), h1.getDNI(), h1.isEstado());
-                    }else{
-                       JOptionPane.showMessageDialog(rootPane, "ID no encontrado");
-                    }          
-                }else{
-                  JOptionPane.showMessageDialog(rootPane, "Solo se puede ingresar numeros como ID");
-                   imput_buscar.setText("");
-                }    
-                
-            } else if (seleccion.equals("nombre")) {
-                if(verificarSoloLetrasYEspacios(imput_buscar.getText())){
-                String nombre = imput_buscar.getText();
-                agregarFilas(listaPorNombre(nombre));
-                }else{
-                   JOptionPane.showMessageDialog(rootPane, "Caracter invalido para un nombre");
-                   imput_buscar.setText("");
+                if (verificadorSoloNumeros(imput_buscar.getText())) {
+                    int id = Integer.parseInt(imput_buscar.getText());
+                    Huesped h1 = HuespedData.obtenerHuespedXid(id);
+
+                    if (Integer.parseInt(h1.getDNI() + "") != 0) {
+                        agregarFila(h1.getIdHuesped(), h1.getNombre(), h1.getApellido(), h1.getDNI(), h1.isEstado());
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "ID no encontrado");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Solo se puede ingresar numeros como ID");
+                    imput_buscar.setText("");
                 }
-                
+
+            } else if (seleccion.equals("nombre")) {
+                if (verificarSoloLetrasYEspacios(imput_buscar.getText())) {
+                    String nombre = imput_buscar.getText();
+                    agregarFilas(listaPorNombre(nombre));
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Caracter invalido para un nombre");
+                    imput_buscar.setText("");
+                }
+
             } else if (seleccion.equals("apellido")) {
-                 if(verificarSoloLetrasYEspacios(imput_buscar.getText())){
-                String apellido = imput_buscar.getText();
-                agregarFilas(buscarPorApellidoTipeado(apellido));
-                  }else{
-                   JOptionPane.showMessageDialog(rootPane, "Caracter invalido para un apellido");
-                   imput_buscar.setText("");
+                if (verificarSoloLetrasYEspacios(imput_buscar.getText())) {
+                    String apellido = imput_buscar.getText();
+                    agregarFilas(buscarPorApellidoTipeado(apellido));
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Caracter invalido para un apellido");
+                    imput_buscar.setText("");
                 }
             } else if (seleccion.equals("DNI")) {
-               if(verificadorNumerosEnterosYDecimales(imput_buscar.getText())){ 
-                int DNI = Integer.parseInt(imput_buscar.getText());
-                Huesped h1 = HuespedData.obtenerHuespedXid(DNI);
-                agregarFila(h1.getIdHuesped(), h1.getNombre(), h1.getApellido(), h1.getDNI(), h1.isEstado());
-               }else{
-                 JOptionPane.showMessageDialog(rootPane, "Solo se puede ingresar numeros como DNI");
-                 imput_buscar.setText("");
-               }
-             }
+                if (verificadorNumerosEnterosYDecimales(imput_buscar.getText())) {
+                    try {
+                        int DNI = Integer.parseInt(imput_buscar.getText());
+                        Huesped h1 = HuespedData.obtenerHuespedXDni(DNI);
+                        agregarFila(h1.getIdHuesped(), h1.getNombre(), h1.getApellido(), h1.getDNI(), h1.isEstado());
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(this, "error en buscar por dni,numero muy largo, error: "+e.getMessage()+"\nen:");
+                        e.printStackTrace();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Solo se puede ingresar numeros como DNI");
+                    imput_buscar.setText("");
+                }
+
+            }
         } else {
             JOptionPane.showInternalMessageDialog(rootPane, "Ingrese la información que desea buscar");
         }
@@ -290,45 +296,44 @@ public ListaHuesped() {
     }//GEN-LAST:event_comboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       jCheckBox2.setSelected(false);
-        
-       int row = tabla.getSelectedRow();
-       int id= (int) modelo.getValueAt(row, 0);
-       
+        jCheckBox2.setSelected(false);
+
+        int row = tabla.getSelectedRow();
+        int id = (int) modelo.getValueAt(row, 0);
+
         RegistrarHuesped registrarhuesped = new RegistrarHuesped(id);
 
         JDesktopPane desktop = getDesktopPane();
         desktop.add(registrarhuesped);
         registrarhuesped.setVisible(true);
         dispose();
-       
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-     
+
     }//GEN-LAST:event_tablaMouseClicked
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         jCheckBox2.setSelected(false);
-        
+
         int row = tabla.getSelectedRow();
-        int id= (int) modelo.getValueAt(row, 0);
-       
+        int id = (int) modelo.getValueAt(row, 0);
+
         RegistrarHuesped registrarhuesped = new RegistrarHuesped(id);
 
         JDesktopPane desktop = getDesktopPane();
         desktop.add(registrarhuesped);
         registrarhuesped.setVisible(true);
         dispose();
-        
-        
+
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-      borrarFilasTabla();  
-      agregarFilas(HuespedData.listaCompletaHuespedes());  
+        borrarFilasTabla();
+        agregarFilas(HuespedData.listaCompletaHuespedes());
 
 
     }//GEN-LAST:event_jCheckBox2ActionPerformed
@@ -390,7 +395,7 @@ public ListaHuesped() {
     }
 
     private ArrayList<Huesped> listaPorApellido(String apellido) {
-       ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
+        ArrayList<Huesped> listaCompleta = HuespedData.listaCompletaHuespedes();
         ArrayList<Huesped> listaMismoApellido = new ArrayList<>();
 
         for (Huesped huesped : listaCompleta) {
@@ -401,10 +406,9 @@ public ListaHuesped() {
         }
         return listaMismoApellido;
 
-
-
     }
- public ArrayList<Huesped> buscarPorApellidoTipeado(String apellido) {
+
+    public ArrayList<Huesped> buscarPorApellidoTipeado(String apellido) {
         borrarFilasTabla();
         ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
         ArrayList<Huesped> listaNombrados = new ArrayList<>();
@@ -412,15 +416,12 @@ public ListaHuesped() {
             if (huesped.getApellido().startsWith(apellido)) {
                 listaNombrados.add(huesped);
             }
-        
 
-       
-    } 
+        }
         return listaNombrados;
-}
+    }
 
-
-  public boolean verificadorSoloNumeros(String texto) {
+    public boolean verificadorSoloNumeros(String texto) {
         /*Expresión regular*/
         if (texto.matches("\\d+")) {
             int numeroEntero = Integer.parseInt(texto);
@@ -457,11 +458,5 @@ public ListaHuesped() {
             return false;
         }
     }
-
-
-
-
-
-
 
 }
