@@ -240,7 +240,7 @@ public ListaHuesped() {
         String seleccion = (String) comboBox.getSelectedItem();
         if (!imput_buscar.getText().isEmpty()) {
             if (seleccion.equals("ID")) {
-                try{
+                if(verificadorSoloNumeros(imput_buscar.getText())){
                   int id = Integer.parseInt(imput_buscar.getText());
                   Huesped h1 = HuespedData.obtenerHuespedXid(id);
                         
@@ -249,25 +249,34 @@ public ListaHuesped() {
                     }else{
                        JOptionPane.showMessageDialog(rootPane, "ID no encontrado");
                     }          
-                }catch(Exception ex){
+                }else{
                   JOptionPane.showMessageDialog(rootPane, "Solo se puede ingresar numeros como ID");
                    imput_buscar.setText("");
                 }    
                 
             } else if (seleccion.equals("nombre")) {
+                if(verificarSoloLetrasYEspacios(imput_buscar.getText())){
                 String nombre = imput_buscar.getText();
                 agregarFilas(listaPorNombre(nombre));
-            } else if (seleccion.equals("apellido")) {
+                }else{
+                   JOptionPane.showMessageDialog(rootPane, "Caracter invalido para un nombre");
+                   imput_buscar.setText("");
+                }
                 
+            } else if (seleccion.equals("apellido")) {
+                 if(verificarSoloLetrasYEspacios(imput_buscar.getText())){
                 String apellido = imput_buscar.getText();
                 agregarFilas(buscarPorApellidoTipeado(apellido));
-                
+                  }else{
+                   JOptionPane.showMessageDialog(rootPane, "Caracter invalido para un apellido");
+                   imput_buscar.setText("");
+                }
             } else if (seleccion.equals("DNI")) {
-               try{ 
+               if(verificadorNumerosEnterosYDecimales(imput_buscar.getText())){ 
                 int DNI = Integer.parseInt(imput_buscar.getText());
                 Huesped h1 = HuespedData.obtenerHuespedXid(DNI);
                 agregarFila(h1.getIdHuesped(), h1.getNombre(), h1.getApellido(), h1.getDNI(), h1.isEstado());
-               }catch(Exception ex){
+               }else{
                  JOptionPane.showMessageDialog(rootPane, "Solo se puede ingresar numeros como DNI");
                  imput_buscar.setText("");
                }
@@ -408,4 +417,51 @@ public ListaHuesped() {
        
     } 
         return listaNombrados;
-}}
+}
+
+
+  public boolean verificadorSoloNumeros(String texto) {
+        /*Expresión regular*/
+        if (texto.matches("\\d+")) {
+            int numeroEntero = Integer.parseInt(texto);
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetras(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetrasYEspacios(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z ]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificadorNumerosEnterosYDecimales(String texto) {
+        /* Expresión regular que permite números enteros o decimales */
+        if (texto.matches("\\d+|\\d*\\.\\d+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+}

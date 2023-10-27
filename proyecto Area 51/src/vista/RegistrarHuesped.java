@@ -906,4 +906,47 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }
     
     
+    /*-------------------------------------- OTROS VERIFICADORES------------------------------------------------------------------------------*/
+    
+      public boolean verificadorSoloNumerosER(String texto) {
+        /*Expresión regular*/
+        if (texto.matches("\\d+")) {
+            int numeroEntero = Integer.parseInt(texto);
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetrasER(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetrasYEspaciosER(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z ]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificadorNumerosEnterosYDecimalesER(String texto) {
+        /* Expresión regular que permite números enteros o decimales */
+        if (texto.matches("\\d+|\\d*\\.\\d+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /*--------------------------------------------------------------------------------------------------------------------------------*/
+    
+    
 }
