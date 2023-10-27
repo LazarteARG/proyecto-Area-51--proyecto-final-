@@ -39,6 +39,12 @@ public class HacerReserva extends javax.swing.JInternalFrame {
             }
         });
 
+        diaEntrada.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                diaEntradaPropertyChange(evt);
+            }
+        });
+
         cantidadPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         cantidadPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +140,10 @@ public class HacerReserva extends javax.swing.JInternalFrame {
     private void cantidadPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadPersonasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cantidadPersonasActionPerformed
+
+    private void diaEntradaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_diaEntradaPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diaEntradaPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
