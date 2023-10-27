@@ -105,7 +105,7 @@ public class HabitacionDataBORRADOR {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt(1));
                 habitacion.setIdCategoria(rs.getInt(2));
-                habitacion.setPiso(3);
+                habitacion.setPiso(rs.getInt(3));
                 habitacion.setEstado(rs.getInt(4));
 
                 lista.add(habitacion);
@@ -131,7 +131,7 @@ public class HabitacionDataBORRADOR {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt(1));
                 habitacion.setIdCategoria(rs.getInt(2));
-                habitacion.setPiso(3);
+                habitacion.setPiso(rs.getInt(3));
                 habitacion.setEstado(rs.getInt(4));
 
                 lista.add(habitacion);
@@ -159,7 +159,7 @@ public class HabitacionDataBORRADOR {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt(1));
                 habitacion.setIdCategoria(rs.getInt(2));
-                habitacion.setPiso(3);
+                habitacion.setPiso(rs.getInt(3));
                 habitacion.setEstado(rs.getInt(4));
 
                 lista.add(habitacion);
@@ -221,7 +221,7 @@ public class HabitacionDataBORRADOR {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt(1));
                 habitacion.setIdCategoria(rs.getInt(2));
-                habitacion.setPiso(3);
+                habitacion.setPiso(rs.getInt(3));
                 habitacion.setEstado(rs.getInt(4));
 
                 lista.add(habitacion);
@@ -247,7 +247,7 @@ public class HabitacionDataBORRADOR {
             while (rs.next()) {
                 lista.setIdHabitacion(rs.getInt(1));
                 lista.setIdCategoria(rs.getInt(2));
-                lista.setPiso(3);
+                lista.setPiso(rs.getInt(3));
                 lista.setEstado(rs.getInt(4));
 
             }
@@ -378,7 +378,7 @@ public class HabitacionDataBORRADOR {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt(1));
                 habitacion.setIdCategoria(rs.getInt(4));
-                habitacion.setPiso(2);
+                habitacion.setPiso(rs.getInt(2));
                 habitacion.setEstado(rs.getInt(3));
 
                 Habitaciones.add(habitacion);

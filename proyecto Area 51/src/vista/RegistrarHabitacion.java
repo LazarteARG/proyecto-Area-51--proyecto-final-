@@ -18,7 +18,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         textoAyuda.setBackground(Color.WHITE);
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
-
+        idField.setEditable(false);
     }
 
     public RegistrarHabitacion(ArrayList<String> datos) {
@@ -27,7 +27,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         textoAyuda.setBackground(Color.WHITE);
         btnEditar.setEnabled(true);
         btnEliminar.setEnabled(true);
-
+        idField.setEditable(false);
         if (!datos.isEmpty()) {
             idField.setText(datos.get(0));
             pisoField.setText(datos.get(2));
@@ -196,9 +196,20 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 int piso = Integer.parseInt(pisoField.getText());
                 int idcategoria = getIdCategoriaCombo(categoriasComboBox.getSelectedItem().toString());
                 int estado = estadoRadioButtom.isSelected() ? 1 : 0;
-                Habitacion h = new Habitacion(idcategoria, piso, estado);
-                HabitacionDataBORRADOR.subirHabitacion(h);
-                limpiarFields();
+                int condicion = 1;
+                
+                if (estado == 0) {
+                    condicion = JOptionPane.showConfirmDialog(this, "El estado esta en inactivo, ¿desea subir la habitacion como inhabilitada?");
+                } else {
+                    condicion = 0;
+                }
+
+                if (condicion == 0) {
+                    Habitacion h = new Habitacion(idcategoria, piso, estado);
+                
+                    HabitacionDataBORRADOR.subirHabitacion(h);
+                    limpiarFields();
+                }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton registrar");

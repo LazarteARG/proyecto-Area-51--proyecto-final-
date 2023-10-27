@@ -332,10 +332,10 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
         int filaSeleccionada = tabla.getSelectedRow();
-        Habitacion habitacion=HabitacionDataBORRADOR.obtenerHabitacionXId(Integer.parseInt(String.valueOf(tabla.getValueAt(filaSeleccionada, 0))));
+        Habitacion habitacion = HabitacionDataBORRADOR.obtenerHabitacionXId(Integer.parseInt(String.valueOf(tabla.getValueAt(filaSeleccionada, 0))));
         if (filaSeleccionada != -1) {
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 0)));
-            retornos.add(habitacion.getIdCategoria()+"_ "+CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria()).getNombre());
+            retornos.add(habitacion.getIdCategoria() + "_ " + CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria()).getNombre());
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 2)));
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 4)));
             retornos.add(String.valueOf(tabla.getValueAt(filaSeleccionada, 5)));
@@ -344,21 +344,29 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tablaMouseClicked
 
     private void pisoFIeldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pisoFIeldKeyReleased
-        int piso = 0;
-        try {
-            piso = Integer.parseInt(pisoFIeld.getText());
-        } catch (NumberFormatException e) {
+        if (pisoFIeld.getText().isEmpty()) {
+            borrarFilasTabla();
+        } else {
+            int piso = 0;
+
+            try {
+                piso = Integer.parseInt(pisoFIeld.getText());
+            } catch (NumberFormatException e) {
+                buscarPorPiso(piso);
+            }
         }
-        buscarPorPiso(piso);
     }//GEN-LAST:event_pisoFIeldKeyReleased
 
     private void nroHabitacionFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nroHabitacionFieldKeyReleased
-        try {
-            int id = Integer.parseInt(nroHabitacionField.getText());
-            buscarPorId(id);
-        } catch (NumberFormatException e) {
+        if (nroHabitacionField.getText().isEmpty()) {
+            borrarFilasTabla();
+        } else {
+            try {
+                int id = Integer.parseInt(nroHabitacionField.getText());
+                buscarPorId(id);
+            } catch (NumberFormatException e) {
+            }
         }
-
     }//GEN-LAST:event_nroHabitacionFieldKeyReleased
 
     private void CategoriasComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CategoriasComboBoxPropertyChange
@@ -367,36 +375,39 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CategoriasComboBoxPropertyChange
 
     private void CategoriasComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriasComboBoxActionPerformed
-        int cat = getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem());
-        ArrayList<Integer> h = new ArrayList<>();
-        ArrayList<Habitacion> hs = new ArrayList<>();
-        for (Categoria c1 : CategoriaData.listarTodasLasCategorias()) {
-            if (c1.getIdCategoria() == cat) {
-                h = HabitacionDataBORRADOR.buscarHabitacionesXCategoria(c1.getNombre());
+            int cat = getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem());
+            ArrayList<Integer> h = new ArrayList<>();
+            ArrayList<Habitacion> hs = new ArrayList<>();
+            for (Categoria c1 : CategoriaData.listarTodasLasCategorias()) {
+                if (c1.getIdCategoria() == cat) {
+                    h = HabitacionDataBORRADOR.buscarHabitacionesXCategoria(c1.getNombre());
+                }
             }
-        }
-        for (Integer integer : h) {
-            hs.add(HabitacionDataBORRADOR.obtenerHabitacionXId(integer));
-        }
-        agregarFilas(hs);
+            for (Integer integer : h) {
+                hs.add(HabitacionDataBORRADOR.obtenerHabitacionXId(integer));
+            }
+            agregarFilas(hs);
     }//GEN-LAST:event_CategoriasComboBoxActionPerformed
 
     private void cantPersonasFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantPersonasFieldKeyReleased
-        
-        try {
-            if (verificadorSoloNumeros(cantPersonasField.getText())) {
-                int cantPersonas=Integer.parseInt(cantPersonasField.getText());
-                ArrayList<Integer> idsHabitaciones = HabitacionDataBORRADOR.buscarHabitacionesXCantPersonas(cantPersonas);
-                agregarFilas(buscarXcantPersonas(idsHabitaciones));
-            } else {
-                JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras");
-                cantPersonasField.setText("");
-            }            
-        } catch (NumberFormatException e) {
+        if (cantPersonasField.getText().isEmpty()) {
             borrarFilasTabla();
-            cantPersonasField.setText("");
-        }
+        } else {
 
+            try {
+                if (verificadorSoloNumeros(cantPersonasField.getText())) {
+                    int cantPersonas = Integer.parseInt(cantPersonasField.getText());
+                    ArrayList<Integer> idsHabitaciones = HabitacionDataBORRADOR.buscarHabitacionesXCantPersonas(cantPersonas);
+                    agregarFilas(buscarXcantPersonas(idsHabitaciones));
+                } else {
+                    JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras");
+                    cantPersonasField.setText("");
+                }
+            } catch (NumberFormatException e) {
+                borrarFilasTabla();
+                cantPersonasField.setText("");
+            }
+        }
     }//GEN-LAST:event_cantPersonasFieldKeyReleased
 
 
@@ -441,21 +452,21 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         tabla.getColumn("Estado").setPreferredWidth(tabla.getColumn("Estado").getWidth() - 17);
         tabla.getColumn("Piso").setPreferredWidth(tabla.getColumn("Piso").getWidth() - 20);
         tabla.getColumn("Categoria").setPreferredWidth(tabla.getColumn("Categoria").getWidth() + 20);
-        tabla.getColumn("Personas Minimas").setPreferredWidth(tabla.getColumn("Personas Minimas").getWidth() +10);
-    
-    
+        tabla.getColumn("Personas Minimas").setPreferredWidth(tabla.getColumn("Personas Minimas").getWidth() + 10);
+
     }
 
-    public void agregarFila(int id, int idCat, int piso, int estado,int cantPersonas,String tipoCamas,double PrecioXNoche) {
-        try {
+    public void agregarFila(int id, int idCat, int piso, int estado, int cantPersonas, String tipoCamas, double PrecioXNoche) {
+        if(id!=0){
+            try {
             String estad = (HabitacionDataBORRADOR.isLibre(new Habitacion(id, idCat, piso, estado))) ? "LIBRE" : "OCUPADA";
             String estado1 = (estado == 1) ? "Habilitada" : "No Habilitada";
             Categoria c = CategoriaData.obtenerCategoriaXId(idCat);
-            modelo.addRow(new Object[]{id, c.getNombre(), piso, estad, estado1,cantPersonas,tipoCamas,PrecioXNoche});
+            modelo.addRow(new Object[]{id, c.getNombre(), piso, estad, estado1, cantPersonas, tipoCamas, PrecioXNoche});
         } catch (Exception e) {
             System.out.println("error en agregarFila, en vista buscarHabitacion,error: " + e.getMessage());
         }
-
+        }
     }
 
     public void agregarFilas(ArrayList<Habitacion> lista) {
@@ -463,8 +474,9 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
 
         try {
             for (Habitacion h : lista) {
-                agregarFila(h.getIdHabitacion(), h.getIdCategoria(), h.getPiso(), h.getEstado(),CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getCantidadPersonas(),CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getTipoDeCamas(),CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getPrecioNoche());
-
+                if (h.getIdHabitacion() != 0) {
+                agregarFila(h.getIdHabitacion(), h.getIdCategoria(), h.getPiso(), h.getEstado(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getCantidadPersonas(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getTipoDeCamas(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getPrecioNoche());
+                }
             }
         } catch (Exception e) {
             System.out.println("error en agregarFilas, en vista buscarHabitacion,error: " + e.getMessage());
@@ -497,10 +509,10 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         if (idHabitacion != 0) {
             borrarFilasTabla();
             Habitacion hs = HabitacionDataBORRADOR.obtenerHabitacionXId(idHabitacion);
-            agregarFila(hs.getIdCategoria(), hs.getIdCategoria(), hs.getPiso(), hs.getEstado()
-                ,CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getCantidadPersonas()
-                ,CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getTipoDeCamas()
-                ,CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getPrecioNoche());
+            agregarFila(hs.getIdHabitacion(), hs.getIdCategoria(), hs.getPiso(), hs.getEstado(),
+                    CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getCantidadPersonas(),
+                    CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getTipoDeCamas(),
+                    CategoriaData.obtenerCategoriaXId(hs.getIdCategoria()).getPrecioNoche());
         }
     }
 
@@ -529,7 +541,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         try {
             for (Habitacion h : hs) {
                 for (Integer id : ids) {
-                    if(h.getIdHabitacion()==id){
+                    if (h.getIdHabitacion() == id) {
                         hsReturn.add(h);
                     }
                 }
@@ -541,8 +553,8 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }
 
     public boolean verificadorSoloNumeros(String cadena) {
-        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h'
-                , 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+        char[] letras = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h',
+            'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
         for (char letra : letras) {
             if (cadena.toLowerCase().contains(letra + "")) {
