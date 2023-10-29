@@ -13,32 +13,36 @@ public class HacerReserva extends javax.swing.JInternalFrame {
 
     public HacerReserva() {
         initComponents();
-        
-         diaEntrada.addPropertyChangeListener(new PropertyChangeListener() {
+
+        diaEntrada.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                diaEntradaPropertyChange(evt);    
-                 }});
-         
-             diaSalida.addPropertyChangeListener(new PropertyChangeListener() {
+                diaEntradaPropertyChange(evt);
+            }
+        });
+
+        diaSalida.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 diaSalidaPropertyChange(evt);
             }
-          
-        });        
-         
-                 
+
+        });
+
     }
 
-      private void diaSalidaPropertyChange(PropertyChangeEvent evt) {
-           System.out.println("Cambio de diaSalida: " + evt.getPropertyName());
-            if ("date".equals(evt.getPropertyName())) {
-                verificarFechaSeleccionada(diaEntrada);
-            }
-            }
-    
-     @SuppressWarnings("unchecked")
+    private void diaSalidaPropertyChange(PropertyChangeEvent evt) {
+        if ("date".equals(evt.getPropertyName())) {
+            verificarFechaSeleccionada(diaSalida);
+        }
+    }
+       private void diaEntradaPropertyChange(PropertyChangeEvent evt) {
+        if ("date".equals(evt.getPropertyName())) {
+            verificarFechaSeleccionada(diaEntrada);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -64,12 +68,6 @@ public class HacerReserva extends javax.swing.JInternalFrame {
         btnBuscarHabitaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarHabitacionesActionPerformed(evt);
-            }
-        });
-
-        diaEntrada.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                diaEntradaPropertyChange(evt);
             }
         });
 
@@ -150,53 +148,42 @@ public class HacerReserva extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
     private void verificarFechaSeleccionada(JDateChooser dateChooser) {
         Date selectedDate = dateChooser.getDate();
         Date currentDate = new Date();
-        
+
         if (selectedDate != null && selectedDate.before(currentDate)) {
-            JOptionPane.showMessageDialog(this, "No puedes seleccionar una fecha anterior a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No puedes seleccionar una fecha "
+                    + "anterior a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
             dateChooser.setDate(null);
-        }else if (dateChooser == diaSalida) {
-        Date entradaDate = diaEntrada.getDate();
-        if (entradaDate != null && selectedDate != null && selectedDate.before(entradaDate)) {
-            JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser anterior a la fecha de entrada.", "Error", JOptionPane.ERROR_MESSAGE);
-            dateChooser.setDate(null);
-        }}
+        } else if (dateChooser == diaSalida) {
+            
+            Date entradaDate = diaEntrada.getDate();
+            if (entradaDate != null && selectedDate != null && selectedDate.before(entradaDate)) {
+                JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser "
+                        + "anterior a la fecha de entrada.", "Error", JOptionPane.ERROR_MESSAGE);
+                dateChooser.setDate(null);
+            }}
     }
-      
-    
-    
-    
-    
-    
+
+
     private void btnBuscarHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHabitacionesActionPerformed
         int cantidadPersonasInt = Integer.parseInt(cantidadPersonas.getSelectedItem().toString());
         LocalDate diaEntradaLocalDate = diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate diaSalidaLocalDate = diaSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        HacerReserva2 hacerreserva = new HacerReserva2(cantidadPersonasInt, diaEntradaLocalDate,diaSalidaLocalDate);
 
-                
+        HacerReserva2 hacerreserva = new HacerReserva2(cantidadPersonasInt, diaEntradaLocalDate, diaSalidaLocalDate);
+
         JDesktopPane desktop = getDesktopPane();
         desktop.add(hacerreserva);
         hacerreserva.setVisible(true);
-        dispose();         
- 
+        dispose();
+
     }//GEN-LAST:event_btnBuscarHabitacionesActionPerformed
 
     private void cantidadPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadPersonasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cantidadPersonasActionPerformed
-
-    private void diaEntradaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_diaEntradaPropertyChange
-      if ("date".equals(evt.getPropertyName())) {
-            verificarFechaSeleccionada(diaEntrada);
-        }
-    }//GEN-LAST:event_diaEntradaPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -210,11 +197,5 @@ public class HacerReserva extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
-
-
-
-
-
-
 
 }
