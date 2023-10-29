@@ -173,17 +173,22 @@ public class HacerReserva extends javax.swing.JInternalFrame {
 
 
     private void btnBuscarHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHabitacionesActionPerformed
+     try{
+        
         int cantidadPersonasInt = Integer.parseInt(cantidadPersonas.getSelectedItem().toString());
         LocalDate diaEntradaLocalDate = diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate diaSalidaLocalDate = diaSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+        
         HacerReserva2 hacerreserva = new HacerReserva2(cantidadPersonasInt, diaEntradaLocalDate, diaSalidaLocalDate);
 
         JDesktopPane desktop = getDesktopPane();
         desktop.add(hacerreserva);
         hacerreserva.setVisible(true);
         dispose();
-
+     }catch(Exception ex){
+         JOptionPane.showMessageDialog(rootPane, "Ingrese los campos de fecha para continuar");
+     }
     }//GEN-LAST:event_btnBuscarHabitacionesActionPerformed
 
     private void cantidadPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadPersonasActionPerformed
