@@ -15,14 +15,14 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         MItemRHuesped = new javax.swing.JMenuItem();
         MItemLHuesped = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         resgitrarHabitacionMenu = new javax.swing.JMenuItem();
         busquedasHabitacionesMenu = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jmAdministracionCategoria = new javax.swing.JMenuItem();
 
@@ -45,6 +45,18 @@ public class HotelArea51 extends javax.swing.JFrame {
 
         jMenuBar1.setMaximumSize(new java.awt.Dimension(300, 32768));
         jMenuBar1.setMinimumSize(new java.awt.Dimension(250, 50));
+
+        jMenu3.setText("Reservas");
+
+        jMenuItem3.setText("Hacer Reserva");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu3);
 
         jMenu1.setText("Huesped");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,18 +122,6 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenu2.add(busquedasHabitacionesMenu);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Reservas");
-
-        jMenuItem3.setText("Hacer Reserva");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Categoria");
         jMenu4.addActionListener(new java.awt.event.ActionListener() {
