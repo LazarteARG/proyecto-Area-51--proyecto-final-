@@ -14,7 +14,6 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jbAyuda = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -33,30 +32,15 @@ public class HotelArea51 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jbAyuda.setText("?");
-        jbAyuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAyudaActionPerformed(evt);
-            }
-        });
-
-        jDesktopPane1.setLayer(jbAyuda, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(1164, Short.MAX_VALUE)
-                .addComponent(jbAyuda)
-                .addGap(34, 34, 34))
+            .addGap(0, 1235, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(494, Short.MAX_VALUE)
-                .addComponent(jbAyuda)
-                .addGap(21, 21, 21))
+            .addGap(0, 538, Short.MAX_VALUE)
         );
 
         jMenuBar1.setMaximumSize(new java.awt.Dimension(300, 32768));
@@ -260,15 +244,6 @@ public class HotelArea51 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-    private void jbAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAyudaActionPerformed
-        jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-        BotondeAyuda rh = new BotondeAyuda();
-        rh.setVisible(true);
-        jDesktopPane1.add(rh);
-        jDesktopPane1.moveToFront(rh);
-    }//GEN-LAST:event_jbAyudaActionPerformed
-
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -306,7 +281,6 @@ public class HotelArea51 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JButton jbAyuda;
     private javax.swing.JMenuItem jmAdministracionCategoria;
     private javax.swing.JMenuItem resgitrarHabitacionMenu;
     // End of variables declaration//GEN-END:variables
