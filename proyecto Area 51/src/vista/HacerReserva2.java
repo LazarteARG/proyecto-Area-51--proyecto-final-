@@ -10,28 +10,27 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Categoria;
 import modelo.Habitacion;
 
-
 public class HacerReserva2 extends javax.swing.JInternalFrame {
-  private int cantidadPersonas;
-  private LocalDate diaEntrada; 
-  private LocalDate diaSalida;
-  DefaultTableModel modelo = new DefaultTableModel();
-  
-    public HacerReserva2(int cantidadPersonas,  LocalDate diaEntrada, LocalDate diaSalida) {
+
+    private int cantidadPersonas;
+    private LocalDate diaEntrada;
+    private LocalDate diaSalida;
+    DefaultTableModel modelo = new DefaultTableModel();
+
+    public HacerReserva2(int cantidadPersonas, LocalDate diaEntrada, LocalDate diaSalida) {
         initComponents();
-        
+
         tabla.setModel(modelo);
         agregarCabeceraTabla();
-        
-        
+
         this.diaEntrada = diaEntrada;
         this.diaSalida = diaSalida;
         this.cantidadPersonas = cantidadPersonas;
-        
+
         categoríaSegunCantidadPersonas();
+        llenarcbCategorias();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -112,36 +111,41 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPrecioTotal)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextArea2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(btn_volver)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jbIrRegistrarHuesped)
-                                    .addGap(101, 101, 101)
-                                    .addComponent(btn_reservar))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1))
-                            .addGap(0, 0, Short.MAX_VALUE))))
-                .addGap(74, 74, 74))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(217, 217, 217)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(92, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(353, 353, 353)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlPrecioTotal)
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(btn_volver)
+                                .addGap(91, 91, 91)
+                                .addComponent(jbIrRegistrarHuesped)
+                                .addGap(101, 101, 101)
+                                .addComponent(btn_reservar)))
+                        .addGap(319, 319, 319))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextArea2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +158,9 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                 .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlPrecioTotal)
                     .addComponent(jLabel3))
@@ -200,7 +204,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbIrRegistrarHuespedActionPerformed
 
     private void jcCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriasActionPerformed
-        
+
     }//GEN-LAST:event_jcCategoriasActionPerformed
 
 
@@ -218,7 +222,6 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 
-  
     private void agregarCabeceraTabla() {
         modelo.addColumn("Nro. Habit.");
         modelo.addColumn("Piso");
@@ -256,12 +259,11 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     public void llenarcbCategorias() {
 
         for (Categoria categoria : CategoriaData.listarTodasLasCategorias()) {
-            jcCategorias.addItem(categoria.getIdCategoria() + " ");
-
+            if (categoria.getCantidadPersonas() == 3){
+                jcCategorias.addItem(categoria.getNombre());
+            }
         }
 
     }
-
-
 
 }
