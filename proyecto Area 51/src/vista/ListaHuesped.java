@@ -278,8 +278,7 @@ public class ListaHuesped extends javax.swing.JInternalFrame {
                         Huesped h1 = HuespedData.obtenerHuespedXDni(DNI);
                         agregarFila(h1.getIdHuesped(), h1.getNombre(), h1.getApellido(), h1.getDNI(), h1.isEstado());
                     } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(this, "error en buscar por dni,numero muy largo, error: "+e.getMessage()+"\nen:");
-                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(this, "error en buscar por dni,numero muy largo, error: "+e.getMessage());
                     }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Solo se puede ingresar numeros como DNI");

@@ -351,8 +351,8 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
 
             try {
                 piso = Integer.parseInt(pisoFIeld.getText());
-            } catch (NumberFormatException e) {
                 buscarPorPiso(piso);
+            } catch (NumberFormatException e) {
             }
         }
     }//GEN-LAST:event_pisoFIeldKeyReleased
@@ -445,14 +445,14 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         modelo.addColumn("Piso");
         modelo.addColumn("Ocupacion");
         modelo.addColumn("Estado");
-        modelo.addColumn("Personas Minimas");
+        modelo.addColumn("Personas Maximas");
         modelo.addColumn("Tipo de Camas");
         modelo.addColumn("Precio X Noche");
         tabla.setModel(modelo);
         tabla.getColumn("Estado").setPreferredWidth(tabla.getColumn("Estado").getWidth() - 17);
         tabla.getColumn("Piso").setPreferredWidth(tabla.getColumn("Piso").getWidth() - 20);
         tabla.getColumn("Categoria").setPreferredWidth(tabla.getColumn("Categoria").getWidth() + 20);
-        tabla.getColumn("Personas Minimas").setPreferredWidth(tabla.getColumn("Personas Minimas").getWidth() + 10);
+        tabla.getColumn("Personas Maximas").setPreferredWidth(tabla.getColumn("Personas Maximas").getWidth() + 10);
 
     }
 
