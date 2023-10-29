@@ -104,8 +104,8 @@ public class CategoriaData {
      categoria.setIdCategoria(rs.getInt(1));
      categoria.setNombre(rs.getString(2));
      categoria.setTipoDeCamas(rs.getString(3));
-     categoria.setCantidadPersonas(rs.getInt(4));
-     categoria.setCantidadCamas(rs.getInt(5));
+     categoria.setCantidadPersonas(rs.getInt(5));
+     categoria.setCantidadCamas(rs.getInt(4));
      categoria.setPrecioNoche(rs.getDouble(6));
      
      lista.add(categoria);
@@ -135,8 +135,9 @@ public class CategoriaData {
                 categoria.setIdCategoria(rs.getInt(1));
                 categoria.setNombre(rs.getString(2));
                 categoria.setTipoDeCamas(rs.getString(3));
-                categoria.setCantidadPersonas(rs.getInt(4));
-                categoria.setPrecioNoche(rs.getDouble(5));
+                categoria.setTipoDeCamas(rs.getString(4));
+                categoria.setCantidadPersonas(rs.getInt(5));
+                categoria.setPrecioNoche(rs.getDouble(6));
                 
 
                 lista.add(categoria);
