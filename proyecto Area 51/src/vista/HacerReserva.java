@@ -171,7 +171,7 @@ public class HacerReserva extends javax.swing.JInternalFrame {
         }
     }
 
-
+/**/
     private void btnBuscarHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHabitacionesActionPerformed
      try{
         
