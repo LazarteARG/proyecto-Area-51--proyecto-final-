@@ -70,7 +70,7 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jTextArea2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="79" max="32767" attributes="0"/>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Component id="diaEntrada" min="-2" max="-2" attributes="0"/>
@@ -110,7 +110,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarHabitaciones">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar Habitaciones"/>
+        <Property name="text" type="java.lang.String" value="Siguiente"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarHabitacionesActionPerformed"/>
@@ -157,7 +157,7 @@
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="rows" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="*Para inicializar una reserva primero ingrese una fecha &#xa;de entrada, una de salida y la cantidad de huespedes.&#xa;Luego seleccione &quot;Siguiente&quot; para avanzar en la reserva."/>
+        <Property name="text" type="java.lang.String" value="*Para inicializar una reserva primero ingrese una fecha &#xa;de entrada, una de salida y la cantidad de huespedes.&#xa;&#xa;&#xa;Luego seleccione &quot;Siguiente&quot; para avanzar en la reserva."/>
         <Property name="autoscrolls" type="boolean" value="false"/>
       </Properties>
     </Component>

@@ -182,14 +182,14 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="columns" type="int" value="20"/>
         <Property name="rows" type="int" value="3"/>
-        <Property name="text" type="java.lang.String" value="Para registrar o eliminar ingrese datos de la habitacion y use los botones,&#xa;Para editar puede ingresar todos los datos o buscar la habitacion&#xa;Para buscar presione Buscar Habitaciones"/>
+        <Property name="text" type="java.lang.String" value="Para REGISTRAR o ELIMINAR una habitacion ingrese los datos.&#xa;Para EDITAR puede ingresar TODOS los datos o buscar la habitacion&#xa;&#xa;Para buscar presione &apos;Buscar Habitaciones&apos;"/>
         <Property name="autoscrolls" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="130" y="60" width="-1" height="-1"/>
+          <AbsoluteConstraints x="130" y="60" width="-1" height="70"/>
         </Constraint>
       </Constraints>
     </Component>

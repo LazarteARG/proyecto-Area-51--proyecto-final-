@@ -1,15 +1,43 @@
 package vista;
 
+import com.toedter.calendar.JDateChooser;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 
 public class HacerReserva extends javax.swing.JInternalFrame {
 
     public HacerReserva() {
         initComponents();
+        
+         diaEntrada.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                diaEntradaPropertyChange(evt);    
+                 }});
+         
+             diaSalida.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                diaSalidaPropertyChange(evt);
+            }
+          
+        });        
+         
+                 
     }
 
+      private void diaSalidaPropertyChange(PropertyChangeEvent evt) {
+           System.out.println("Cambio de diaSalida: " + evt.getPropertyName());
+            if ("date".equals(evt.getPropertyName())) {
+                verificarFechaSeleccionada(diaEntrada);
+            }
+            }
+    
      @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,7 +60,7 @@ public class HacerReserva extends javax.swing.JInternalFrame {
 
         jLabel5.setText("cantidadPersonas");
 
-        btnBuscarHabitaciones.setText("Buscar Habitaciones");
+        btnBuscarHabitaciones.setText("Siguiente");
         btnBuscarHabitaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarHabitacionesActionPerformed(evt);
@@ -59,7 +87,7 @@ public class HacerReserva extends javax.swing.JInternalFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextArea2.setRows(2);
-        jTextArea2.setText("*Para inicializar una reserva primero ingrese una fecha \nde entrada, una de salida y la cantidad de huespedes.\nLuego seleccione \"Siguiente\" para avanzar en la reserva.");
+        jTextArea2.setText("*Para inicializar una reserva primero ingrese una fecha \nde entrada, una de salida y la cantidad de huespedes.\n\n\nLuego seleccione \"Siguiente\" para avanzar en la reserva.");
         jTextArea2.setAutoscrolls(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,7 +130,7 @@ public class HacerReserva extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(diaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -122,6 +150,29 @@ public class HacerReserva extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    private void verificarFechaSeleccionada(JDateChooser dateChooser) {
+        Date selectedDate = dateChooser.getDate();
+        Date currentDate = new Date();
+        
+        if (selectedDate != null && selectedDate.before(currentDate)) {
+            JOptionPane.showMessageDialog(this, "No puedes seleccionar una fecha anterior a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
+            dateChooser.setDate(null);
+        }else if (dateChooser == diaSalida) {
+        Date entradaDate = diaEntrada.getDate();
+        if (entradaDate != null && selectedDate != null && selectedDate.before(entradaDate)) {
+            JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser anterior a la fecha de entrada.", "Error", JOptionPane.ERROR_MESSAGE);
+            dateChooser.setDate(null);
+        }}
+    }
+      
+    
+    
+    
+    
+    
     private void btnBuscarHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHabitacionesActionPerformed
         int cantidadPersonasInt = Integer.parseInt(cantidadPersonas.getSelectedItem().toString());
         LocalDate diaEntradaLocalDate = diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -142,7 +193,9 @@ public class HacerReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cantidadPersonasActionPerformed
 
     private void diaEntradaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_diaEntradaPropertyChange
-        // TODO add your handling code here:
+      if ("date".equals(evt.getPropertyName())) {
+            verificarFechaSeleccionada(diaEntrada);
+        }
     }//GEN-LAST:event_diaEntradaPropertyChange
 
 

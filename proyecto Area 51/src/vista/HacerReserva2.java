@@ -61,7 +61,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jTextArea2.setRows(5);
-        jTextArea2.setText("*Busquen las habitaciones por la categorias deseadas y luego selecione una \nhabitación de la tabla para despues abajo a la derecha de la tabla saldra el precio.\nSi el huesped aun no se ha hospedado antes seleccione \"Registrar Huesped\",\nsino seleccione \"Reservar\".");
+        jTextArea2.setText("*Busquen las habitaciones por la categorias de habitacion y luego selecione una \nhabitación de la tabla. Abajo a la derecha de la tabla saldra el precio.\n\nSí el huesped aun no se ha hospedado antes seleccione \"Registrar Huesped\",\nsino seleccione \"Reservar\".");
 
         btn_reservar.setText("Reservar");
         btn_reservar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,8 +148,8 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(5, 5, 5)
-                .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)

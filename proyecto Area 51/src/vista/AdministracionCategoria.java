@@ -56,7 +56,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextArea1.setRows(3);
-        jTextArea1.setText("*Para registrar, editar o eliminar una categoria primero ingrese \nlos datos en los campos respectivos y luego use el boton que necesita.\nPero si necesita ver la lista de categoria aprete el boton 'Lista'.");
+        jTextArea1.setText("*Para REGISTRAR, EDITAR o ELIMINAR una categoria primero ingrese \nlos datos en los campos y seleccione el boton de la parte INFERIOR.\n\nPARA VER LISTA y buscar categorias, boton 'Lista'.");
         jTextArea1.setAutoscrolls(false);
         jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -175,7 +175,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
                                 .addGap(46, 46, 46)
                                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jTextArea1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +217,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
                     .addComponent(jbEditarCategoria)
                     .addComponent(jbEliminarCategoria)
                     .addComponent(jbSalir))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();

@@ -140,11 +140,11 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         textoAyuda.setEditable(false);
         textoAyuda.setColumns(20);
         textoAyuda.setRows(3);
-        textoAyuda.setText("Para registrar o eliminar ingrese datos de la habitacion y use los botones,\nPara editar puede ingresar todos los datos o buscar la habitacion\nPara buscar presione Buscar Habitaciones");
+        textoAyuda.setText("Para REGISTRAR o ELIMINAR una habitacion ingrese los datos.\nPara EDITAR puede ingresar TODOS los datos o buscar la habitacion\n\nPara buscar presione 'Buscar Habitaciones'");
         textoAyuda.setAutoscrolls(false);
         textoAyuda.setFocusable(false);
         textoAyuda.setVerifyInputWhenFocusTarget(false);
-        getContentPane().add(textoAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
+        getContentPane().add(textoAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 70));
 
         getContentPane().add(categoriasComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 210, -1));
 
