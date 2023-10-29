@@ -259,7 +259,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     public void llenarcbCategorias() {
 
         for (Categoria categoria : CategoriaData.listarTodasLasCategorias()) {
-            if (categoria.getCantidadPersonas() == 3){
+            if (categoria.getCantidadPersonas() == cantidadPersonas){
                 jcCategorias.addItem(categoria.getNombre());
             }
         }
