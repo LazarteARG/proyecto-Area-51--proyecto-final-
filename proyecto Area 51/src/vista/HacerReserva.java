@@ -8,11 +8,14 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class HacerReserva extends javax.swing.JInternalFrame {
 
     public HacerReserva() {
         initComponents();
+        noEditableInputs(diaEntrada);
+        noEditableInputs(diaSalida);
 
         diaEntrada.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
@@ -36,7 +39,8 @@ public class HacerReserva extends javax.swing.JInternalFrame {
             verificarFechaSeleccionada(diaSalida);
         }
     }
-       private void diaEntradaPropertyChange(PropertyChangeEvent evt) {
+
+    private void diaEntradaPropertyChange(PropertyChangeEvent evt) {
         if ("date".equals(evt.getPropertyName())) {
             verificarFechaSeleccionada(diaEntrada);
         }
@@ -157,13 +161,14 @@ public class HacerReserva extends javax.swing.JInternalFrame {
                     + "anterior a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
             dateChooser.setDate(null);
         } else if (dateChooser == diaSalida) {
-            
+
             Date entradaDate = diaEntrada.getDate();
             if (entradaDate != null && selectedDate != null && selectedDate.before(entradaDate)) {
                 JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser "
                         + "anterior a la fecha de entrada.", "Error", JOptionPane.ERROR_MESSAGE);
                 dateChooser.setDate(null);
-            }}
+            }
+        }
     }
 
 
@@ -198,4 +203,9 @@ public class HacerReserva extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
+public void noEditableInputs(JDateChooser dia){
+JDateChooser dateChooser = dia;
+JTextField dateField = (JTextField) dateChooser.getDateEditor().getUiComponent();
+dateField.setEditable(false); 
+}
 }
