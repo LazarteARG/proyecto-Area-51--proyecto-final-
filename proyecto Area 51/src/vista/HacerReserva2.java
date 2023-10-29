@@ -1,12 +1,14 @@
 package vista;
 
 import controlador.CategoriaData;
+import controlador.HabitacionDataBORRADOR;
 import controlador.ReservaData;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Categoria;
+import modelo.Habitacion;
 
 
 public class HacerReserva2 extends javax.swing.JInternalFrame {
@@ -170,7 +172,12 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_reservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reservarActionPerformed
+        HacerReserva3 hacerreserva = new HacerReserva3();
 
+        JDesktopPane desktop = getDesktopPane();
+        desktop.add(hacerreserva);
+        hacerreserva.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn_reservarActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
@@ -206,40 +213,49 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 
-    private void agregarCabeceraTabla(){
-     modelo.addColumn("idCategoria");
-     modelo.addColumn("Nombre");
-     modelo.addColumn("Tipo de Camas");
-     modelo.addColumn("Cantidad de Personas");
-     modelo.addColumn("Cantidad de Camas");
-     modelo.addColumn("Precio Noche");   
+  
+    private void agregarCabeceraTabla() {
+        modelo.addColumn("Nro. Habit.");
+        modelo.addColumn("Piso");
+        modelo.addColumn("Categ.");
+        modelo.addColumn("Tipo Camas");
+        modelo.addColumn("Cant. de Personas");
+        modelo.addColumn("Cant. de Camas");
+        modelo.addColumn("Precio Noche");
+
+        /* tabla.getColumn("Estado").setPreferredWidth(tabla.getColumn("Estado").getWidth() - 17);
+        tabla.getColumn("Piso").setPreferredWidth(tabla.getColumn("Piso").getWidth() - 20);
+        tabla.getColumn("Categoria").setPreferredWidth(tabla.getColumn("Categoria").getWidth() + 20);
+        tabla.getColumn("Personas Maximas").setPreferredWidth(tabla.getColumn("Personas Maximas").getWidth() + 10);
+
+         */
     }
-    
-    private void agregarFilaTabla(Categoria categoria){
-        modelo.addRow(new Object [] {categoria.getIdCategoria(), categoria.getNombre(), categoria.getTipoDeCamas(), categoria.getCantidadPersonas(), categoria.getCantidadCamas(), categoria.getPrecioNoche()});
+
+    private void agregarFilaTabla(Habitacion habitacion) {
+        Categoria categoria = CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria());
+        modelo.addRow(new Object[]{habitacion.getIdHabitacion(), habitacion.getPiso(), categoria.getNombre(), categoria.getTipoDeCamas(), categoria.getCantidadPersonas(), categoria.getCantidadCamas(), categoria.getPrecioNoche()});
     }
-    
-    
-    public void categoríaSegunCantidadPersonas(){
-               
-        for (Categoria categoria : CategoriaData.listaCategoriaesActivas()) {
-            if(categoria.getCantidadPersonas() == cantidadPersonas){
-                agregarFilaTabla(categoria);    
-                System.out.println(categoria.getNombre());
+
+    public void categoríaSegunCantidadPersonas() {
+        Categoria c;
+        for (Habitacion habitacion : HabitacionDataBORRADOR.listarHabitacionesLibres()) {
+            c = CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria());
+            if (c.getCantidadPersonas() == cantidadPersonas) {
+                agregarFilaTabla(habitacion);
+                System.out.println(habitacion.getIdCategoria());
             }
         }
- 
+
     }
 
-    public void llenarcbCategorias () {
-        
+    public void llenarcbCategorias() {
+
         for (Categoria categoria : CategoriaData.listarTodasLasCategorias()) {
-            jcCategorias.addItem(categoria.getIdCategoria()+" ");
-            
-        }
-        
-    }
+            jcCategorias.addItem(categoria.getIdCategoria() + " ");
 
+        }
+
+    }
 
 
 
