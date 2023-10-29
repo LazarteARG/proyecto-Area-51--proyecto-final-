@@ -184,7 +184,12 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void jbIrRegistrarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIrRegistrarHuespedActionPerformed
-        // TODO add your handling code here:
+        HacerReserva hacerreserva = new HacerReserva();
+
+        JDesktopPane desktop = getDesktopPane();
+        desktop.add(hacerreserva);
+        hacerreserva.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jbIrRegistrarHuespedActionPerformed
 
     private void jcCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriasActionPerformed
