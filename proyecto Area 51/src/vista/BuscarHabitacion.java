@@ -274,48 +274,68 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarTodasActionPerformed
-        borrarFilasTabla();
-        listarActivas.setSelected(false);
-        listarInactivas.setSelected(false);
-        listarLibres.setSelected(false);
-        listarOcupadas.setSelected(false);
-        agregarFilas(HabitacionDataBORRADOR.listaHabitaciones());
+        if (listarTodas.isSelected()) {
+            borrarFilasTabla();
+            listarActivas.setSelected(false);
+            listarInactivas.setSelected(false);
+            listarLibres.setSelected(false);
+            listarOcupadas.setSelected(false);
+            agregarFilas(HabitacionDataBORRADOR.listaHabitaciones());
+        } else {
+            borrarFilasTabla();
+        }
     }//GEN-LAST:event_listarTodasActionPerformed
 
     private void listarLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarLibresActionPerformed
-        borrarFilasTabla();
-        listarActivas.setSelected(false);
-        listarInactivas.setSelected(false);
-        listarTodas.setSelected(false);
-        listarOcupadas.setSelected(false);
-        agregarFilas(HabitacionDataBORRADOR.listarHabitacionesLibres());
+        if (listarLibres.isSelected()) {
+            borrarFilasTabla();
+            listarActivas.setSelected(false);
+            listarInactivas.setSelected(false);
+            listarTodas.setSelected(false);
+            listarOcupadas.setSelected(false);
+            agregarFilas(HabitacionDataBORRADOR.listarHabitacionesLibres());
+        } else {
+            borrarFilasTabla();
+        }
     }//GEN-LAST:event_listarLibresActionPerformed
 
     private void listarOcupadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarOcupadasActionPerformed
-        borrarFilasTabla();
-        listarActivas.setSelected(false);
-        listarInactivas.setSelected(false);
-        listarLibres.setSelected(false);
-        listarTodas.setSelected(false);
-        agregarFilas(HabitacionDataBORRADOR.listarHabitacionesOcupadas());
+        if (listarOcupadas.isSelected()) {
+            borrarFilasTabla();
+            listarActivas.setSelected(false);
+            listarInactivas.setSelected(false);
+            listarLibres.setSelected(false);
+            listarTodas.setSelected(false);
+            agregarFilas(HabitacionDataBORRADOR.listarHabitacionesOcupadas());
+        } else {
+            borrarFilasTabla();
+        }
     }//GEN-LAST:event_listarOcupadasActionPerformed
 
     private void listarActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActivasActionPerformed
-        borrarFilasTabla();
-        listarInactivas.setSelected(false);
-        listarLibres.setSelected(false);
-        listarTodas.setSelected(false);
-        listarOcupadas.setSelected(false);
-        agregarFilas(HabitacionDataBORRADOR.listaHabitacionesActivas());
+        if (listarActivas.isSelected()) {
+            borrarFilasTabla();
+            listarInactivas.setSelected(false);
+            listarLibres.setSelected(false);
+            listarTodas.setSelected(false);
+            listarOcupadas.setSelected(false);
+            agregarFilas(HabitacionDataBORRADOR.listaHabitacionesActivas());
+        } else {
+            borrarFilasTabla();
+        }
     }//GEN-LAST:event_listarActivasActionPerformed
 
     private void listarInactivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarInactivasActionPerformed
-        borrarFilasTabla();
-        listarLibres.setSelected(false);
-        listarTodas.setSelected(false);
-        listarOcupadas.setSelected(false);
-        listarActivas.setSelected(false);
-        agregarFilas(HabitacionDataBORRADOR.listaHabitacionesBajas());
+        if (listarInactivas.isSelected()) {
+            borrarFilasTabla();
+            listarLibres.setSelected(false);
+            listarTodas.setSelected(false);
+            listarOcupadas.setSelected(false);
+            listarActivas.setSelected(false);
+            agregarFilas(HabitacionDataBORRADOR.listaHabitacionesBajas());
+        } else {
+            borrarFilasTabla();
+        }
     }//GEN-LAST:event_listarInactivasActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
@@ -347,14 +367,23 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         if (pisoFIeld.getText().isEmpty()) {
             borrarFilasTabla();
         } else {
-            int piso = 0;
 
             try {
-                piso = Integer.parseInt(pisoFIeld.getText());
-                buscarPorPiso(piso);
+                if (verificadorSoloNumeros(pisoFIeld.getText())) {
+                    int piso = 0;
+                    piso = Integer.parseInt(pisoFIeld.getText());
+                    buscarPorPiso(piso);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No puede ingresar letras ni simbolos en este campo");
+                    pisoFIeld.setText("");
+                    borrarFilasTabla();
+                }
             } catch (NumberFormatException e) {
+                pisoFIeld.setText("");
+                borrarFilasTabla();
             }
         }
+
     }//GEN-LAST:event_pisoFIeldKeyReleased
 
     private void nroHabitacionFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nroHabitacionFieldKeyReleased
@@ -362,11 +391,22 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
             borrarFilasTabla();
         } else {
             try {
-                int id = Integer.parseInt(nroHabitacionField.getText());
-                buscarPorId(id);
+                if (verificadorSoloNumeros(nroHabitacionField.getText())) {
+
+                    int id = Integer.parseInt(nroHabitacionField.getText());
+                    buscarPorId(id);
+                } else {
+                    JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras ni simbolos en este campo");
+                    nroHabitacionField.setText("");
+
+                }
             } catch (NumberFormatException e) {
+                borrarFilasTabla();
+                cantPersonasField.setText("");
+
             }
         }
+
     }//GEN-LAST:event_nroHabitacionFieldKeyReleased
 
     private void CategoriasComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CategoriasComboBoxPropertyChange
@@ -375,6 +415,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CategoriasComboBoxPropertyChange
 
     private void CategoriasComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriasComboBoxActionPerformed
+        if (CategoriasComboBox.getSelectedIndex() != 0) {
             int cat = getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem());
             ArrayList<Integer> h = new ArrayList<>();
             ArrayList<Habitacion> hs = new ArrayList<>();
@@ -387,6 +428,9 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
                 hs.add(HabitacionDataBORRADOR.obtenerHabitacionXId(integer));
             }
             agregarFilas(hs);
+        } else {
+            borrarFilasTabla();
+        }
     }//GEN-LAST:event_CategoriasComboBoxActionPerformed
 
     private void cantPersonasFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantPersonasFieldKeyReleased
@@ -457,15 +501,15 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }
 
     public void agregarFila(int id, int idCat, int piso, int estado, int cantPersonas, String tipoCamas, double PrecioXNoche) {
-        if(id!=0){
+        if (id != 0) {
             try {
-            String estad = (HabitacionDataBORRADOR.isLibre(new Habitacion(id, idCat, piso, estado))) ? "LIBRE" : "OCUPADA";
-            String estado1 = (estado == 1) ? "Habilitada" : "No Habilitada";
-            Categoria c = CategoriaData.obtenerCategoriaXId(idCat);
-            modelo.addRow(new Object[]{id, c.getNombre(), piso, estad, estado1, cantPersonas, tipoCamas, PrecioXNoche});
-        } catch (Exception e) {
-            System.out.println("error en agregarFila, en vista buscarHabitacion,error: " + e.getMessage());
-        }
+                String estad = (HabitacionDataBORRADOR.isLibre(new Habitacion(id, idCat, piso, estado))) ? "LIBRE" : "OCUPADA";
+                String estado1 = (estado == 1) ? "Habilitada" : "No Habilitada";
+                Categoria c = CategoriaData.obtenerCategoriaXId(idCat);
+                modelo.addRow(new Object[]{id, c.getNombre(), piso, estad, estado1, cantPersonas, tipoCamas, PrecioXNoche});
+            } catch (Exception e) {
+                System.out.println("error en agregarFila, en vista buscarHabitacion,error: " + e.getMessage());
+            }
         }
     }
 
@@ -475,7 +519,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         try {
             for (Habitacion h : lista) {
                 if (h.getIdHabitacion() != 0) {
-                agregarFila(h.getIdHabitacion(), h.getIdCategoria(), h.getPiso(), h.getEstado(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getCantidadPersonas(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getTipoDeCamas(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getPrecioNoche());
+                    agregarFila(h.getIdHabitacion(), h.getIdCategoria(), h.getPiso(), h.getEstado(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getCantidadPersonas(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getTipoDeCamas(), CategoriaData.obtenerCategoriaXId(h.getIdCategoria()).getPrecioNoche());
                 }
             }
         } catch (Exception e) {
