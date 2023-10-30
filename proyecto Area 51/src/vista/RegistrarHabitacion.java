@@ -20,19 +20,19 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         btnEliminar.setEnabled(false);
         idField.setEditable(true);
         btnRegistrar.setEnabled(true);
-        
+
     }
 
     public RegistrarHabitacion(ArrayList<String> datos) {
         initComponents();
         llenarComboCategorias();
         textoAyuda.setBackground(Color.WHITE);
-    
+
         btnRegistrar.setEnabled(true);
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
         idField.setEditable(true);
-        
+
         if (!datos.isEmpty()) {
             btnEditar.setEnabled(true);
             btnEliminar.setEnabled(true);
@@ -85,6 +85,13 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         tituloVistaJLabel.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
         tituloVistaJLabel.setText("HABILITAR ALOJAMIENTO PARA HUMANO(CREAR HABITACION)");
 
+        idField.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                idFieldInputMethodTextChanged(evt);
+            }
+        });
         idField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idFieldActionPerformed(evt);
@@ -351,22 +358,31 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void idFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idFieldKeyReleased
-        if ((!btnEliminar.isEnabled()) && (!btnEditar.isEnabled())) {
-            btnEliminar.setEnabled(true);
-            btnEditar.setEnabled(true);
-            btnRegistrar.setEnabled(false);
-        }
-    }//GEN-LAST:event_idFieldKeyReleased
-
-    private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
-        if (!(idField.getText().isEmpty())) {
+        try {
+            int prueba = Integer.parseInt(idField.getText());
+            if ((!btnEliminar.isEnabled()) && (!btnEditar.isEnabled())) {
+                btnEliminar.setEnabled(true);
+                btnEditar.setEnabled(true);
+                btnRegistrar.setEnabled(false);
+            }
+        } catch (NumberFormatException e) {
+            //System.out.println("e message:"+e.getMessage());
+            if(e.getMessage().equals("For input string: \"\""))
             btnRegistrar.setEnabled(true);
             btnEliminar.setEnabled(false);
             btnEditar.setEnabled(false);
-            
         }
-        
+
+    }//GEN-LAST:event_idFieldKeyReleased
+
+    private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
+
+
     }//GEN-LAST:event_idFieldActionPerformed
+
+    private void idFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_idFieldInputMethodTextChanged
+
+    }//GEN-LAST:event_idFieldInputMethodTextChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
