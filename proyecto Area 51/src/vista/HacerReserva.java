@@ -158,37 +158,36 @@ public class HacerReserva extends javax.swing.JInternalFrame {
 
         if (selectedDate != null && selectedDate.before(currentDate)) {
             JOptionPane.showMessageDialog(this, "No puedes seleccionar una fecha "
-                    + "anterior a la fecha actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                    + "anterior a la fecha actual.");
             dateChooser.setDate(null);
         } else if (dateChooser == diaSalida) {
 
             Date entradaDate = diaEntrada.getDate();
             if (entradaDate != null && selectedDate != null && selectedDate.before(entradaDate)) {
                 JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser "
-                        + "anterior a la fecha de entrada.", "Error", JOptionPane.ERROR_MESSAGE);
+                        + "anterior a la fecha de entrada.");
                 dateChooser.setDate(null);
             }
         }
     }
 
-/**/
+    /**/
     private void btnBuscarHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHabitacionesActionPerformed
-     try{
-        
-        int cantidadPersonasInt = Integer.parseInt(cantidadPersonas.getSelectedItem().toString());
-        LocalDate diaEntradaLocalDate = diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate diaSalidaLocalDate = diaSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        try {
 
-        
-        HacerReserva2 hacerreserva = new HacerReserva2(cantidadPersonasInt, diaEntradaLocalDate, diaSalidaLocalDate);
+            int cantidadPersonasInt = Integer.parseInt(cantidadPersonas.getSelectedItem().toString());
+            LocalDate diaEntradaLocalDate = diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate diaSalidaLocalDate = diaSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        JDesktopPane desktop = getDesktopPane();
-        desktop.add(hacerreserva);
-        hacerreserva.setVisible(true);
-        dispose();
-     }catch(Exception ex){
-         JOptionPane.showMessageDialog(rootPane, "Ingrese los campos de fecha para continuar, error:"+ex.getMessage());
-     }
+            HacerReserva2 hacerreserva = new HacerReserva2(cantidadPersonasInt, diaEntradaLocalDate, diaSalidaLocalDate);
+
+            JDesktopPane desktop = getDesktopPane();
+            desktop.add(hacerreserva);
+            hacerreserva.setVisible(true);
+            dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese los campos de fecha para continuar");
+        }
     }//GEN-LAST:event_btnBuscarHabitacionesActionPerformed
 
     private void cantidadPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadPersonasActionPerformed
@@ -208,9 +207,9 @@ public class HacerReserva extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
-public void noEditableInputs(JDateChooser dia){
-JDateChooser dateChooser = dia;
-JTextField dateField = (JTextField) dateChooser.getDateEditor().getUiComponent();
-dateField.setEditable(false); 
-}
+    public void noEditableInputs(JDateChooser dia) {
+        JDateChooser dateChooser = dia;
+        JTextField dateField = (JTextField) dateChooser.getDateEditor().getUiComponent();
+        dateField.setEditable(false);
+    }
 }

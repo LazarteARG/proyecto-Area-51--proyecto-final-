@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Categoria;
 import modelo.Habitacion;
@@ -16,7 +17,12 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     private int cantidadPersonas;
     private LocalDate diaEntrada;
     private LocalDate diaSalida;
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int f, int c){
+        return false;
+        }
+    };
 
     public HacerReserva2(int cantidadPersonas, LocalDate diaEntrada, LocalDate diaSalida) {
         initComponents();
@@ -31,6 +37,9 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         llenarcbCategorias();
     }
 
+
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,7 +50,6 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         btn_reservar = new javax.swing.JButton();
         btn_volver = new javax.swing.JButton();
         jlPrecioTotal = new javax.swing.JLabel();
-        jbIrRegistrarHuesped = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -80,13 +88,6 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
 
         jlPrecioTotal.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jlPrecioTotal.setText("$0.0");
-
-        jbIrRegistrarHuesped.setText("Registrar Huesped");
-        jbIrRegistrarHuesped.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbIrRegistrarHuespedActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Precio total:");
 
@@ -132,9 +133,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                                 .addGap(20, 20, 20))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(btn_volver)
-                                .addGap(91, 91, 91)
-                                .addComponent(jbIrRegistrarHuesped)
-                                .addGap(101, 101, 101)
+                                .addGap(323, 323, 323)
                                 .addComponent(btn_reservar)))
                         .addGap(319, 319, 319))
                     .addGroup(layout.createSequentialGroup()
@@ -172,8 +171,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_reservar)
-                    .addComponent(btn_volver)
-                    .addComponent(jbIrRegistrarHuesped))
+                    .addComponent(btn_volver))
                 .addGap(28, 28, 28))
         );
 
@@ -181,12 +179,18 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_reservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reservarActionPerformed
-        HacerReserva3 hacerreserva = new HacerReserva3();
+        int row =tabla.getSelectedRow(); 
+        if(row !=-1){
+        int idHabitacion=(int) modelo.getValueAt(row, 0);
+        HacerReserva3 hacerreserva = new HacerReserva3(idHabitacion,cantidadPersonas, diaEntrada, diaSalida);
 
         JDesktopPane desktop = getDesktopPane();
         desktop.add(hacerreserva);
         hacerreserva.setVisible(true);
-        dispose();
+        dispose();}else{
+        JOptionPane.showMessageDialog(this,"Debe seleccionar una habitación");
+        
+        }
     }//GEN-LAST:event_btn_reservarActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
@@ -198,15 +202,6 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         dispose();
 
     }//GEN-LAST:event_btn_volverActionPerformed
-
-    private void jbIrRegistrarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIrRegistrarHuespedActionPerformed
-        HacerReserva hacerreserva = new HacerReserva();
-
-        JDesktopPane desktop = getDesktopPane();
-        desktop.add(hacerreserva);
-        hacerreserva.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jbIrRegistrarHuespedActionPerformed
 
     private void jcCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriasActionPerformed
         if (jcCategorias.getSelectedIndex() != 0) {
@@ -231,6 +226,9 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         
         double precio=Double.parseDouble(String.valueOf(tabla.getValueAt(selectedRow, 6)));
         Long cantDias=ChronoUnit.DAYS.between(diaEntrada, diaSalida);
+        if(cantDias==0l){
+            cantDias=1l;}
+        
         //System.out.println("dias: "+cantDias);
         jlPrecioTotal.setText((precio*cantDias)+"");
     }//GEN-LAST:event_tablaMouseClicked
@@ -244,7 +242,6 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JButton jbIrRegistrarHuesped;
     private javax.swing.JComboBox<String> jcCategorias;
     private javax.swing.JLabel jlPrecioTotal;
     private javax.swing.JTable tabla;
