@@ -4,13 +4,17 @@
  */
 package vista;
 
+import controlador.HabitacionDataBORRADOR;
 import controlador.HuespedData;
+import controlador.ReservaData;
 import java.time.LocalDate;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
+import modelo.Habitacion;
 import modelo.Huesped;
+import modelo.Reserva;
 
 /**
  *
@@ -107,6 +111,11 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
         label_preciototal.setText("$ 0.0");
 
         jButton2.setText("Completar Reserva");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Volver");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -253,6 +262,15 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
         hacerreserva.setVisible(true);
         dispose();
     }//GEN-LAST:event_jbIrRegistrarHuespedActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Huesped huesped = (Huesped)jComboBoxHuesped.getSelectedItem();
+        Habitacion habitacion = HabitacionDataBORRADOR.obtenerHabitacionXId(idHabitacion);
+        Reserva reserva = new Reserva(habitacion, huesped, diaEntrada, diaEntrada, cantidadPersonas, precioTotal, true);
+        
+        ReservaData.subirReserva(reserva);
+             
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
