@@ -135,7 +135,7 @@ public class CategoriaData {
                 categoria.setIdCategoria(rs.getInt(1));
                 categoria.setNombre(rs.getString(2));
                 categoria.setTipoDeCamas(rs.getString(3));
-                categoria.setTipoDeCamas(rs.getString(4));
+                categoria.setCantidadCamas(rs.getInt(4));
                 categoria.setCantidadPersonas(rs.getInt(5));
                 categoria.setPrecioNoche(rs.getDouble(6));
                 
