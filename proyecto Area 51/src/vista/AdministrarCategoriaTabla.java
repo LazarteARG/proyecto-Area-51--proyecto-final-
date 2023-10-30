@@ -23,10 +23,10 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         initComponents();
         tabla.setModel(model);
         agregarCabeceraTabla();
-        
+
         btnEliminar.setEnabled(false);
         btnEditar.setEnabled(false);
-        
+
         // Agregar un ListSelectionListener a la tabla
         tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -59,6 +59,7 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -112,6 +113,13 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Buscar por");
 
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,18 +140,19 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                         .addComponent(btnBuscar)
                         .addGap(113, 113, 113))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(btnBuscarTodas))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)))
+                        .addGap(74, 74, 74)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEditar)
                     .addComponent(btnEliminar))
                 .addGap(29, 29, 29))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(btnBuscarTodas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,10 +172,12 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(btnEditar)
-                        .addGap(39, 39, 39)
+                        .addGap(35, 35, 35)
                         .addComponent(btnEliminar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btnBuscarTodas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscarTodas)
+                    .addComponent(btnVolver))
                 .addGap(26, 26, 26))
         );
 
@@ -294,12 +305,23 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        AdministracionCategoria ac = new AdministracionCategoria();
+
+        JDesktopPane desktop = getDesktopPane();
+        desktop.add(ac);
+        ac.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_btnVolverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarTodas;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -317,7 +339,7 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
     }
 
     public void agregarFila(Categoria categoria) {
-        model.addRow(new Object[]{categoria.getIdCategoria(), categoria.getNombre(), categoria.getCantidadCamas(), categoria.getTipoDeCamas(), categoria.getCantidadCamas(), categoria.getPrecioNoche()});
+        model.addRow(new Object[]{categoria.getIdCategoria(), categoria.getNombre(), categoria.getCantidadCamas(), categoria.getTipoDeCamas(), categoria.getCantidadPersonas(), categoria.getPrecioNoche()});
     }
 
     public void cargarTabla(ArrayList<Categoria> listaCategoria) {
