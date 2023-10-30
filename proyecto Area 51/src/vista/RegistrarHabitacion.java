@@ -18,7 +18,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         textoAyuda.setBackground(Color.WHITE);
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
-        idField.setEditable(false);
+        idField.setEditable(true);
     }
 
     public RegistrarHabitacion(ArrayList<String> datos) {
@@ -27,6 +27,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         textoAyuda.setBackground(Color.WHITE);
         btnEditar.setEnabled(true);
         btnEliminar.setEnabled(true);
+        btnRegistrar.setEnabled(false);
         idField.setEditable(false);
         if (!datos.isEmpty()) {
             idField.setText(datos.get(0));
@@ -64,24 +65,17 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(698, 431));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pisoJLabel.setText("Piso:");
-        getContentPane().add(pisoJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, -1, -1));
 
         categoriaJLabel.setText("Categoria:");
-        getContentPane().add(categoriaJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, 20));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 198, -1, -1));
 
         idJLabel.setText("Numero de Habitacion:");
-        getContentPane().add(idJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 20));
 
         estadoJLabel.setText("Habilitada para su uso:");
-        getContentPane().add(estadoJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
         tituloVistaJLabel.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
         tituloVistaJLabel.setText("HABILITAR ALOJAMIENTO PARA HUMANO(CREAR HABITACION)");
-        getContentPane().add(tituloVistaJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         idField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,9 +87,6 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 idFieldKeyReleased(evt);
             }
         });
-        getContentPane().add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 210, -1));
-        getContentPane().add(pisoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 210, -1));
-        getContentPane().add(estadoRadioButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
 
         btnEliminar.setText("Eliminar Habitacion");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +94,6 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 140, -1));
 
         btnBuscar.setText("Buscar Habitaciones");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +101,6 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +108,6 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +115,6 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
         btnLimpiarValores.setText("Limpiar Valores");
         btnLimpiarValores.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +122,6 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 btnLimpiarValoresActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiarValores, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, -1, -1));
 
         textoAyuda.setEditable(false);
         textoAyuda.setColumns(20);
@@ -144,9 +130,89 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         textoAyuda.setAutoscrolls(false);
         textoAyuda.setFocusable(false);
         textoAyuda.setVerifyInputWhenFocusTarget(false);
-        getContentPane().add(textoAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 70));
 
-        getContentPane().add(categoriasComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 210, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(tituloVistaJLabel))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(textoAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(idJLabel)
+                .addGap(6, 6, 6)
+                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnLimpiarValores))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(pisoJLabel)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel4))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(categoriaJLabel)
+                .addGap(6, 6, 6)
+                .addComponent(categoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(estadoJLabel)
+                .addGap(10, 10, 10)
+                .addComponent(estadoRadioButtom))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(btnRegistrar)
+                .addGap(10, 10, 10)
+                .addComponent(btnEditar)
+                .addGap(4, 4, 4)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnBuscar))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(tituloVistaJLabel)
+                .addGap(18, 18, 18)
+                .addComponent(textoAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarValores))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(pisoJLabel))
+                    .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(categoriaJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(estadoJLabel)
+                    .addComponent(estadoRadioButtom))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnEditar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnBuscar)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,7 +248,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         try {
-            if (idField.getText().isEmpty() || pisoField.getText().isEmpty()) {
+            if (pisoField.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Le ha faltado colocar algun dato, verifique he intentelo de nuevo");
             } else if (!verificadorSoloNumeros(pisoField.getText().trim())) {
                 JOptionPane.showMessageDialog(this, "El piso posee algun caracter no numerico, no debe tener letras, puntos, ni cualquier otro signo, verifique y presione editar nuevamente");
@@ -278,6 +344,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         if ((!btnEliminar.isEnabled()) && (!btnEditar.isEnabled())) {
             btnEliminar.setEnabled(true);
             btnEditar.setEnabled(true);
+            btnRegistrar.setEnabled(false);
         }
     }//GEN-LAST:event_idFieldKeyReleased
 
@@ -313,7 +380,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
 
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
-
+        btnRegistrar.setEnabled(true);
         idField.setEditable(true);
 
     }
