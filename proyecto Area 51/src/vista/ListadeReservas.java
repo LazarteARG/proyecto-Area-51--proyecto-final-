@@ -18,9 +18,9 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        jrTodasReservas = new javax.swing.JRadioButton();
+        jrReservasActivas = new javax.swing.JRadioButton();
+        jrReservasNoActivas = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jcOpcionBusqueda = new javax.swing.JComboBox<>();
@@ -43,11 +43,11 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setText("Lista de Reservas");
 
-        jRadioButton1.setText("Todas las reservas");
+        jrTodasReservas.setText("Todas las reservas");
 
-        jRadioButton2.setText("Reservas activas");
+        jrReservasActivas.setText("Reservas activas");
 
-        jRadioButton3.setText("Reservas no activas");
+        jrReservasNoActivas.setText("Reservas no activas");
 
         jButton1.setText("Buscar");
 
@@ -69,11 +69,11 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(jRadioButton1)
+                        .addComponent(jrTodasReservas)
                         .addGap(79, 79, 79)
-                        .addComponent(jRadioButton2)
+                        .addComponent(jrReservasActivas)
                         .addGap(91, 91, 91)
-                        .addComponent(jRadioButton3))
+                        .addComponent(jrReservasNoActivas))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel2)
@@ -94,9 +94,9 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(jrTodasReservas)
+                    .addComponent(jrReservasActivas)
+                    .addComponent(jrReservasNoActivas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
@@ -119,12 +119,12 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcOpcionBusqueda;
+    private javax.swing.JRadioButton jrReservasActivas;
+    private javax.swing.JRadioButton jrReservasNoActivas;
+    private javax.swing.JRadioButton jrTodasReservas;
     // End of variables declaration//GEN-END:variables
 
     private void agregarCabeceraTabla() {
