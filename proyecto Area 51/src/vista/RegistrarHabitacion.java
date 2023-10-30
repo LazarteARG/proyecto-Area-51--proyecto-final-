@@ -367,10 +367,16 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
             }
         } catch (NumberFormatException e) {
             //System.out.println("e message:"+e.getMessage());
-            if(e.getMessage().equals("For input string: \"\""))
-            btnRegistrar.setEnabled(true);
-            btnEliminar.setEnabled(false);
-            btnEditar.setEnabled(false);
+            if (e.getMessage().equals("For input string: \"\"")) {
+                btnRegistrar.setEnabled(true);
+                btnEliminar.setEnabled(false);
+                btnEditar.setEnabled(false);
+            }else{
+                btnRegistrar.setEnabled(false);
+                btnEliminar.setEnabled(false);
+                btnEditar.setEnabled(false);
+                
+            }
         }
 
     }//GEN-LAST:event_idFieldKeyReleased
