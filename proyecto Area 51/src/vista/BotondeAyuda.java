@@ -37,7 +37,7 @@ public class BotondeAyuda extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Primero seria ir al boton superior a la izquierda que dice \"Reserva\" para que te salgan algunas opciones de menú para luego seleccionar\n\"Hacer Reserva\", seleccionas las fechas de entrada, de salida y la cantidad de personas se hospedan, después en \n\"Seleccion de Habitaciones\" si es la primera vez que se hospeda el huesped (Huesped Nuevo) hay un botón para registrarlo, después de \nponer toda ");
+        jTextArea1.setText("Primero seria ir al boton superior a la izquierda que dice \"Reserva\" para que te salgan algunas opciones de menú para luego seleccionar\n\"Hacer Reserva\", seleccionas las fechas de entrada, de salida y la cantidad de personas se hospedan, después en \n\"Seleccion de Habitaciones\" si es la primera vez que se hospeda el huesped (Huesped Nuevo) hay un botón para registrarlo, después de \nseleccionar la habitación ");
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setText("AYUDA: COMO FUNCIONA EL PROGRAMA");

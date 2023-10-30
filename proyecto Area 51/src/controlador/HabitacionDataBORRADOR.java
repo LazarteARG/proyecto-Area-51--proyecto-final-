@@ -74,7 +74,7 @@ public class HabitacionDataBORRADOR {
 
     //int idHabitacion, int idCategoria, int piso, int estado)
     public static void bajarHabitacion(int idHabitacion) {
-        sql = "UPDATE habitacion SET estado = 0 WHERE idHabiacion = ? ";
+        sql = "UPDATE habitacion SET estado = 0 WHERE idHabitacion = ? ";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, idHabitacion);
