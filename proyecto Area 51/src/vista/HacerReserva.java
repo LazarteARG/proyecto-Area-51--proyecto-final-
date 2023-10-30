@@ -199,7 +199,7 @@ public class HacerReserva extends javax.swing.JInternalFrame {
                 hacerreserva.setVisible(true);
                 dispose();
             }else{
-                    JOptionPane.showMessageDialog(rootPane, "La fecha de entrada no puede ser posterior a la de salida, verfifique he intente de nuevo");
+                    JOptionPane.showMessageDialog(rootPane, "La fecha de entrada no puede ser posterior a la de salida, verifique he intente de nuevo");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Ingrese los campos de fecha para continuar");

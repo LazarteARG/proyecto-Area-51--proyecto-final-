@@ -32,13 +32,13 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    
+
                     if (tabla.getSelectedRow() != -1) {
-                        btnEliminar.setEnabled(true); 
-                        btnEditar.setEnabled(true); 
+                        btnEliminar.setEnabled(true);
+                        btnEditar.setEnabled(true);
                     } else {
                         btnEliminar.setEnabled(false);
-                        btnEditar.setEnabled(false); 
+                        btnEditar.setEnabled(false);
                     }
                 }
             }
@@ -219,64 +219,114 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                 break;
 
             case "Nombre":
-                if (verificarSoloLetrasYEspacios(jTextField1.getText())) {
-                    vaciarTabla();
-                    listaAMostrar = new ArrayList<>();
-                    for (Categoria categoria : listaCompleta) {
-                        if (categoria.getNombre().startsWith(jTextField1.getText())) {
-                            listaAMostrar.add(categoria);
+                if (!jTextField1.getText().isEmpty()) {
+                    if (verificarSoloLetrasYEspacios(jTextField1.getText())) {
+                        vaciarTabla();
+                        listaAMostrar = new ArrayList<>();
+                        for (Categoria categoria : listaCompleta) {
+                            if (categoria.getNombre().startsWith(jTextField1.getText())) {
+                                listaAMostrar.add(categoria);
+                            }
                         }
-                    }
-                    cargarTabla(listaAMostrar);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Caracter invalido, la busqueda permite solo caracter de texto");
+                        cargarTabla(listaAMostrar);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Caracter invalido, la busqueda permite solo caracter de texto");
 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese un nombre");
                 }
+
+                break;
+            /*
+        model.addColumn("CantidadPersonas");
+        model.addColumn("PrecioNoche");*/
+            case "CantidadDeCamas":
+                if (!jTextField1.getText().isEmpty()) {
+                    try {
+                        if (verificadorSoloNumeros(jTextField1.getText())) {
+                            vaciarTabla();
+                            listaAMostrar = new ArrayList<>();
+                            for (Categoria categoria : listaCompleta) {
+                                if (categoria.getCantidadCamas() == Integer.parseInt(jTextField1.getText())) {
+                                    listaAMostrar.add(categoria);
+                                }
+                            }
+                            cargarTabla(listaAMostrar);
+                        } else {
+                            jTextField1.setText("");
+                            JOptionPane.showMessageDialog(rootPane, "Solo numeros enteros");
+                        }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(this, "Por favor solo ingrese numeros");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese una cantidad de camas");
+                }
+
                 break;
             case "TipoDeCamas":
-                if (verificarSoloLetrasYEspacios(jTextField1.getText())) {
-                    vaciarTabla();
-                    listaAMostrar = new ArrayList<>();
-                    for (Categoria categoria : listaCompleta) {
-                        if (categoria.getTipoDeCamas().startsWith(jTextField1.getText())) {
-                            listaAMostrar.add(categoria);
+                if (!jTextField1.getText().isEmpty()) {
+                    if (verificarSoloLetrasYEspacios(jTextField1.getText())) {
+                        vaciarTabla();
+                        listaAMostrar = new ArrayList<>();
+                        for (Categoria categoria : listaCompleta) {
+                            if (categoria.getTipoDeCamas().startsWith(jTextField1.getText())) {
+                                listaAMostrar.add(categoria);
+                            }
                         }
-                    }
-                    cargarTabla(listaAMostrar);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Caracter invalido, la busqueda permite solo caracter de texto");
+                        cargarTabla(listaAMostrar);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Caracter invalido, la busqueda permite solo caracter de texto");
 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese un tipo de camas");
                 }
+
                 break;
             case "CantidadDePersonas":
-                if (verificadorSoloNumeros(jTextField1.getText())) {
-                    vaciarTabla();
-                    listaAMostrar = new ArrayList<>();
-                    for (Categoria categoria : listaCompleta) {
-                        if (categoria.getTipoDeCamas().startsWith(jTextField1.getText())) {
-                            listaAMostrar.add(categoria);
+                if (!jTextField1.getText().isEmpty()) {
+                    try {
+                        if (verificadorSoloNumeros(jTextField1.getText())) {
+                            vaciarTabla();
+                            listaAMostrar = new ArrayList<>();
+                            for (Categoria categoria : listaCompleta) {
+                                if (categoria.getCantidadCamas() == Integer.parseInt(jTextField1.getText())) {
+                                    listaAMostrar.add(categoria);
+                                }
+                            }
+                            cargarTabla(listaAMostrar);
+                        } else {
+                            jTextField1.setText("");
+                            JOptionPane.showMessageDialog(rootPane, "Solo numeros enteros");
                         }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(this, "Por favor solo ingrese numeros");
                     }
-                    cargarTabla(listaAMostrar);
                 } else {
-                    jTextField1.setText("");
-                    JOptionPane.showMessageDialog(rootPane, "Solo numeros enteros");
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese una cantidad de personas");
                 }
+
                 break;
             case "PrecioNoche":
-                if (verificadorNumerosEnterosYDecimales(jTextField1.getText())) {
-                    vaciarTabla();
-                    listaAMostrar = new ArrayList<>();
-                    for (Categoria categoria : listaCompleta) {
-                        if (categoria.getPrecioNoche() <= (Double.parseDouble(jTextField1.getText()))) {
-                            listaAMostrar.add(categoria);
+                if (!jTextField1.getText().isEmpty()) {
+                    if (verificadorNumerosEnterosYDecimales(jTextField1.getText())) {
+                        vaciarTabla();
+                        listaAMostrar = new ArrayList<>();
+                        for (Categoria categoria : listaCompleta) {
+                            if (categoria.getPrecioNoche() <= (Double.parseDouble(jTextField1.getText()))) {
+                                listaAMostrar.add(categoria);
+                            }
                         }
+                        cargarTabla(listaAMostrar);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Solo se permiten valores numericos");
                     }
-                    cargarTabla(listaAMostrar);
+                    break;
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Solo se permiten valores numericos");
+                    JOptionPane.showMessageDialog(rootPane, "Ingrese un precio x noche maximo");
                 }
-                break;
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed

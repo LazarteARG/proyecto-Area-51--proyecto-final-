@@ -249,9 +249,13 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras.");
             System.out.println("NumberFormatException en boton editar, error= " + e.getMessage());
+            System.out.println("error: "+e.getMessage());
+        
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en el boton Editar");
             System.out.println("Error en el metodo jbEditarCategoriaActionPerformed(), por favor revise.");
+            System.out.println("error: "+e.getMessage());
+        
         }
 
 
@@ -270,13 +274,13 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fieldPrecioxNocheActionPerformed
 
     private void fieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIDActionPerformed
-        if (verificadorSoloNumeros(fieldID.getText())) {
-            int idCategoria = Integer.parseInt(fieldID.getText());
-            CategoriaData.eliminarCategoria(idCategoria);
-            limpiarFields();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Id no valido");
-        }
+//        if (verificadorSoloNumeros(fieldID.getText())) {
+//            int idCategoria = Integer.parseInt(fieldID.getText());
+//            CategoriaData.eliminarCategoria(idCategoria);
+//            limpiarFields();
+//        } else {
+//            JOptionPane.showMessageDialog(rootPane, "Id no valido");
+//        }
     }//GEN-LAST:event_fieldIDActionPerformed
 
     private void jbEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarCategoriaActionPerformed
@@ -296,6 +300,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
             }
 
             CategoriaData.eliminarCategoria(idCategoria);
+            limpiarFields();
         }
     }//GEN-LAST:event_jbEliminarCategoriaActionPerformed
 
@@ -328,6 +333,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton Registrar");
             System.out.println("Error en el metodo jbRegistrarCategoriaActionPerformed(), por favor revise.");
+            System.out.println("error: "+e.getMessage());
         }
     }//GEN-LAST:event_jbRegistrarCategoriaActionPerformed
 
