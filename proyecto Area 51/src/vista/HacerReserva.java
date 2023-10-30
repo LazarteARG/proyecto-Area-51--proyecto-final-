@@ -187,7 +187,7 @@ public class HacerReserva extends javax.swing.JInternalFrame {
         hacerreserva.setVisible(true);
         dispose();
      }catch(Exception ex){
-         JOptionPane.showMessageDialog(rootPane, "Ingrese los campos de fecha para continuar");
+         JOptionPane.showMessageDialog(rootPane, "Ingrese los campos de fecha para continuar, error:"+ex.getMessage());
      }
     }//GEN-LAST:event_btnBuscarHabitacionesActionPerformed
 

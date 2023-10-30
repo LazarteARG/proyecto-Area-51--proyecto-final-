@@ -4,6 +4,7 @@ import controlador.CategoriaData;
 import controlador.HabitacionDataBORRADOR;
 import controlador.ReservaData;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +20,6 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
 
     public HacerReserva2(int cantidadPersonas, LocalDate diaEntrada, LocalDate diaSalida) {
         initComponents();
-
         tabla.setModel(modelo);
         agregarCabeceraTabla();
 
@@ -27,7 +27,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         this.diaSalida = diaSalida;
         this.cantidadPersonas = cantidadPersonas;
 
-        categoríaSegunCantidadPersonas();
+        //habitacionesSegunCantidadPersonas();
         llenarcbCategorias();
     }
 
@@ -104,6 +104,11 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,8 +209,31 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbIrRegistrarHuespedActionPerformed
 
     private void jcCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriasActionPerformed
-
+        if (jcCategorias.getSelectedIndex() != 0) {
+            borrarFilasTabla();
+            String nombreCategoria = (String) jcCategorias.getSelectedItem();
+            ArrayList<Habitacion> habitaciones = HabitacionDataBORRADOR.buscarHabitacionesXCategoria2(nombreCategoria);
+            for (Habitacion h : habitaciones) {
+                for (Habitacion h1 : habitacionesSegunCantidadPersonas2()) {
+                    if (h.getIdCategoria() == h1.getIdCategoria()) {
+                        agregarFilaTabla(h1);
+                    }
+                }
+            }
+        }else{
+            borrarFilasTabla();
+            habitacionesSegunCantidadPersonas();
+        }
     }//GEN-LAST:event_jcCategoriasActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        int selectedRow=tabla.getSelectedRow();
+        
+        double precio=Double.parseDouble(String.valueOf(tabla.getValueAt(selectedRow, 6)));
+        Long cantDias=ChronoUnit.DAYS.between(diaEntrada, diaSalida);
+        //System.out.println("dias: "+cantDias);
+        jlPrecioTotal.setText((precio*cantDias)+"");
+    }//GEN-LAST:event_tablaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -231,12 +259,9 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         modelo.addColumn("Cant. de Camas");
         modelo.addColumn("Precio Noche");
 
-        /* tabla.getColumn("Estado").setPreferredWidth(tabla.getColumn("Estado").getWidth() - 17);
-        tabla.getColumn("Piso").setPreferredWidth(tabla.getColumn("Piso").getWidth() - 20);
-        tabla.getColumn("Categoria").setPreferredWidth(tabla.getColumn("Categoria").getWidth() + 20);
-        tabla.getColumn("Personas Maximas").setPreferredWidth(tabla.getColumn("Personas Maximas").getWidth() + 10);
-
-         */
+        tabla.getColumn("Piso").setPreferredWidth(tabla.getColumn("Piso").getWidth() - 70);
+        tabla.getColumn("Nro. Habit.").setPreferredWidth(tabla.getColumn("Nro. Habit.").getWidth() - 30);
+        tabla.getColumn("Cant. de Personas").setPreferredWidth(tabla.getColumn("Cant. de Personas").getWidth()+20);
     }
 
     private void agregarFilaTabla(Habitacion habitacion) {
@@ -244,7 +269,14 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         modelo.addRow(new Object[]{habitacion.getIdHabitacion(), habitacion.getPiso(), categoria.getNombre(), categoria.getTipoDeCamas(), categoria.getCantidadPersonas(), categoria.getCantidadCamas(), categoria.getPrecioNoche()});
     }
 
-    public void categoríaSegunCantidadPersonas() {
+    private void borrarFilasTabla() {
+
+        for (int f = modelo.getRowCount() - 1; f > -1; f--) {
+            modelo.removeRow(f);
+        }
+    }
+
+    public void habitacionesSegunCantidadPersonas() {
         Categoria c;
         for (Habitacion habitacion : HabitacionDataBORRADOR.listarHabitacionesLibres()) {
             c = CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria());
@@ -256,10 +288,24 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
 
     }
 
-    public void llenarcbCategorias() {
+    public ArrayList<Habitacion> habitacionesSegunCantidadPersonas2() {
+        borrarFilasTabla();
+        Categoria c;
+        ArrayList<Habitacion> hs = new ArrayList<>();
+        for (Habitacion habitacion : HabitacionDataBORRADOR.listarHabitacionesLibres()) {
+            c = CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria());
+            if (c.getCantidadPersonas() == cantidadPersonas) {
+                hs.add(habitacion);
+            }
+        }
 
+        return hs;
+    }
+
+    public void llenarcbCategorias() {
+        jcCategorias.addItem("-CATEGORIAS-");
         for (Categoria categoria : CategoriaData.listarTodasLasCategorias()) {
-            if (categoria.getCantidadPersonas() == cantidadPersonas){
+            if (categoria.getCantidadPersonas() == cantidadPersonas) {
                 jcCategorias.addItem(categoria.getNombre());
             }
         }

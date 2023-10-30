@@ -260,6 +260,30 @@ public class HabitacionDataBORRADOR {
         return lista;
     }
     
+//    public static Habitacion obtenerHabitacionXCategoria(String categoria) {
+//        Habitacion lista=new Habitacion();
+//        sql = "SELECT idHabitacion,habitacion.idCategoria,piso,estado FROM habitacion,categoria WHERE categoria.nombre LIKE ? AND categoria.idCategoria=habitacion.idCategoria";
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setString(1, categoria);
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                lista.setIdHabitacion(rs.getInt(1));
+//                lista.setIdCategoria(rs.getInt(2));
+//                lista.setPiso(rs.getInt(3));
+//                lista.setEstado(rs.getInt(4));
+//
+//            }
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al buscar habitacion por categoria");
+//            System.out.println("Error en las clase HabitacionData metodo listarHabitacionesXCategoria() " + ex.getMessage());
+//        }
+//
+//        return lista;
+//    }
+//    
 
     public static boolean isLibre(Habitacion habitacion) {
         sql = "SELECT h.idHabitacion,piso,idCategoria,h.estado FROM habitacion as h,reserva as r WHERE r.idHabitacion=? and r.estado=1 and h.estado=1;";
@@ -362,6 +386,38 @@ public class HabitacionDataBORRADOR {
         }
         return idHabitaciones;
     }
+    
+    public static ArrayList<Habitacion> buscarHabitacionesXCategoria2(String categoria) {
+        ArrayList<Habitacion> habitaciones = new ArrayList<>();
+        Habitacion h= new Habitacion();
+        sql = "SELECT idHabitacion,habitacion.idCategoria,piso,estado FROM habitacion,categoria WHERE categoria.idCategoria=habitacion.idCategoria and categoria.nombre LIKE ?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, categoria);
+            
+            rs=ps.executeQuery();
+            
+            while(rs.next()){
+                h.setIdHabitacion(rs.getInt(1));
+                h.setIdCategoria(rs.getInt(2));
+                h.setPiso(rs.getInt(3));
+                h.setEstado(rs.getInt(4));
+                
+                habitaciones.add(h);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCategoria2: " + ex.getMessage());
+        
+        }catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudieron obtener las habitaciones");
+            System.out.println("Error en la Clase HabitacionesDataBORRADOR, metodo buscarHabitacionesXCategoria2: " + ex.getMessage());
+        
+        }
+        return habitaciones;
+    }
+    
     public static ArrayList<Habitacion> listarHabitacionesXCategoria(int idCategoria) {
         ArrayList<Habitacion> Habitaciones = new ArrayList<>();
 
