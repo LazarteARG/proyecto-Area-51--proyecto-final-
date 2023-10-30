@@ -19,17 +19,25 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
         idField.setEditable(true);
+        btnRegistrar.setEnabled(true);
+        
     }
 
     public RegistrarHabitacion(ArrayList<String> datos) {
         initComponents();
         llenarComboCategorias();
         textoAyuda.setBackground(Color.WHITE);
-        btnEditar.setEnabled(true);
-        btnEliminar.setEnabled(true);
-        btnRegistrar.setEnabled(false);
-        idField.setEditable(false);
+    
+        btnRegistrar.setEnabled(true);
+        btnEditar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        idField.setEditable(true);
+        
         if (!datos.isEmpty()) {
+            btnEditar.setEnabled(true);
+            btnEliminar.setEnabled(true);
+            btnRegistrar.setEnabled(false);
+            idField.setEditable(false);
             idField.setText(datos.get(0));
             pisoField.setText(datos.get(2));
             estadoRadioButtom.setSelected(datos.get(3).equals("Habilitada"));
@@ -126,7 +134,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         textoAyuda.setEditable(false);
         textoAyuda.setColumns(20);
         textoAyuda.setRows(3);
-        textoAyuda.setText("Para REGISTRAR o ELIMINAR una habitacion ingrese los datos.\nPara EDITAR puede ingresar TODOS los datos o buscar la habitacion\n\nPara buscar presione 'Buscar Habitaciones'");
+        textoAyuda.setText("Para REGISTRAR una habitacion ingrese los datos, NO INGRESE EL NRO. DE HABITACION.\nPara EDITAR o ELIMINAR puede ingresar TODOS los datos o buscar la habitacion\n\nPara buscar presione 'Buscar Habitaciones'");
         textoAyuda.setAutoscrolls(false);
         textoAyuda.setFocusable(false);
         textoAyuda.setVerifyInputWhenFocusTarget(false);
@@ -136,46 +144,49 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(tituloVistaJLabel))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(textoAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(idJLabel)
-                .addGap(6, 6, 6)
-                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnLimpiarValores))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(pisoJLabel)
-                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(jLabel4))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(categoriaJLabel)
-                .addGap(6, 6, 6)
-                .addComponent(categoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(estadoJLabel)
-                .addGap(10, 10, 10)
-                .addComponent(estadoRadioButtom))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(btnRegistrar)
-                .addGap(10, 10, 10)
-                .addComponent(btnEditar)
-                .addGap(4, 4, 4)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnBuscar))
+                        .addGap(60, 60, 60)
+                        .addComponent(tituloVistaJLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(idJLabel)
+                        .addGap(6, 6, 6)
+                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnLimpiarValores))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(pisoJLabel)
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(182, 182, 182)
+                                .addComponent(jLabel4))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(categoriaJLabel)
+                        .addGap(6, 6, 6)
+                        .addComponent(categoriasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(estadoJLabel)
+                        .addGap(10, 10, 10)
+                        .addComponent(estadoRadioButtom))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(btnRegistrar)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnEditar)
+                        .addGap(4, 4, 4)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnBuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(textoAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +274,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 int idcategoria = getIdCategoriaCombo(categoriasComboBox.getSelectedItem().toString());
                 int estado = estadoRadioButtom.isSelected() ? 1 : 0;
                 int condicion = 1;
-                
+
                 if (estado == 0) {
                     condicion = JOptionPane.showConfirmDialog(this, "El estado esta en inactivo, ¿desea subir la habitacion como inhabilitada?");
                 } else {
@@ -272,7 +283,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
 
                 if (condicion == 0) {
                     Habitacion h = new Habitacion(idcategoria, piso, estado);
-                
+
                     HabitacionDataBORRADOR.subirHabitacion(h);
                     limpiarFields();
                 }
@@ -301,8 +312,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
             int id = Integer.parseInt(idField.getText());
             int idcategoria = getIdCategoriaCombo(categoriasComboBox.getSelectedItem().toString());
             boolean estado = estadoRadioButtom.isSelected();
-            int condicion =1;
-            
+            int condicion = 1;
 
             if (!estado) {
                 condicion = JOptionPane.showConfirmDialog(this, "El estado esta en inactivo, ¿el dato es correcto?");
@@ -316,7 +326,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
                 if (h.getIdHabitacion() == 0) {
                     JOptionPane.showMessageDialog(this, "No se ha encontrado la habitacion con ese numero, verifique he intente de nuevo");
                 } else {
-                    HabitacionDataBORRADOR.actualizarHabitacion(new Habitacion(id, idcategoria, piso, (estadoRadioButtom.isSelected())?1:0),true);
+                    HabitacionDataBORRADOR.actualizarHabitacion(new Habitacion(id, idcategoria, piso, (estadoRadioButtom.isSelected()) ? 1 : 0), true);
                     limpiarFields();
                 }
             } else {
@@ -349,7 +359,13 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_idFieldKeyReleased
 
     private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
-        // TODO add your handling code here:
+        if (!(idField.getText().isEmpty())) {
+            btnRegistrar.setEnabled(true);
+            btnEliminar.setEnabled(false);
+            btnEditar.setEnabled(false);
+            
+        }
+        
     }//GEN-LAST:event_idFieldActionPerformed
 
 
@@ -426,9 +442,9 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
             categoriasComboBox.addItem((String) texto);
         }
     }
-    
+
     public int getIdCategoriaCombo(String c) {
-        int idC=0;
+        int idC = 0;
 
         try {
 
@@ -439,7 +455,7 @@ public class RegistrarHabitacion extends javax.swing.JInternalFrame {
             } else {
                 idC = Integer.parseInt(c.substring(0, 3));
             }
-            
+
         } catch (NumberFormatException e) {
         }
         return idC;
