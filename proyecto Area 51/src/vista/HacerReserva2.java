@@ -17,6 +17,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     private int cantidadPersonas;
     private LocalDate diaEntrada;
     private LocalDate diaSalida;
+    private int precioTotal;
     DefaultTableModel modelo = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int f, int c){
@@ -182,7 +183,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         int row =tabla.getSelectedRow(); 
         if(row !=-1){
         int idHabitacion=(int) modelo.getValueAt(row, 0);
-        HacerReserva3 hacerreserva = new HacerReserva3(idHabitacion,cantidadPersonas, diaEntrada, diaSalida);
+        HacerReserva3 hacerreserva = new HacerReserva3(idHabitacion,cantidadPersonas, diaEntrada, diaSalida,precioTotal);
 
         JDesktopPane desktop = getDesktopPane();
         desktop.add(hacerreserva);
@@ -231,6 +232,8 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         
         //System.out.println("dias: "+cantDias);
         jlPrecioTotal.setText((precio*cantDias)+"");
+        precioTotal = (int) (precio*cantDias);
+     
     }//GEN-LAST:event_tablaMouseClicked
 
 

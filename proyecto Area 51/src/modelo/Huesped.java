@@ -108,6 +108,6 @@ public class Huesped {
     /**TOSTRING() DE HUESPEDES*/
     @Override
     public String toString(){
-        return "Huesped N°: "+idHuesped+", Nombre: "+nombre+", Apellido: "+apellido+", celular: "+celular+", Correo: "+correo+", D.N.I: "+DNI+", estado: "+estado;
+        return "N°: "+idHuesped+", Nombre: "+nombre+", Apellido: "+apellido+" D.N.I: "+DNI;
     }
 }
