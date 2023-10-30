@@ -195,7 +195,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_reservarActionPerformed
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
-        HacerReserva hacerreserva = new HacerReserva();
+        HacerReserva hacerreserva = new HacerReserva(diaEntrada,diaSalida,cantidadPersonas);
 
         JDesktopPane desktop = getDesktopPane();
         desktop.add(hacerreserva);
@@ -280,7 +280,7 @@ public class HacerReserva2 extends javax.swing.JInternalFrame {
         Categoria c;
         for (Habitacion habitacion : HabitacionDataBORRADOR.listarHabitacionesLibres()) {
             c = CategoriaData.obtenerCategoriaXId(habitacion.getIdCategoria());
-            if (c.getCantidadPersonas() == cantidadPersonas) {
+            if (c.getCantidadPersonas() == cantidadPersonas&&habitacion.getEstado()==1) {
                 agregarFilaTabla(habitacion);
                 System.out.println(habitacion.getIdCategoria());
             }

@@ -5,6 +5,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -32,6 +33,16 @@ public class HacerReserva extends javax.swing.JInternalFrame {
 
         });
 
+    }
+
+    public HacerReserva(LocalDate fIngreso, LocalDate fEgreso, int cantPersonas) {
+        initComponents();
+        noEditableInputs(diaEntrada);
+        noEditableInputs(diaSalida);
+
+        diaEntrada.setDate(java.sql.Date.valueOf(fIngreso));
+        diaSalida.setDate(java.sql.Date.valueOf(fEgreso));
+        cantidadPersonas.setSelectedIndex(cantPersonas - 1);
     }
 
     private void diaSalidaPropertyChange(PropertyChangeEvent evt) {
@@ -75,7 +86,7 @@ public class HacerReserva extends javax.swing.JInternalFrame {
             }
         });
 
-        cantidadPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cantidadPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
         cantidadPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantidadPersonasActionPerformed(evt);
@@ -174,17 +185,22 @@ public class HacerReserva extends javax.swing.JInternalFrame {
     /**/
     private void btnBuscarHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHabitacionesActionPerformed
         try {
+            LocalDate a=diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate b=diaSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if (ChronoUnit.DAYS.between(a,b) > -1L) {
+                int cantidadPersonasInt = Integer.parseInt(cantidadPersonas.getSelectedItem().toString());
+                LocalDate diaEntradaLocalDate = diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate diaSalidaLocalDate = diaSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            int cantidadPersonasInt = Integer.parseInt(cantidadPersonas.getSelectedItem().toString());
-            LocalDate diaEntradaLocalDate = diaEntrada.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate diaSalidaLocalDate = diaSalida.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                HacerReserva2 hacerreserva = new HacerReserva2(cantidadPersonasInt, diaEntradaLocalDate, diaSalidaLocalDate);
 
-            HacerReserva2 hacerreserva = new HacerReserva2(cantidadPersonasInt, diaEntradaLocalDate, diaSalidaLocalDate);
-
-            JDesktopPane desktop = getDesktopPane();
-            desktop.add(hacerreserva);
-            hacerreserva.setVisible(true);
-            dispose();
+                JDesktopPane desktop = getDesktopPane();
+                desktop.add(hacerreserva);
+                hacerreserva.setVisible(true);
+                dispose();
+            }else{
+                    JOptionPane.showMessageDialog(rootPane, "La fecha de entrada no puede ser posterior a la de salida, verfifique he intente de nuevo");
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Ingrese los campos de fecha para continuar");
         }
