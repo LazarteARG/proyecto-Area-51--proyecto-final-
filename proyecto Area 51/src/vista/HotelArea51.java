@@ -18,6 +18,7 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jmListaReserva = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         MItemRHuesped = new javax.swing.JMenuItem();
         MItemLHuesped = new javax.swing.JMenuItem();
@@ -71,6 +72,14 @@ public class HotelArea51 extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem3);
+
+        jmListaReserva.setText("Lista de Reservas");
+        jmListaReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmListaReservaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmListaReserva);
 
         jMenuBar1.add(jMenu3);
 
@@ -269,6 +278,15 @@ public class HotelArea51 extends javax.swing.JFrame {
         jDesktopPane1.moveToFront(rh);
     }//GEN-LAST:event_jbAyudaActionPerformed
 
+    private void jmListaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaReservaActionPerformed
+        jDesktopPane1.removeAll();;
+        jDesktopPane1.repaint();
+        ListadeReservas lr = new ListadeReservas();
+        lr.setVisible(true);
+        jDesktopPane1.add(lr);
+        jDesktopPane1.moveToFront(lr);
+    }//GEN-LAST:event_jmListaReservaActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -308,6 +326,7 @@ public class HotelArea51 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JButton jbAyuda;
     private javax.swing.JMenuItem jmAdministracionCategoria;
+    private javax.swing.JMenuItem jmListaReserva;
     private javax.swing.JMenuItem resgitrarHabitacionMenu;
     // End of variables declaration//GEN-END:variables
 
