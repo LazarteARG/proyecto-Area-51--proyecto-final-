@@ -32,13 +32,13 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    // Verificar si alguna fila está seleccionada en la tabla
+                    
                     if (tabla.getSelectedRow() != -1) {
-                        btnEliminar.setEnabled(true); // Habilitar el botón jButton1
-                        btnEditar.setEnabled(true); // Habilitar el botón btnEditar
+                        btnEliminar.setEnabled(true); 
+                        btnEditar.setEnabled(true); 
                     } else {
-                        btnEliminar.setEnabled(false); // Deshabilitar jButton1 si no hay selección
-                        btnEditar.setEnabled(false); // Deshabilitar btnEditar si no hay selección
+                        btnEliminar.setEnabled(false);
+                        btnEditar.setEnabled(false); 
                     }
                 }
             }
@@ -268,7 +268,7 @@ public class AdministrarCategoriaTabla extends javax.swing.JInternalFrame {
                     vaciarTabla();
                     listaAMostrar = new ArrayList<>();
                     for (Categoria categoria : listaCompleta) {
-                        if (categoria.getPrecioNoche() == (Double.parseDouble(jTextField1.getText()))) {
+                        if (categoria.getPrecioNoche() <= (Double.parseDouble(jTextField1.getText()))) {
                             listaAMostrar.add(categoria);
                         }
                     }
