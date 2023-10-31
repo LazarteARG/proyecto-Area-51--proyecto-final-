@@ -14,12 +14,12 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-     public AdministracionCategoria(int idCategoria) {
+    public AdministracionCategoria(int idCategoria) {
         initComponents();
         cargarCategoriaAEliminarOEditar(idCategoria);
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -249,13 +249,13 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Verifique que los numeros ingresados no posean letras.");
             System.out.println("NumberFormatException en boton editar, error= " + e.getMessage());
-            System.out.println("error: "+e.getMessage());
-        
+            System.out.println("error: " + e.getMessage());
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en el boton Editar");
             System.out.println("Error en el metodo jbEditarCategoriaActionPerformed(), por favor revise.");
-            System.out.println("error: "+e.getMessage());
-        
+            System.out.println("error: " + e.getMessage());
+
         }
 
 
@@ -286,21 +286,25 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
     private void jbEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarCategoriaActionPerformed
         int opcion = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar la categoria?");
         if (opcion == 0) {
-            int idCategoria = Integer.parseInt(fieldID.getText());
-            System.out.println("toma el id");
-            ArrayList<Habitacion> habitaciones = HabitacionDataBORRADOR.listarHabitacionesXCategoria(idCategoria);
+            if (fieldID.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "para eliminar ingrese el id de la categoria, verifique e intente de nuevo");
+            } else {
+                int idCategoria = Integer.parseInt(fieldID.getText());
+                System.out.println("toma el id");
+                ArrayList<Habitacion> habitaciones = HabitacionDataBORRADOR.listarHabitacionesXCategoria(idCategoria);
 
 //        System.out.println("lista las habitaciones por categoria");
 //        System.out.println("habitaciones size:" + habitaciones.size());
 //        
-            for (Habitacion h : habitaciones) {
-                h.setIdCategoria(1);
-                h.setEstado(0);
-                HabitacionDataBORRADOR.actualizarHabitacion(h, false);
-            }
+                for (Habitacion h : habitaciones) {
+                    h.setIdCategoria(1);
+                    h.setEstado(0);
+                    HabitacionDataBORRADOR.actualizarHabitacion(h, false);
+                }
 
-            CategoriaData.eliminarCategoria(idCategoria);
-            limpiarFields();
+                CategoriaData.eliminarCategoria(idCategoria);
+                limpiarFields();
+            }
         }
     }//GEN-LAST:event_jbEliminarCategoriaActionPerformed
 
@@ -310,11 +314,6 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
 
     private void jbRegistrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarCategoriaActionPerformed
         try {
-            String nombre = fieldNombre.getText();
-            String tipoDeCamas = fieldTiposdeCamas.getText();
-            int cantidadPersonas = Integer.parseInt(fieldCantdePersonas.getText());
-            int cantidadCamas = Integer.parseInt(fieldCantdeCamas.getText());
-            double precioNoche = Double.parseDouble(fieldPrecioxNoche.getText());
 
             if (fieldNombre.getText().isEmpty() || fieldTiposdeCamas.getText().isEmpty() || fieldCantdePersonas.getText().isEmpty() || fieldCantdeCamas.getText().isEmpty() || fieldPrecioxNoche.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos.");
@@ -325,6 +324,12 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
             } else if (!verificadorParaPrecioxNoche(fieldPrecioxNoche.getText())) {
                 JOptionPane.showMessageDialog(this, "No se puede usar letras en el campo 'Precio x Noche'.");
             } else {
+                String nombre = fieldNombre.getText();
+                String tipoDeCamas = fieldTiposdeCamas.getText();
+                int cantidadPersonas = Integer.parseInt(fieldCantdePersonas.getText());
+                int cantidadCamas = Integer.parseInt(fieldCantdeCamas.getText());
+                double precioNoche = Double.parseDouble(fieldPrecioxNoche.getText());
+
                 Categoria categoria = new Categoria(tipoDeCamas, nombre, cantidadPersonas, cantidadCamas, precioNoche);
                 CategoriaData.subirCategoria(categoria);
                 limpiarFields();
@@ -333,7 +338,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton Registrar");
             System.out.println("Error en el metodo jbRegistrarCategoriaActionPerformed(), por favor revise.");
-            System.out.println("error: "+e.getMessage());
+            System.out.println("error: " + e.getMessage());
         }
     }//GEN-LAST:event_jbRegistrarCategoriaActionPerformed
 
@@ -434,38 +439,19 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    
-    
-    
-    public void cargarCategoriaAEliminarOEditar(int idCategoria){
+
+    public void cargarCategoriaAEliminarOEditar(int idCategoria) {
         Categoria categoria = CategoriaData.obtenerCategoriaXId(idCategoria);
-        
-        fieldCantdeCamas.setText(categoria.getCantidadCamas()+"");
-        fieldCantdePersonas.setText(categoria.getCantidadPersonas()+"");
-        fieldID.setText(idCategoria+"");
+
+        fieldCantdeCamas.setText(categoria.getCantidadCamas() + "");
+        fieldCantdePersonas.setText(categoria.getCantidadPersonas() + "");
+        fieldID.setText(idCategoria + "");
         fieldNombre.setText(categoria.getNombre());
-        fieldPrecioxNoche.setText(categoria.getPrecioNoche()+"");
-        fieldTiposdeCamas.setText(categoria.getCantidadCamas()+"");
-    
+        fieldPrecioxNoche.setText(categoria.getPrecioNoche() + "");
+        fieldTiposdeCamas.setText(categoria.getCantidadCamas() + "");
+
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
 
 ///Seeeeeeeeeeeeeeeh Vamos Bocaaaaaaaaaaaaaaaaaaaaa
