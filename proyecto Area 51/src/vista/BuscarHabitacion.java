@@ -287,33 +287,36 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listarTodasActionPerformed
 
     private void listarLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarLibresActionPerformed
+        borrarFilasTabla();
+        listarActivas.setSelected(false);
+        listarInactivas.setSelected(false);
+        listarTodas.setSelected(false);
+        listarOcupadas.setSelected(false);
         if (listarLibres.isSelected()) {
+            agregarFilas(HabitacionDataBORRADOR.listarHabitacionesLibres());
+
             if (CategoriasComboBox.getSelectedIndex() == 0) {
                 agregarFilas(HabitacionDataBORRADOR.listarHabitacionesXCategoriaYOcupada(getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem()), false));
-            }else{
-            borrarFilasTabla();
-            listarActivas.setSelected(false);
-            listarInactivas.setSelected(false);
-            listarTodas.setSelected(false);
-            listarOcupadas.setSelected(false);
-            agregarFilas(HabitacionDataBORRADOR.listarHabitacionesLibres());
-        }} else {
+            }
+        } else {
             borrarFilasTabla();
         }
     }//GEN-LAST:event_listarLibresActionPerformed
 
     private void listarOcupadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarOcupadasActionPerformed
+        borrarFilasTabla();
+        listarActivas.setSelected(false);
+        listarInactivas.setSelected(false);
+        listarLibres.setSelected(false);
+        listarTodas.setSelected(false);
+
         if (listarOcupadas.isSelected()) {
+            agregarFilas(HabitacionDataBORRADOR.listarHabitacionesOcupadas());
+
             if (CategoriasComboBox.getSelectedIndex() == 0) {
                 agregarFilas(HabitacionDataBORRADOR.listarHabitacionesXCategoriaYOcupada(getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem()), false));
-            }else{
-            borrarFilasTabla();
-            listarActivas.setSelected(false);
-            listarInactivas.setSelected(false);
-            listarLibres.setSelected(false);
-            listarTodas.setSelected(false);
-            agregarFilas(HabitacionDataBORRADOR.listarHabitacionesOcupadas());
-            }} else {
+            }
+        } else {
             borrarFilasTabla();
         }
     }//GEN-LAST:event_listarOcupadasActionPerformed
