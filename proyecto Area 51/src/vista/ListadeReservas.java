@@ -25,11 +25,11 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jrTodasReservas = new javax.swing.JRadioButton();
         jrReservasActivas = new javax.swing.JRadioButton();
         jrReservasNoActivas = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jbBuscarReserva = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jcOpcionBusqueda = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jbCancelarReserva = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -64,12 +64,19 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         });
 
         jrReservasNoActivas.setText("Reservas no activas");
+        jrReservasNoActivas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrReservasNoActivasActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Buscar");
+        jbBuscarReserva.setText("Buscar");
 
         jLabel2.setText("Buscar Reserva x Huesped:");
 
-        jButton2.setText("Cancelar Reserva");
+        jcOpcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione un Dato-", "nombre", "apellido", "dni" }));
+
+        jbCancelarReserva.setText("Cancelar Reserva");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,9 +105,9 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton1)
+                        .addComponent(jbBuscarReserva)
                         .addGap(118, 118, 118)
-                        .addComponent(jButton2)))
+                        .addComponent(jbCancelarReserva)))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,11 +124,11 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(jbCancelarReserva)
                     .addComponent(jLabel2)
                     .addComponent(jcOpcionBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jbBuscarReserva))
                 .addGap(78, 78, 78))
         );
 
@@ -129,38 +136,54 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrTodasReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTodasReservasActionPerformed
-        vaciarTabla();
-        jrReservasNoActivas.setSelected(false);
-        jrReservasActivas.setSelected(false);     
-        ArrayList<Reserva> listareservas = ReservaData.listarTodasLasReservas();
-        for (Reserva reserva : listareservas) {
-                agregarFila(reserva);
+       if (jrTodasReservas.isSelected()) {
+            borrarFilasTabla();
+            jrReservasActivas.setSelected(false);
+            jrReservasNoActivas.setSelected(false);
+            agregarFilas(ReservaData.listarTodasLasReservas());
+            
+        } else {
+            borrarFilasTabla();
+            
         }
     
     }//GEN-LAST:event_jrTodasReservasActionPerformed
 
     private void jrReservasActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrReservasActivasActionPerformed
-          vaciarTabla();
-        jrReservasNoActivas.setSelected(false);
-        jrTodasReservas.setSelected(false);     
-        ArrayList<Reserva> listareservas = ReservaData.listarTodasLasReservas();
-        for (Reserva reserva : listareservas) {
-                agregarFila(reserva);
+        if (jrReservasActivas.isSelected()) {
+            borrarFilasTabla();
+            jrTodasReservas.setSelected(false);
+            jrReservasNoActivas.setSelected(false);
+            agregarFilas(ReservaData.listarReservasActivas());
+            
+        } else {
+            borrarFilasTabla();
+            
         }
-        
-        
-        
     }//GEN-LAST:event_jrReservasActivasActionPerformed
+
+    private void jrReservasNoActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrReservasNoActivasActionPerformed
+          if (jrReservasNoActivas.isSelected()) {
+            borrarFilasTabla();
+            jrTodasReservas.setSelected(false);
+            jrReservasActivas.setSelected(false);
+            agregarFilas(ReservaData.listarReservasBajas());
+            
+        } else {
+            borrarFilasTabla();
+            
+        }
+    }//GEN-LAST:event_jrReservasNoActivasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbBuscarReserva;
+    private javax.swing.JButton jbCancelarReserva;
     private javax.swing.JComboBox<String> jcOpcionBusqueda;
     private javax.swing.JRadioButton jrReservasActivas;
     private javax.swing.JRadioButton jrReservasNoActivas;
@@ -179,6 +202,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
 
     }
 
+
     private void agregarFila(Reserva reserva) {
         modelo.addRow( new Object[]{reserva.getIdReserva(), reserva.getHuesped().getIdHuesped(),reserva.getHabitacion().getIdHabitacion(), reserva.getFechaIngreso(), reserva.getFechaEgreso(), reserva.getCantPersonas(), reserva.getPrecioTotal(),reserva.isEstado()});
                
@@ -188,5 +212,33 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         for (int i = cantidadFilas - 1; i >= 0; i--) {
             modelo.removeRow(i);
         }
+
     }
+     public void agregarFilas(ArrayList<Reserva> lista) {
+         borrarFilasTabla();
+         
+         try {
+             for (Reserva reserva : lista) {
+                 if (reserva.getIdReserva() != 0) {
+                     agregarFila(reserva);
+                 }
+             }
+         } catch (Exception e) {
+             System.out.println("");
+         }
+     }
+     
+     //esto es para pasar al proyecto original
+     private void borrarFilasTabla() {
+         for (int f = modelo.getRowCount() - 1; f > -1; f--) {
+            modelo.removeRow(f);
+        }
+     }
+    
+//    private void llenardeDatosHuesped() {
+//        jcOpcionBusqueda.addItem("Seleccione el dato para buscar");
+//        
+//        
+//
+//    }
 }

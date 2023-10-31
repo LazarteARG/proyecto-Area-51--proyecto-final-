@@ -48,9 +48,9 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jTextField1" min="-2" pref="149" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbBuscarReserva" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbCancelarReserva" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="65" max="32767" attributes="0"/>
@@ -72,11 +72,11 @@
               <Component id="jScrollPane1" min="-2" pref="246" max="-2" attributes="0"/>
               <EmptySpace pref="52" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbCancelarReserva" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jcOpcionBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbBuscarReserva" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
           </Group>
@@ -133,8 +133,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Reservas no activas"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrReservasNoActivasActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jbBuscarReserva">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
@@ -147,7 +150,12 @@
     <Component class="javax.swing.JComboBox" name="jcOpcionBusqueda">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="4">
+            <StringItem index="0" value="-Seleccione un Dato-"/>
+            <StringItem index="1" value="nombre"/>
+            <StringItem index="2" value="apellido"/>
+            <StringItem index="3" value="dni"/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>
@@ -156,7 +164,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="jbCancelarReserva">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar Reserva"/>
       </Properties>
