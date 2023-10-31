@@ -448,7 +448,7 @@ public class AdministracionCategoria extends javax.swing.JInternalFrame {
         fieldID.setText(idCategoria + "");
         fieldNombre.setText(categoria.getNombre());
         fieldPrecioxNoche.setText(categoria.getPrecioNoche() + "");
-        fieldTiposdeCamas.setText(categoria.getCantidadCamas() + "");
+        fieldTiposdeCamas.setText(categoria.getTipoDeCamas()+ "");
 
     }
 
