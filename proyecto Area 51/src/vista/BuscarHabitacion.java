@@ -301,6 +301,9 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
 
     private void listarOcupadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarOcupadasActionPerformed
         if (listarOcupadas.isSelected()) {
+            if (CategoriasComboBox.getSelectedIndex() == 0) {
+                agregarFilas(HabitacionDataBORRADOR.listarHabitacionesXCategoriaYOcupada(getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem()), false));
+            }
             borrarFilasTabla();
             listarActivas.setSelected(false);
             listarInactivas.setSelected(false);
