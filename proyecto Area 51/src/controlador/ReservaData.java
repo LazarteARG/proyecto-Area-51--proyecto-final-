@@ -112,7 +112,40 @@ public class ReservaData {
     }
 
     //**Hecho por Ariel Lazarte*/
-    public static ArrayList<Reserva> buscarReservaPorHuesped(int idHuesped) {
+    public static Reserva buscarReservaPorHuesped(int idHuesped) {
+        Reserva r = new Reserva();
+        sql = "SELECT * FROM reserva WHERE idHuesped = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idHuesped);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                r.setIdReserva(rs.getInt(1));
+                r.setHuesped(HuespedData.obtenerHuespedXid(rs.getInt(2)));
+                r.setHabitacion(HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)));
+                r.setFechaIngreso(rs.getDate(4).toLocalDate());
+                r.setFechaEgreso(rs.getDate(5).toLocalDate());
+                r.setCantPersonas(rs.getInt(6));
+                r.setPrecioTotal(rs.getDouble(7));
+                r.setEstado(rs.getBoolean(8));
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido oobtener la reserva del humano en el area 51");
+            System.out.println("Error. el error se encuentra en el metodo obtenerReservaPorHuesped(), por favor revise. ");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "*ERROR*: No se ha podido oobtener la reserva del humano en el area 51");
+            System.out.println("Error. el error se encuentra en el metodo obtenerReservaPorHuesped(), por favor revise. ");
+
+        }
+
+        return r;
+
+    }
+    public static ArrayList<Reserva> buscarReservaPorHuesped2(int idHuesped) {
         Reserva r = new Reserva();
         ArrayList<Reserva> hs=new ArrayList<>();
         sql = "SELECT * FROM reserva WHERE idHuesped = ?";
@@ -356,7 +389,7 @@ public class ReservaData {
 
     public static void finReserva(Huesped h,int idReserva) {
         Reserva r=new Reserva();
-        for (Reserva reserva : buscarReservaPorHuesped(h.getIdHuesped())) {
+        for (Reserva reserva : buscarReservaPorHuesped2(h.getIdHuesped())) {
             if(reserva.getIdReserva()==idReserva){
                 r=reserva;
                 break;
