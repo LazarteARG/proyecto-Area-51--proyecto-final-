@@ -1,14 +1,18 @@
-
 package vista;
 
+import controlador.ReservaData;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelo.Reserva;
 
 public class ListadeReservas extends javax.swing.JInternalFrame {
-    
+
     DefaultTableModel modelo = new DefaultTableModel();
-    
+
     public ListadeReservas() {
         initComponents();
+        Tabla.setModel(modelo);
+        agregarCabeceraTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -27,6 +31,8 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
+        setClosable(true);
+
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -44,8 +50,18 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jLabel1.setText("Lista de Reservas");
 
         jrTodasReservas.setText("Todas las reservas");
+        jrTodasReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrTodasReservasActionPerformed(evt);
+            }
+        });
 
         jrReservasActivas.setText("Reservas activas");
+        jrReservasActivas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrReservasActivasActionPerformed(evt);
+            }
+        });
 
         jrReservasNoActivas.setText("Reservas no activas");
 
@@ -112,6 +128,30 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jrTodasReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTodasReservasActionPerformed
+        vaciarTabla();
+        jrReservasNoActivas.setSelected(false);
+        jrReservasActivas.setSelected(false);     
+        ArrayList<Reserva> listareservas = ReservaData.listarTodasLasReservas();
+        for (Reserva reserva : listareservas) {
+                agregarFila(reserva);
+        }
+    
+    }//GEN-LAST:event_jrTodasReservasActionPerformed
+
+    private void jrReservasActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrReservasActivasActionPerformed
+          vaciarTabla();
+        jrReservasNoActivas.setSelected(false);
+        jrTodasReservas.setSelected(false);     
+        ArrayList<Reserva> listareservas = ReservaData.listarTodasLasReservas();
+        for (Reserva reserva : listareservas) {
+                agregarFila(reserva);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jrReservasActivasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
@@ -136,13 +176,17 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         modelo.addColumn("Cant. de personas");
         modelo.addColumn("Monto a pagar");
         modelo.addColumn("Estado");
-        
+
     }
 
-    private void llenardeDatosHuesped() {
-        jcOpcionBusqueda.addItem("Seleccione el dato para buscar");
-        
-        
+    private void agregarFila(Reserva reserva) {
+        modelo.addRow( new Object[]{reserva.getIdReserva(), reserva.getHuesped().getIdHuesped(),reserva.getHabitacion().getIdHabitacion(), reserva.getFechaIngreso(), reserva.getFechaEgreso(), reserva.getCantPersonas(), reserva.getPrecioTotal(),reserva.isEstado()});
+               
+    }
+    public void vaciarTabla() {
+        int cantidadFilas = modelo.getRowCount();
+        for (int i = cantidadFilas - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
     }
 }
-
