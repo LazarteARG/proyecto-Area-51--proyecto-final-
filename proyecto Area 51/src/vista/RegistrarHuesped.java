@@ -81,66 +81,30 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(700, 505));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
 
         jLabel2.setText("Apellido:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, 20));
 
         jLabel3.setText("DNI:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 198, -1, -1));
 
         jLabel5.setText("ID:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, 20));
 
         jLabel6.setText("Domicilio:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
 
         jLabel7.setText("Correo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         jLabel8.setText("Celular:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         jLabel9.setText("Estado:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
 
         jLabel10.setText("ABDUCCION DE HUESPED (REGISTRO HUESPED)");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 0, -1, -1));
-        getContentPane().add(fieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 180, -1));
-        getContentPane().add(fieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 200, -1));
 
-        fieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                fieldNombreKeyReleased(evt);
-            }
-        });
-        getContentPane().add(fieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 200, -1));
-
-        fieldApellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                fieldApellidoKeyReleased(evt);
-            }
-        });
-        getContentPane().add(fieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 200, -1));
-        getContentPane().add(fieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 200, -1));
-        getContentPane().add(fieldDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 200, -1));
-        getContentPane().add(fieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 200, -1));
-
-        radioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioButtonActionPerformed(evt);
-            }
-        });
         radioButton.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 radioButtonPropertyChange(evt);
             }
         });
-        getContentPane().add(radioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
 
         btnEliminar.setText("Eliminar Huesped");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +112,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 140, -1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +119,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 160, 20, 0));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +126,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +133,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +140,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
 
         btnLimpiarValores.setText("Limpiar Valores");
         btnLimpiarValores.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +147,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 btnLimpiarValoresActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiarValores, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -208,8 +166,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 10, 0));
-
         listarTodos_checkBox.setText("LISTAR TODOS");
         listarTodos_checkBox.setToolTipText("PRESIONE BUSCAR PARA VER LA LISTA COMPLETA DE HUESPEDES");
         listarTodos_checkBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -219,8 +175,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                 listarTodos_checkBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(listarTodos_checkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 10, 0));
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
         jScrollPane2.setForeground(new java.awt.Color(102, 102, 102));
 
@@ -232,50 +186,154 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
         textoAyuda.setBorder(null);
         jScrollPane2.setViewportView(textoAyuda);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 500, 40));
-
-        getContentPane().add(terminacionesCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 160, -1));
-
         btnSalir2.setText("Lista Huespedes");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalir2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(jLabel10))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel11)))
+                .addGap(40, 40, 40)
+                .addComponent(listarTodos_checkBox, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jLabel5)
+                .addGap(6, 6, 6)
+                .addComponent(fieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btnLimpiarValores))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(btnSalir2))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(jLabel3)
+                .addGap(7, 7, 7)
+                .addComponent(fieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(352, 352, 352)
+                .addComponent(jLabel4))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(jLabel6)
+                .addGap(6, 6, 6)
+                .addComponent(fieldDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jLabel8)
+                .addGap(10, 10, 10)
+                .addComponent(fieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jLabel7)
+                .addGap(11, 11, 11)
+                .addComponent(fieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(terminacionesCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jLabel9)
+                .addGap(12, 12, 12)
+                .addComponent(radioButton))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(620, 620, 620)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(btnRegistrar)
+                .addGap(10, 10, 10)
+                .addComponent(btnEditar)
+                .addGap(4, 4, 4)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnSalir))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel10)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(listarTodos_checkBox, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarValores))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(fieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnSalir2)))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(fieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel4)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(fieldDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(fieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(fieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(terminacionesCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(radioButton))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnEditar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnSalir)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void radioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonActionPerformed
-        borrarFilasTabla();
-        /*if (!fieldID.getText().isEmpty()) {
-            int idHuesped = Integer.parseInt(fieldID.getText());
-            buscarPorId(idHuesped);
-            //si no, por DNI 
-        } else if (!fieldDNI.getText().isEmpty()) {
-            int dni = Integer.parseInt(fieldDNI.getText());
-            buscarPorDNI(dni);
-            //sino, por nombre y apellido    
-        } else*/ if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
-            String nombreHuesped = fieldNombre.getText();
-            String apellido = fieldApellido.getText();
-            buscarPorNombreYApellido(nombreHuesped, apellido);
-            //sino solo por nombre    
-        } else if (!fieldNombre.getText().isEmpty() && fieldApellido.getText().isEmpty()) {
-            String nombreHuesped = fieldNombre.getText();
-            buscarPorNombre(nombreHuesped);
-            //sino solo por apellido    
-        } else if (fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
-            ArrayList<Huesped> apellidados = buscarPorApellidoTipeado();
-            agregarFilas(apellidados);
-            //sino solo por estado    
-        } else if (radioButton.isSelected()) {
-            agregarFilas(HuespedData.listadeHuespedActivos());
-        } else if (!radioButton.isSelected()) {
-            agregarFilas(HuespedData.listadeHuespedNoActivos());
-        }
-    }//GEN-LAST:event_radioButtonActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
@@ -287,7 +345,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                     int idHuesped = Integer.parseInt(fieldID.getText());
                     HuespedData.bajarHuesped(idHuesped);
                     limpiarFields();
-                    borrarFilasTabla();
 
                 } else {
                     JOptionPane.showMessageDialog(null, "No debe contener letras el ID");
@@ -298,7 +355,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
                     int idHuesped = HuespedData.obtenerHuespedXDni(dni).getIdHuesped();
                     HuespedData.bajarHuesped(idHuesped);
                     limpiarFields();
-                    borrarFilasTabla();
 
                 } else {
                     JOptionPane.showMessageDialog(null, "No debe contener letras el DNI");
@@ -314,65 +370,52 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //buscar por id
-        borrarFilasTabla();
-        //si tiene id, busca por id
-        if (listarTodos_checkBox.isSelected()) {
-            limpiarFields();
-            agregarFilas(HuespedData.listaCompletaHuespedes());
-        } else if (!fieldID.getText().isEmpty()) {
-            int idHuesped = Integer.parseInt(fieldID.getText());
-            buscarPorId(idHuesped);
-            //si no, por DNI 
-        } else if (!fieldDNI.getText().isEmpty()) {
-            int dni = Integer.parseInt(fieldDNI.getText());
-            buscarPorDNI(dni);
-            //sino, por nombre y apellido    
-        } else if (!fieldNombre.getText().isEmpty() && !fieldApellido.getText().isEmpty()) {
-            String nombreHuesped = fieldNombre.getText();
-            String apellido = fieldApellido.getText();
-            buscarPorNombreYApellido(nombreHuesped, apellido);
-            //sino solo por nombre    
-        } else if (!fieldNombre.getText().isEmpty() && fieldApellido.getText().isEmpty()) {
-            String nombreHuesped = fieldNombre.getText();
-            buscarPorNombre(nombreHuesped);
-            //solo por estado    
-        } else if (!fieldCelular.getText().isEmpty()) {
-            int result = buscarPorCelular(Integer.parseInt(fieldCelular.getText()));
-            if (result != 0) {
-                buscarPorId(result);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese celular");
-            }
-        } else if (!fieldCorreo.getText().isEmpty()) {
-            String correo = fieldCorreo.getText();
-            int id = buscarPorCorreo(correo);
-            if (id != 0) {
-                buscarPorId(id);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese correo");
-            }
-
-        } else if (!fieldDomicilio.getText().isEmpty()) {
-            String domicilio = fieldDomicilio.getText();
-            int id = buscarPorDomicilio(domicilio);
-            if (id != 0) {
-                buscarPorId(id);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se ha encontrado al huesped con ese domicilio");
-            }
-        } else if (radioButton.isSelected()) {
-            agregarFilas(HuespedData.listadeHuespedActivos());
-        } else if (!radioButton.isSelected()) {
-            agregarFilas(HuespedData.listadeHuespedNoActivos());
-        }
+        
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         try {
+            if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty()
+                    || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
+            } else if (!verificarSoloLetrasYEspaciosER(fieldApellido.getText()) || !verificarLetrasNumeroYEspacios(fieldNombre.getText())) {
+                JOptionPane.showMessageDialog(this, "El nombre o el apellido poseen algun caracter no alfabetico, no debe tener puntos,numeros,"
+                        + " ni cualquier otro signo, verifique y presione editar nuevamente");
 
+            } else if (!verificadorSoloNumerosER(fieldDNI.getText())) {
+                JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras,"
+                        + " puntos, ni cualquier otro signo, verifique y presione registrar nuevamente");
+            } else if (fieldDNI.getText().length() != 8 && fieldDNI.getText().length() != 7) {
+                JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitoso 7 digitos, ni mas, ni menos,"
+                        + " verifique y presione registrar nuevamente");
+            } else if (!verificarLetrasNumeroYEspacios(fieldDomicilio.getText())) {
+                JOptionPane.showMessageDialog(this, "El domicilio poseen algun caracter no alfabetico, no debe tener puntos,numeros,"
+                        + " ni cualquier otro signo, verifique y presione editar nuevamente");
+
+            } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
+                JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, "
+                        + "verifique y presione registrar nuevamente");
+            } else if (terminacionesCorreo.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para que la direccion de correo "
+                        + "electronico sea valida");
+            } else if (!verificadorSoloNumerosER(fieldCelular.getText())) {
+                JOptionPane.showMessageDialog(this, "El celular posee algun caracter no numerico, no debe tener letras, ni cualquier "
+                        + "otro signo, verifique y presione editar nuevamente");
+            } else {
+                String nombre = fieldNombre.getText();
+                String apellido = fieldApellido.getText();
+                String domicilio = fieldDomicilio.getText();
+                String correo = fieldCorreo.getText().trim() + terminacionesCorreo.getSelectedItem();
+                int dni = Integer.parseInt(fieldDNI.getText().trim());
+                int celular = Integer.parseInt(fieldCelular.getText().trim());
+
+                Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
+                HuespedData.subirHuesped(huespedAct);
+                limpiarFields();
+                borrarFilasTabla();
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el boton registrar");
             System.out.println("error en el metodo actionPerformed btnRegistrarActionPerformed(). por favor, verifique. error:" + e.getMessage());
@@ -385,47 +428,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             _dni obligatorio de 8 digitos
             _campos vacios*/
 
-        if (fieldNombre.getText().isEmpty() || fieldApellido.getText().isEmpty() || fieldDNI.getText().isEmpty() 
-                || fieldCorreo.getText().isEmpty() || fieldCelular.getText().isEmpty() || fieldDomicilio.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacios, por favor complete todos los campos");
-        } else if(!verificarSoloLetrasYEspaciosER(fieldApellido.getText()) || !verificarLetrasNumeroYEspacios(fieldNombre.getText())){
-            JOptionPane.showMessageDialog(this, "El nombre o el apellido poseen algun caracter no alfabetico, no debe tener puntos,numeros,"
-                    + " ni cualquier otro signo, verifique y presione editar nuevamente");
-
-        
-        }else if (!verificadorSoloNumerosER(fieldDNI.getText())) {
-            JOptionPane.showMessageDialog(this, "El dni posee algun caracter no numerico, no debe tener letras,"
-                    + " puntos, ni cualquier otro signo, verifique y presione registrar nuevamente");
-        } else if (fieldDNI.getText().length() != 8 && fieldDNI.getText().length() !=7) {
-            JOptionPane.showMessageDialog(this, "El dni debe tener obligatoriamente 8 digitoso 7 digitos, ni mas, ni menos,"
-                    + " verifique y presione registrar nuevamente");
-        } else if (!verificarLetrasNumeroYEspacios(fieldDomicilio.getText())) {
-            JOptionPane.showMessageDialog(this, "El domicilio poseen algun caracter no alfabetico, no debe tener puntos,numeros,"
-                    + " ni cualquier otro signo, verifique y presione editar nuevamente");
-
-        } else if (!(verificarCorreo(fieldCorreo.getText().trim()))) {
-            JOptionPane.showMessageDialog(this, "El nombre de la direccion de correo no es valida, "
-                    + "verifique y presione registrar nuevamente");
-        } else if (terminacionesCorreo.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Asegurate de seleccionar alguna extension @ para que la direccion de correo "
-                    + "electronico sea valida");
-        } else if(!verificadorSoloNumerosER(fieldCelular.getText())){
-            JOptionPane.showMessageDialog(this, "El celular posee algun caracter no numerico, no debe tener letras, ni cualquier "
-                    + "otro signo, verifique y presione editar nuevamente");
-        }else{
-            String nombre = fieldNombre.getText();
-            String apellido = fieldApellido.getText();
-            String domicilio = fieldDomicilio.getText();
-            String correo = fieldCorreo.getText().trim() + terminacionesCorreo.getSelectedItem();
-            int dni = Integer.parseInt(fieldDNI.getText().trim());
-            int celular = Integer.parseInt(fieldCelular.getText().trim());
-
-            Huesped huespedAct = new Huesped(nombre, apellido, dni, domicilio, correo, celular, true);
-            HuespedData.subirHuesped(huespedAct);
-            limpiarFields();
-            borrarFilasTabla();
-        }
-    
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -498,67 +500,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnLimpiarValoresActionPerformed
-
-    private void fieldNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldNombreKeyReleased
-        if (fieldApellido.getText().isEmpty() && fieldNombre.getText().isEmpty()) {
-
-            borrarFilasTabla();
-
-        } else if (fieldApellido.getText().isEmpty()) {
-            borrarFilasTabla();
-            ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
-
-            if (radioButton.isSelected()) {
-                listCompleta = buscarHuespedesActivos(listCompleta);
-            }
-            for (Huesped huesped : listCompleta) {
-                if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
-                }
-            }
-        } else {
-            ArrayList<Huesped> listaNombrados = buscarPorApellidoTipeado();
-            if (radioButton.isSelected()) {
-                listaNombrados = buscarHuespedesActivos(listaNombrados);
-            }
-            for (Huesped huesped : listaNombrados) {
-                if (huesped.getNombre().toLowerCase().startsWith(fieldNombre.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
-                }
-            }
-        }
-
-    }//GEN-LAST:event_fieldNombreKeyReleased
-
-    private void fieldApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoKeyReleased
-        if (fieldApellido.getText().isEmpty() && fieldNombre.getText().isEmpty()) {
-
-            borrarFilasTabla();
-
-        } else if (fieldNombre.getText().isEmpty()) {
-            borrarFilasTabla();
-            ArrayList<Huesped> listCompleta = HuespedData.listaCompletaHuespedes();
-            if (radioButton.isSelected()) {
-                listCompleta = buscarHuespedesActivos(listCompleta);
-            }
-            for (Huesped huesped : listCompleta) {
-                if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
-                }
-            }
-        } else {
-            ArrayList<Huesped> listaNombrados = buscarPorNombreTipeado();
-            if (radioButton.isSelected()) {
-                listaNombrados = buscarHuespedesActivos(listaNombrados);
-            }
-            for (Huesped huesped : listaNombrados) {
-                if (huesped.getApellido().toLowerCase().startsWith(fieldApellido.getText().toLowerCase())) {
-                    agregarFila(huesped.getIdHuesped(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(), huesped.isEstado());
-                }
-            }
-        }
-
-    }//GEN-LAST:event_fieldApellidoKeyReleased
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
         int filaSeleccionada = tabla.getSelectedRow();
@@ -990,6 +931,6 @@ public class RegistrarHuesped extends javax.swing.JInternalFrame {
             return false;
         }
     }
- 
+
     /**//*--------------------------------------------------------------------------------------------------------------------------------*/
 }
