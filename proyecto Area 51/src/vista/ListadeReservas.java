@@ -10,7 +10,14 @@ import modelo.Reserva;
 
 public class ListadeReservas extends javax.swing.JInternalFrame {
 
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo = new DefaultTableModel(){
+        
+        @Override
+        public boolean isCellEditable(int f, int col){
+        return false;
+        }
+    
+    };
 
     public ListadeReservas() {
         initComponents();
