@@ -3,6 +3,7 @@ package vista;
 import controlador.HuespedData;
 import controlador.ReservaData;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
 import modelo.Reserva;
@@ -205,7 +206,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                     int id = Integer.parseInt(jTextField1.getText());
                     agregarFila(ReservaData.buscarReservaPorHuesped(id));
                 } else {
-                //    JOptionPane.showMessageDialog(rootPane, "Solo puede ingresar valores numericos como ID");
+                 JOptionPane.showMessageDialog(rootPane, "Solo puede ingresar valores numericos como ID");
                     jTextField1.setText("");
                 }
 
@@ -218,7 +219,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                         }
                     }
                 } else {
-                 //   JOptionPane.showMessageDialog(rootPane, "Caracter Invalido");
+                  JOptionPane.showMessageDialog(rootPane, "Caracter Invalido");
                         jTextField1.setText("");
                 }
                 break;
@@ -229,7 +230,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                             agregarFila(reserva);
                         }
                     }}else{
-                       //   JOptionPane.showMessageDialog(rootPane, "Caracter Invalido, revise que su DNI no tenga puntos ni valores no numericos");
+                   JOptionPane.showMessageDialog(rootPane, "Caracter Invalido, revise que su DNI no tenga puntos ni valores no numericos");
                             jTextField1.setText("");
                         }
                 
