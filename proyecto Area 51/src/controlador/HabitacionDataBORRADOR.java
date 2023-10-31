@@ -487,7 +487,7 @@ public class HabitacionDataBORRADOR {
     public static ArrayList<Habitacion> listarHabitacionesXCategoriaYOcupada(int idCategoria, boolean libre) {
         ArrayList<Habitacion> Habitaciones = new ArrayList<>();
 
-        sql = "SELECT idHabitacion,habitacion.idCategoria,piso,estado FROM habitacion,categoria WHERE idCategoria=?";
+        sql = "SELECT idHabitacion,habitacion.idCategoria,piso,estado FROM habitacion,categoria WHERE habitacion.idCategoria=?";
 
         try {
             ps = con.prepareStatement(sql);

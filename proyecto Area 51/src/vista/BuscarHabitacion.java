@@ -295,9 +295,10 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         if (listarLibres.isSelected()) {
             agregarFilas(HabitacionDataBORRADOR.listarHabitacionesLibres());
 
-            if (CategoriasComboBox.getSelectedIndex() == 0) {
-                agregarFilas(HabitacionDataBORRADOR.listarHabitacionesXCategoriaYOcupada(getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem()), false));
-            }
+//            if (CategoriasComboBox.getSelectedIndex() != 0) {
+//                agregarFilas(HabitacionDataBORRADOR.listarHabitacionesXCategoriaYOcupada(getIdCategoriaCombo((String) 
+//                        CategoriasComboBox.getSelectedItem()), true));
+//            }
         } else {
             borrarFilasTabla();
         }
@@ -313,9 +314,10 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         if (listarOcupadas.isSelected()) {
             agregarFilas(HabitacionDataBORRADOR.listarHabitacionesOcupadas());
 
-            if (CategoriasComboBox.getSelectedIndex() == 0) {
-                agregarFilas(HabitacionDataBORRADOR.listarHabitacionesXCategoriaYOcupada(getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem()), false));
-            }
+//            if (CategoriasComboBox.getSelectedIndex() != 0) {
+//                agregarFilas(HabitacionDataBORRADOR.listarHabitacionesXCategoriaYOcupada(getIdCategoriaCombo((String)
+//                        CategoriasComboBox.getSelectedItem()), false));
+//            }
         } else {
             borrarFilasTabla();
         }
@@ -429,6 +431,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CategoriasComboBoxPropertyChange
 
     private void CategoriasComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriasComboBoxActionPerformed
+        //borrarFilasTabla();
         if (CategoriasComboBox.getSelectedIndex() != 0) {
             int cat = getIdCategoriaCombo((String) CategoriasComboBox.getSelectedItem());
             ArrayList<Integer> h = new ArrayList<>();
