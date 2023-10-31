@@ -256,7 +256,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                 
 
                 break;
-
+                
         }
         
     }//GEN-LAST:event_jbBuscarReservaActionPerformed
