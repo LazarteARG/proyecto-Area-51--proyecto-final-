@@ -15,6 +15,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         initComponents();
         Tabla.setModel(modelo);
         agregarCabeceraTabla();
+        cargarComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +74,11 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         });
 
         jbBuscarReserva.setText("Buscar");
+        jbBuscarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarReservaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Buscar Reserva x Huesped:");
 
@@ -187,6 +193,53 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         ReservaData.finReserva(h);
     }//GEN-LAST:event_jbCancelarReservaActionPerformed
 
+    private void jbBuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarReservaActionPerformed
+             jrReservasNoActivas.setSelected(false);
+        jrReservasActivas.setSelected(false);
+        jrTodasReservas.setSelected(false);
+        ArrayList<Reserva> listareservas = ReservaData.listarTodasLasReservas();
+        vaciarTabla();
+        switch ((String) jcOpcionBusqueda.getSelectedItem()) {
+            case "idHuesped":
+                if (verificadorSoloNumerosER(jTextField1.getText())) {
+                    int id = Integer.parseInt(jTextField1.getText());
+                    agregarFila(ReservaData.buscarReservaPorHuesped(id));
+                } else {
+                //    JOptionPane.showMessageDialog(rootPane, "Solo puede ingresar valores numericos como ID");
+                    jTextField1.setText("");
+                }
+
+                break;
+            case "nombre":
+                if (verificarSoloLetrasYEspaciosER(jTextField1.getText())) {
+                    for (Reserva reserva : listareservas) {
+                        if (reserva.getHuesped().getNombre().toLowerCase().startsWith(jTextField1.getText().toLowerCase())) {
+                            agregarFila(reserva);
+                        }
+                    }
+                } else {
+                 //   JOptionPane.showMessageDialog(rootPane, "Caracter Invalido");
+                        jTextField1.setText("");
+                }
+                break;
+            case "DNI":
+                if (verificadorSoloNumerosER(jTextField1.getText())) {
+                    for (Reserva reserva : listareservas) {
+                        if ((reserva.getHuesped().getDNI() + " ").startsWith(jTextField1.getText())) {
+                            agregarFila(reserva);
+                        }
+                    }}else{
+                       //   JOptionPane.showMessageDialog(rootPane, "Caracter Invalido, revise que su DNI no tenga puntos ni valores no numericos");
+                            jTextField1.setText("");
+                        }
+                
+
+                break;
+
+        }
+        
+    }//GEN-LAST:event_jbBuscarReservaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
@@ -247,10 +300,56 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         }
      }
     
-//    private void llenardeDatosHuesped() {
-//        jcOpcionBusqueda.addItem("Seleccione el dato para buscar");
-//        
-//        
-//
-//    }
+    private void cargarComboBox() {
+        jcOpcionBusqueda.addItem("idHuesped");
+        jcOpcionBusqueda.addItem("nombre");
+        jcOpcionBusqueda.addItem("DNI");
+    }
+
+    /*---------------------------------------------------------------*/
+    public boolean verificadorSoloNumerosER(String texto) {
+        /*Expresión regular*/
+        if (texto.matches("\\d+")) {
+            int numeroEntero = Integer.parseInt(texto);
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetrasER(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSoloLetrasYEspaciosER(String texto) {
+        /*Expresion regular*/
+        if (texto.matches("[a-zA-Z ]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificadorNumerosEnterosYDecimalesER(String texto) {
+        /* Expresión regular que permite números enteros o decimales */
+        if (texto.matches("\\d+|\\d*\\.\\d+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarLetrasNumeroYEspacios(String texto) {
+        if (texto.matches("[a-zA-Z0-9 ]+")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
