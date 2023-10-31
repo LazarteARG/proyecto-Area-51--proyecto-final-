@@ -2,6 +2,9 @@ package vista;
 
 import controlador.HuespedData;
 import controlador.ReservaData;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +45,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jbCancelarReserva = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jdcBuscarFecha = new com.toedter.calendar.JDateChooser();
+        BuscarFecha = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
 
@@ -137,7 +140,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                                 .addComponent(jbBuscarReserva)
                                 .addGap(118, 118, 118)
                                 .addComponent(jbCancelarReserva))
-                            .addComponent(jdcBuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(BuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -162,7 +165,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jdcBuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -221,6 +224,8 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jrTodasReservas.setSelected(false);
         ArrayList<Reserva> listareservas = ReservaData.listarTodasLasReservas();
         vaciarTabla();
+        if (BuscarFecha.getDate()== null) {
+            
         switch ((String) jcOpcionBusqueda.getSelectedItem()) {
             case "idHuesped":
                 if (verificadorSoloNumerosER(jTextField1.getText())) {
@@ -259,11 +264,16 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
                 break;
                 
         }
-        
+        }else {
+            LocalDate fechaEntrada = BuscarFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            agregarFilas(ReservaData.buscarReservaPorFechaDeInicio(fechaEntrada));
+            BuscarFecha.setDate(null);
+        } 
     }//GEN-LAST:event_jbBuscarReservaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser BuscarFecha;
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -273,7 +283,6 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbBuscarReserva;
     private javax.swing.JButton jbCancelarReserva;
     private javax.swing.JComboBox<String> jcOpcionBusqueda;
-    private com.toedter.calendar.JDateChooser jdcBuscarFecha;
     private javax.swing.JRadioButton jrReservasActivas;
     private javax.swing.JRadioButton jrReservasNoActivas;
     private javax.swing.JRadioButton jrTodasReservas;
