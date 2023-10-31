@@ -369,6 +369,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         } else {
 
             try {
+                int prueba = Integer.parseInt(pisoFIeld.getText());
                 if (verificadorSoloNumeros(pisoFIeld.getText())) {
                     int piso = 0;
                     piso = Integer.parseInt(pisoFIeld.getText());
@@ -379,6 +380,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
                     borrarFilasTabla();
                 }
             } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "No puede ingresar letras ni simbolos en este campo");
                 pisoFIeld.setText("");
                 borrarFilasTabla();
             }
@@ -391,6 +393,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
             borrarFilasTabla();
         } else {
             try {
+                int prueba = Integer.parseInt(nroHabitacionField.getText());
                 if (verificadorSoloNumeros(nroHabitacionField.getText())) {
 
                     int id = Integer.parseInt(nroHabitacionField.getText());
@@ -398,11 +401,13 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras ni simbolos en este campo");
                     nroHabitacionField.setText("");
+                    borrarFilasTabla();
 
                 }
             } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras ni simbolos en este campo");
                 borrarFilasTabla();
-                cantPersonasField.setText("");
+                nroHabitacionField.setText("");
 
             }
         }
@@ -439,6 +444,7 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
         } else {
 
             try {
+                int prueba = Integer.parseInt(cantPersonasField.getText());
                 if (verificadorSoloNumeros(cantPersonasField.getText())) {
                     int cantPersonas = Integer.parseInt(cantPersonasField.getText());
                     ArrayList<Integer> idsHabitaciones = HabitacionDataBORRADOR.buscarHabitacionesXCantPersonas(cantPersonas);
@@ -446,8 +452,10 @@ public class BuscarHabitacion extends javax.swing.JInternalFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras");
                     cantPersonasField.setText("");
+                    borrarFilasTabla();
                 }
             } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "asegurese de no ingresar letras");
                 borrarFilasTabla();
                 cantPersonasField.setText("");
             }

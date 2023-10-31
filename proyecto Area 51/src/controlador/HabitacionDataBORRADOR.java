@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Habitacion;
 
@@ -230,6 +228,9 @@ public class HabitacionDataBORRADOR {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al listar habitaciones por piso");
             System.out.println("Error en las clase HabitacionData metodo listarHabitacionesXPiso() " + ex.getMessage());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al listar habitaciones por piso");
+            System.out.println("Error en las clase HabitacionData metodo listarHabitacionesXPiso() " + e.getMessage());
         }
 
         return lista;
@@ -253,6 +254,9 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar habitacion por categoria");
+            System.out.println("Error en las clase HabitacionData metodo listarHabitacionesXCategoria() " + ex.getMessage());
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error al buscar habitacion por categoria");
             System.out.println("Error en las clase HabitacionData metodo listarHabitacionesXCategoria() " + ex.getMessage());
         }
@@ -299,6 +303,9 @@ public class HabitacionDataBORRADOR {
             }
 
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al verificar si la habitacion esta libre");
+            System.out.println("Error en las clase HabitacionData metodo isLibre() " + ex.getMessage());
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error al verificar si la habitacion esta libre");
             System.out.println("Error en las clase HabitacionData metodo isLibre() " + ex.getMessage());
         }
