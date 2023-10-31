@@ -216,6 +216,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         Huesped h = HuespedData.obtenerHuespedXid((int)modelo.getValueAt(Tabla.getSelectedRow(), 1));
         int id=(int)modelo.getValueAt(Tabla.getSelectedRow(), 1);
         ReservaData.finReserva(h,id);
+        vaciarTabla();
     }//GEN-LAST:event_jbCancelarReservaActionPerformed
 
     private void jbBuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarReservaActionPerformed
