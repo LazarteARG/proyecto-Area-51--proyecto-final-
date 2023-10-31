@@ -42,6 +42,7 @@ public class HotelArea51 extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HOTEL AREA 51 Administración");
 
         jbAyuda.setText("?");
         jbAyuda.addActionListener(new java.awt.event.ActionListener() {
