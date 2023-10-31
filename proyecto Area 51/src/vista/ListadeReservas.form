@@ -57,7 +57,7 @@
                               <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                               <Component id="jbCancelarReserva" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jdcBuscarFecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="BuscarFecha" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -89,7 +89,7 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jdcBuscarFecha" min="-2" max="-2" attributes="0"/>
+                  <Component id="BuscarFecha" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -193,7 +193,7 @@
         <Property name="text" type="java.lang.String" value="Buscar Reserva x Fecha:"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jdcBuscarFecha">
+    <Component class="com.toedter.calendar.JDateChooser" name="BuscarFecha">
     </Component>
   </SubComponents>
 </Form>

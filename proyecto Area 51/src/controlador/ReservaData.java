@@ -358,7 +358,8 @@ public class ReservaData {
         actualizarReserva(r);
     }
 
-    public static Reserva buscarReservaPorFechaDeInicio(LocalDate fechaInicio) {
+    public static ArrayList buscarReservaPorFechaDeInicio(LocalDate fechaInicio) {
+        ArrayList<Reserva> reservas = new ArrayList<>();
         Reserva reserva = new Reserva();
         try {
             sql = "SELECT * FROM reserva WHERE fechaEntrada=?";
@@ -366,7 +367,7 @@ public class ReservaData {
             ps.setDate(1, Date.valueOf(fechaInicio));
             rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 reserva.setIdReserva(rs.getInt(1));
                 reserva.setHuesped(HuespedData.obtenerHuespedXid(rs.getInt(2)));
                 reserva.setHabitacion(HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)));
@@ -376,7 +377,7 @@ public class ReservaData {
                 reserva.setPrecioTotal(rs.getDouble(7));
                 reserva.setEstado(rs.getBoolean(8));
 
-                return reserva;
+                reservas.add(reserva);
             }
 
         } catch (SQLException ex) {
@@ -387,7 +388,7 @@ public class ReservaData {
             System.out.println("Error CLASE ReservaData METODO buscarReservaPorFechaInicio");
         }
 
-        return reserva;
+        return reservas;
 
     }
 
