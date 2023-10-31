@@ -217,6 +217,9 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         int id=(int)modelo.getValueAt(Tabla.getSelectedRow(), 1);
         ReservaData.finReserva(h,id);
         vaciarTabla();
+        jrTodasReservas.setSelected(false);
+        jrReservasActivas.setSelected(false);
+         jrReservasNoActivas.setSelected(false);
     }//GEN-LAST:event_jbCancelarReservaActionPerformed
 
     private void jbBuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarReservaActionPerformed
