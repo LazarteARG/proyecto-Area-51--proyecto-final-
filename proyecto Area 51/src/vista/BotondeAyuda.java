@@ -36,7 +36,7 @@ public class BotondeAyuda extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         jTextArea1.setRows(6);
-        jTextArea1.setText("Primero seria ir al boton superior a la izquierda que dice \"Reserva\" para que te salgan algunas opciones de menú para luego seleccionar\n\"Hacer Reserva\", seleccionas las fechas de entrada, de salida y la cantidad de personas se hospedan, después en \n\"Seleccion de Habitaciones\" si es la primera vez que se hospeda el huesped (Huesped Nuevo) hay un botón para registrarlo, después de \nseleccionar la habitación iriamos a la parte final de la reserva \"Registrar Reserva\" en donde aparecera un combo box con los huespedes\nen donde puede seleccionar el que esta haciendo la reserva (Cualquier cosa use el boton \"Buscar Huesped\" para buscar mas facil)");
+        jTextArea1.setText("Primero seria ir al boton superior a la izquierda que dice \"Reserva\" para que te salgan algunas opciones de menú para luego seleccionar\n\"Hacer Reserva\", seleccionas las fechas de entrada, de salida y la cantidad de personas se hospedan, después en \n\"Seleccion de Habitaciones\" si es la primera vez que se hospeda el huesped (Huesped Nuevo) hay un botón para registrarlo, después de \nseleccionar la habitación iriamos a la parte final de la reserva \"Registrar Reserva\" en donde aparecera un combo box con los huespedes\nen donde puede seleccionar el que esta haciendo la reserva (Cualquier cosa use el boton \"Buscar Huesped\" para buscar mas facil).\nEso seria todo, has creado una nueva reserva.");
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setText("AYUDA: COMO FUNCIONA EL PROGRAMA");
