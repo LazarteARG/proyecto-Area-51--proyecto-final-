@@ -32,6 +32,8 @@ public class BotondeAyuda extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollBar1 = new javax.swing.JScrollBar();
 
+        setClosable(true);
+
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -74,7 +76,7 @@ public class BotondeAyuda extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 315, Short.MAX_VALUE)))
+                        .addGap(0, 183, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
