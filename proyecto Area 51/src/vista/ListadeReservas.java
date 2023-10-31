@@ -1,8 +1,10 @@
 package vista;
 
+import controlador.HuespedData;
 import controlador.ReservaData;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelo.Huesped;
 import modelo.Reserva;
 
 public class ListadeReservas extends javax.swing.JInternalFrame {
@@ -77,6 +79,11 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
         jcOpcionBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione un Dato-", "nombre", "apellido", "dni" }));
 
         jbCancelarReserva.setText("Cancelar Reserva");
+        jbCancelarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarReservaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,6 +181,11 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
             
         }
     }//GEN-LAST:event_jrReservasNoActivasActionPerformed
+
+    private void jbCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarReservaActionPerformed
+        Huesped h = HuespedData.obtenerHuespedXid((int)Tabla.getValueAt(Tabla.getSelectedRow(), 1));
+        ReservaData.finReserva(h);
+    }//GEN-LAST:event_jbCancelarReservaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
