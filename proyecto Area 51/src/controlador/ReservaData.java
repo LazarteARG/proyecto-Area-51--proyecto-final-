@@ -388,13 +388,16 @@ public class ReservaData {
     }
 
     public static void finReserva(Huesped h,int idReserva) {
-        Reserva r=new Reserva();
+        Reserva r=buscarReservaPorHuesped(h.getIdHuesped());
+        /*System.out.println("id huesped:"+h.getIdHuesped());
         for (Reserva reserva : buscarReservaPorHuesped2(h.getIdHuesped())) {
             if(reserva.getIdReserva()==idReserva){
+                System.out.println("idReserva:"+reserva.getIdReserva());
+                System.out.println("id:"+idReserva);
                 r=reserva;
                 break;
             }
-        }
+        }*/
 
         r.setEstado(false);
         actualizarReserva(r);

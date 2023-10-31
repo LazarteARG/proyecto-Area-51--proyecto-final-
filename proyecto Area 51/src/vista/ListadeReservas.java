@@ -213,8 +213,8 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrReservasNoActivasActionPerformed
 
     private void jbCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarReservaActionPerformed
-        Huesped h = HuespedData.obtenerHuespedXid((int)Tabla.getValueAt(Tabla.getSelectedRow(), 1));
-        int id=(int)Tabla.getValueAt(Tabla.getSelectedRow(), 1);
+        Huesped h = HuespedData.obtenerHuespedXid((int)modelo.getValueAt(Tabla.getSelectedRow(), 1));
+        int id=(int)modelo.getValueAt(Tabla.getSelectedRow(), 1);
         ReservaData.finReserva(h,id);
     }//GEN-LAST:event_jbCancelarReservaActionPerformed
 
