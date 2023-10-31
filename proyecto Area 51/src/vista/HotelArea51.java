@@ -23,7 +23,6 @@ public class HotelArea51 extends javax.swing.JFrame {
                 g.drawImage(img,0,0,getWidth(),getHeight(),this);
             }
         };
-        jbAyuda = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -45,26 +44,14 @@ public class HotelArea51 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HOTEL AREA 51 Administración");
 
-        jbAyuda.setText("?");
-        jbAyuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAyudaActionPerformed(evt);
-            }
-        });
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagen_mas_pequeña-removebg-preview.png"))); // NOI18N
 
-        jDesktopPane1.setLayer(jbAyuda, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbAyuda)
-                .addGap(34, 34, 34))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(383, 383, 383)
                 .addComponent(jLabel2)
@@ -75,9 +62,7 @@ public class HotelArea51 extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
-                .addComponent(jbAyuda)
-                .addGap(21, 21, 21))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
 
         jMenuBar1.setMaximumSize(new java.awt.Dimension(300, 32768));
@@ -282,6 +267,7 @@ public class HotelArea51 extends javax.swing.JFrame {
         rh.setVisible(true);
         jDesktopPane1.add(rh);
         jDesktopPane1.moveToFront(rh);
+
         
     }//GEN-LAST:event_jmAdministracionCategoriaActionPerformed
 
@@ -289,22 +275,13 @@ public class HotelArea51 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-    private void jbAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAyudaActionPerformed
-        jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-        BotondeAyuda rh = new BotondeAyuda();
-        rh.setVisible(true);
-        jDesktopPane1.add(rh);
-        jDesktopPane1.moveToFront(rh);
-    }//GEN-LAST:event_jbAyudaActionPerformed
-
     private void jmListaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaReservaActionPerformed
         jDesktopPane1.removeAll();;
         jDesktopPane1.repaint();
         ListadeReservas lr = new ListadeReservas();
         lr.setVisible(true);
         jDesktopPane1.add(lr);
-        jDesktopPane1.moveToFront(lr);
+
     }//GEN-LAST:event_jmListaReservaActionPerformed
 
     public static void main(String args[]) {
@@ -345,7 +322,6 @@ public class HotelArea51 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JButton jbAyuda;
     private javax.swing.JMenuItem jmAdministracionCategoria;
     private javax.swing.JMenuItem jmListaReserva;
     private javax.swing.JMenuItem resgitrarHabitacionMenu;
