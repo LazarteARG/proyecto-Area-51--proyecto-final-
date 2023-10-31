@@ -1,7 +1,12 @@
 package vista;
 
-public class HotelArea51 extends javax.swing.JFrame {
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
+public class HotelArea51 extends javax.swing.JFrame {
+    ImageIcon icon= new ImageIcon(getClass().getResource("/imagenes/fondoMenuPrincipal.gif"));
+    Image img=icon.getImage();
     public HotelArea51() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -13,7 +18,11 @@ public class HotelArea51 extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(img,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jbAyuda = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
