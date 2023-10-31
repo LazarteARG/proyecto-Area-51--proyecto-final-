@@ -291,6 +291,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
     private void agregarCabeceraTabla() {
         modelo.addColumn("ID Reserva");
         modelo.addColumn("ID Huesped");
+           modelo.addColumn("Nombre");
          modelo.addColumn("DNI Huesped");
         modelo.addColumn("ID Habitación");
         modelo.addColumn("Fecha de entrada");
@@ -303,7 +304,7 @@ public class ListadeReservas extends javax.swing.JInternalFrame {
 
 
     private void agregarFila(Reserva reserva) {
-        modelo.addRow( new Object[]{reserva.getIdReserva(), reserva.getHuesped().getIdHuesped(),reserva.getHuesped().getDNI(),reserva.getHabitacion().getIdHabitacion(), reserva.getFechaIngreso(), reserva.getFechaEgreso(), reserva.getCantPersonas(), reserva.getPrecioTotal(),reserva.isEstado()});
+        modelo.addRow( new Object[]{reserva.getIdReserva(), reserva.getHuesped().getIdHuesped(),reserva.getHuesped().getNombre(),reserva.getHuesped().getDNI(),reserva.getHabitacion().getIdHabitacion(), reserva.getFechaIngreso(), reserva.getFechaEgreso(), reserva.getCantPersonas(), reserva.getPrecioTotal(),reserva.isEstado()});
                
     }
     public void vaciarTabla() {
