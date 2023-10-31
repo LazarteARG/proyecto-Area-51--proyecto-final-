@@ -67,7 +67,6 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         ingreso_cantidadHuespedes = new javax.swing.JTextField();
-        jbIrRegistrarHuesped = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -126,13 +125,6 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
 
         ingreso_cantidadHuespedes.setEditable(false);
 
-        jbIrRegistrarHuesped.setText("Registrar Huesped");
-        jbIrRegistrarHuesped.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbIrRegistrarHuespedActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,10 +181,8 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
                                         .addComponent(ingreso_fechaDeEgreso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                                         .addComponent(ingreso_fechaIngreso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jbIrRegistrarHuesped))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addComponent(jButton1)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,8 +208,7 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(ingreso_fechaDeEgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbIrRegistrarHuesped))
+                    .addComponent(ingreso_fechaDeEgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -254,15 +243,6 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jbIrRegistrarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIrRegistrarHuespedActionPerformed
-        RegistrarHuesped hacerreserva = new RegistrarHuesped();
-
-        JDesktopPane desktop = getDesktopPane();
-        desktop.add(hacerreserva);
-        hacerreserva.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jbIrRegistrarHuespedActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Huesped huesped = (Huesped)jComboBoxHuesped.getSelectedItem();
         Habitacion habitacion = HabitacionDataBORRADOR.obtenerHabitacionXId(idHabitacion);
@@ -290,7 +270,6 @@ public class HacerReserva3 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton jbIrRegistrarHuesped;
     private javax.swing.JLabel label_preciototal;
     // End of variables declaration//GEN-END:variables
 
