@@ -112,15 +112,16 @@ public class ReservaData {
     }
 
     //**Hecho por Ariel Lazarte*/
-    public static Reserva buscarReservaPorHuesped(int idHuesped) {
+    public static ArrayList<Reserva> buscarReservaPorHuesped(int idHuesped) {
         Reserva r = new Reserva();
+        ArrayList<Reserva> hs=new ArrayList<>();
         sql = "SELECT * FROM reserva WHERE idHuesped = ?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, idHuesped);
             rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 r.setIdReserva(rs.getInt(1));
                 r.setHuesped(HuespedData.obtenerHuespedXid(rs.getInt(2)));
                 r.setHabitacion(HabitacionDataBORRADOR.obtenerHabitacionXId(rs.getInt(3)));
@@ -130,6 +131,7 @@ public class ReservaData {
                 r.setPrecioTotal(rs.getDouble(7));
                 r.setEstado(rs.getBoolean(8));
 
+                hs.add(r);
             }
 
         } catch (SQLException ex) {
@@ -142,7 +144,7 @@ public class ReservaData {
 
         }
 
-        return r;
+        return hs;
 
     }
 
@@ -352,8 +354,15 @@ public class ReservaData {
         return c.getPrecioNoche() * dias;
     }
 
-    public static void finReserva(Huesped h) {
-        Reserva r = buscarReservaPorHuesped(h.getIdHuesped());
+    public static void finReserva(Huesped h,int idReserva) {
+        Reserva r=new Reserva();
+        for (Reserva reserva : buscarReservaPorHuesped(h.getIdHuesped())) {
+            if(reserva.getIdReserva()==idReserva){
+                r=reserva;
+                break;
+            }
+        }
+
         r.setEstado(false);
         actualizarReserva(r);
     }
